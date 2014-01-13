@@ -1,0 +1,22 @@
+imports:
+    - { resource: ../dev/config.yml }
+
+doctrine:
+    dbal:
+        #dbname:   %database_name%_test
+        driver:  pdo_sqlite
+        user:    root
+        path:    %kernel.root_dir%/cache/sqlite.db.cache
+        memory: true
+        charset: utf8
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false

@@ -1,0 +1,10 @@
+{% if images|length > 0 %}
+<div class="blog-photo-stream margin-bottom-20">
+    <h2>{{'page.gallery.block_title'}}</h2>
+    <ul class="list-unstyled">
+        {% for image in images %}
+        <li><a href="{{path('web_gallery', {id : image.id})}}"><img src="{{image.webPath|imagine_filter('gallery_image_block')}}" alt="{{image.name}}"></a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

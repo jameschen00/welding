@@ -1,0 +1,12 @@
+{% include 'ApplicationShopBundle:Admin/Product/Form:_tabs.html.twig' %}
+<br>
+<div class="tab-content">
+    {% include 'ApplicationShopBundle:Admin/Product/Form:_main.html.twig' %}
+    {% include 'ApplicationShopBundle:Admin/Product/Form:_description.html.twig' %}
+    {% include 'ApplicationShopBundle:Admin/Product/Form:_values.html.twig' %}
+    {% include 'ApplicationShopBundle:Admin/Product/Form:_images.html.twig' %}
+    {% include 'ApplicationShopBundle:Admin/Product/Form:_meta.html.twig' %}
+</div>
+<hr>
+
+{{ form_widget(form._token) }}

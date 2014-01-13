@@ -1,0 +1,50 @@
+{% macro valuePrototype() %}
+    <div class="form-group" data-collection-item="item">
+        <div class="input-group col-lg-10">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-move"></span></span>
+            <input type="text" class="form-control" name="property[choices][__name__][value]" id="property_choices__name__value" />
+            <input type="hidden" value="__name__" data-role="value-ordering" name="property[choices][__name__][ordering]" id="property_choices__name__ordering" />
+            <span class="input-group-btn">
+                <button class="btn btn-danger" type="button" data-collection-button="delete"><span class="glyphicon glyphicon-trash"></span></button>
+            </span>
+        </div>
+    </div>
+{% endmacro %}
+
+
+<div class="row">
+    <div class="col-md-8">
+        <fieldset>
+            <legend> {{ 'page.property.params'|trans }}</legend>
+            {{ form_row(form.is_active) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.label) }}
+            <hr/>
+            {{ form_row(form.is_required) }}
+        </fieldset>
+    </div>
+    <div class="col-md-4">
+        <fieldset>
+            <legend> {{ 'page.property.values'|trans }}</legend>
+            <div id="property-values" class="collection-container" data-prototype="{{ _self.valuePrototype()|e }}">
+                {% for choice in form.choices %}
+                    <div class="form-group" data-collection-item="item">
+                        <div class="input-group col-lg-10">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-move"></span></span>
+                            {{ form_widget(choice.value) }}
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" data-collection-button="delete"><span class="glyphicon glyphicon-trash"></span></button>
+                            </span>
+                        </div>
+                        {{ form_widget(choice.ordering) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="#" class="btn btn-success btn-block" data-collection-button="add" data-prototype="property-values" data-collection="property-values">
+                {{ 'page.property.add_property'|trans }}
+            </a>
+        </fieldset>
+    </div>
+</div>
+{{ form_widget(form._token) }}

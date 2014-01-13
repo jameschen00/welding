@@ -1,0 +1,19 @@
+web_home:
+    pattern:  /
+    defaults: { _controller: ApplicationWebBundle:Default:index }
+
+web_gallery:
+    pattern:  /gallery
+    defaults: { _controller: ApplicationWebBundle:Gallery:index }
+
+web_contact:
+    pattern:  /contacts
+    defaults: { _controller: ApplicationWebBundle:Contact:index }
+
+web_service:
+    pattern:  /service
+    defaults: { _controller: ApplicationWebBundle:Service:index }
+
+web_partners:
+    pattern:  /partners
+    defaults: { _controller: ApplicationWebBundle:Partner:index }

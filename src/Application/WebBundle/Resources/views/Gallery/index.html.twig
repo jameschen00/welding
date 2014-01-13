@@ -1,0 +1,47 @@
+{% extends 'ApplicationWebBundle::layout.html.twig' %}
+
+{% block title %}page.gallery{% endblock %}
+{% block page_header %}page.gallery{% endblock %}
+
+{% block body %}
+    <div class="container min-hight portfolio-page margin-bottom-40">
+        <div class="filter-v1">
+            <ul class="mix-filter">
+                <li class="filter active" data-filter="all">All</li>
+                {% for section in sections %}
+                    <li class="filter" data-filter="category_{{section.id}}">{{section.name}}</li>
+                {% endfor %}
+            </ul>
+            <div class="row mix-grid thumbnails">
+                {% for image in images %}
+                <div class="col-md-3 col-sm-4 gallery-item mix category_{{image.section.id}} mix_all">
+                    <a data-id="{{image.id}}" data-rel="fancybox-button" title="{{image.name}}" href="{{image.webPath|imagine_filter('gallery_image_full')}}" class="fancybox-button">
+                        <img alt="{{image.name}}" src="{{image.webPath|imagine_filter('gallery_image_preview')}}" class="img-responsive">
+                        <div class="zoomix"><i class="fa fa-search"></i></div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+    <link href="/bundles/applicationweb/css/pages/gallery.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/bundles/applicationweb/scripts/gallery.js"></script>
+    <script type="text/javascript" src="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/bundles/applicationweb/plugins/jquery.mixitup.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Gallery.init({{selected}});
+        });
+    </script>
+{% endblock %}

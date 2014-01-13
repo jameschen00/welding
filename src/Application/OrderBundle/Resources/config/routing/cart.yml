@@ -1,0 +1,15 @@
+orderbundle_cart_view:
+    pattern:  /cart
+    defaults: { _controller: ApplicationOrderBundle:Cart:index }
+
+orderbundle_cart_add:
+    pattern:  /cart/add/{product}
+    defaults: { _controller: ApplicationOrderBundle:Cart:add }
+
+orderbundle_cart_delete:
+    pattern:  /cart/delete/{product}
+    defaults: { _controller: ApplicationOrderBundle:Cart:delete }
+
+orderbundle_cart_clear:
+    pattern:  /cart/clear
+    defaults: { _controller: ApplicationOrderBundle:Cart:clear }

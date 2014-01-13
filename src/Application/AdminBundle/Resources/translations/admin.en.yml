@@ -1,0 +1,14 @@
+page:
+    abstract:
+        edit: Edit
+        add : Add
+        view: View
+    login : Sign In
+
+button:
+    add: Add
+    apply:  Apply
+    back:  Back
+    save:  Save
+    cancel: Cancel
+    delete: Delete

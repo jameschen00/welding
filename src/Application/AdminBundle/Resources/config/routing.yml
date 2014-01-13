@@ -1,0 +1,11 @@
+security:
+    resource: "@ApplicationAdminBundle/Resources/config/routing/security.yml"
+
+adminbundle_homepage:
+    pattern:  /admin/
+    defaults: { _controller: ApplicationAdminBundle:Default:index }
+
+adminbundle_menu:
+    resource: "@ApplicationAdminBundle/Controller/MenuController.php"
+    type:     annotation
+    prefix:  /admin

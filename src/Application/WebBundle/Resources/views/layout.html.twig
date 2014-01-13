@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Page title{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css' />
+
+    {% block stylesheets %}
+        {% stylesheets output='assets/css/frontend.css' filter='cssrewrite'
+            'bundles/applicationweb/plugins/font-awesome/css/font-awesome.min.css'
+            'bundles/applicationweb/plugins/bootstrap/css/bootstrap.min.css'
+            'bundles/applicationweb/css/style-metronic.css'
+            'bundles/applicationweb/css/style.css'
+            'bundles/applicationweb/css/themes/orange.css'
+            'bundles/applicationweb/css/style-responsive.css'
+            'bundles/applicationweb/css/custom.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
+        {% endstylesheets %}
+    {% endblock %}
+
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+    {{ render(controller('ApplicationWebBundle:Default:header')) }}
+
+    <!-- BEGIN PAGE CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN BREADCRUMBS -->
+        <div class="row breadcrumbs margin-bottom-40">
+            <div class="container">
+                <div class="col-md-4 col-sm-4">
+                    <h1>{% block page_header %}Page title{% endblock %}</h1>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    {{ wo_render_breadcrumbs({ viewTemplate: "ApplicationWebBundle::breadcrumbs.html.twig" }) }}
+                </div>
+            </div>
+        </div>
+        <!-- END BREADCRUMBS -->
+
+        <div class="row">
+            <div class="col-md-12">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE CONTAINER -->
+
+    {{ render(controller('ApplicationWebBundle:Default:footer')) }}
+
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    {% block javascripts %}
+        <!--[if lt IE 9]>
+        <script src="/bundles/applicationweb/plugins/respond.min.js"></script>
+        <![endif]-->
+        {% javascripts output='assets/js/forntend.js'
+            'bundles/applicationweb/plugins/jquery-1.10.2.min.js'
+            'bundles/applicationweb/plugins/jquery-migrate-1.2.1.min.js'
+            'bundles/applicationweb/plugins/bootstrap/js/bootstrap.min.js'
+            'bundles/applicationweb/plugins/hover-dropdown.js'
+            'bundles/applicationweb/plugins/back-to-top.js'
+            'bundles/applicationweb/scripts/app.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                App.init();
+            });
+        </script>
+    {% endblock %}
+    <!-- END BODY -->
+</body>
+</html>

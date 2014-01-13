@@ -1,0 +1,45 @@
+<div class="popup-header">
+    <h2 class="black">Ваша корзина</h2>
+    <a onclick="core.popup.close('popup-cart'); return false;" href="javascript:void('');" title="Закрыть" class="close-icon"></a>
+</div>
+<div class="popup-body">
+    <table class="table-title">
+        <tbody>
+        <tr>
+            <th colspan="2">Товар</th>
+            <th>Кол-во</th>
+            <th>Цена</th>
+        </tr>
+        {% for product in products %}
+        <tr data-role="product-72743">
+            <td class="prod-pic">
+                <img src="/res/cache/images/c4/4a/c44aeea74bf3fe8e77a0be7003508a6f/8f35772e77d479de3b2ef5fb020de209.png" width="100" height="100" alt="" border="0" title="">            </td>
+            <td class="prod-link">
+                <a class="big-link" href="/smartphone/Lenovo-K900.html">{{ product.name }}</a>
+            </td>
+            <td class="prod-amount">
+                <div class="prod-amount-input">
+                    <input id="count-72743" value="1" type="text" onchange="order.cart.count(this, {product_id:72743});" tabindex="">
+                    <br>
+                </div>
+                <div class="product_del">
+                    <a href="javascript:void(0)" class="dashed" onclick="order.cart.remove({{ product.id }});" title="удалить товар">Удалить товар</a>
+                </div>
+            </td>
+            <td class="prod-buy">
+                <div class="price orange">
+                    <span class="unit_prise"><span data-role="product-cost-72743">{{ product.price }}</span>&nbsp;грн.</span>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="intotal">
+        <strong>Итого:&nbsp;<span class="price_big green"><span data-role="total-cost">6 938.00</span><span>&nbsp;грн.</span></span></strong>
+        <div class="buy">
+            <a href="/order/cart/checkout/" class="btn main green">Оформить заказ</a>
+        </div>
+    </div>
+    <a onclick="core.popup.close('popup-cart'); return false;" href="javascript:void('');" title="Закрыть" class="continue_shopping">← Продолжить покупки</a>
+</div>

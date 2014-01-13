@@ -1,0 +1,7 @@
+message_index_view:
+    pattern:  /message
+    defaults: { _controller: ApplicationMessageBundle:Index:index }
+
+message_index_status:
+    pattern:  /message/status
+    defaults: { _controller: ApplicationMessageBundle:Index:status }

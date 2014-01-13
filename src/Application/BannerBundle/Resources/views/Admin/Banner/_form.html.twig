@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#main" data-toggle="tab">{{ 'page.banner.tabs.main'|trans }}</a></li>
+    <li><a href="#preview" data-toggle="tab">{{ 'page.banner.tabs.preview'|trans }}</a></li>
+</ul>
+<div class="tab-content">
+    {% include 'ApplicationBannerBundle:Admin/Banner/Form:_main.html.twig' %}
+    {% include 'ApplicationBannerBundle:Admin/Banner/Form:_preview.html.twig' %}
+</div>
+{{ form_widget(form._token) }}

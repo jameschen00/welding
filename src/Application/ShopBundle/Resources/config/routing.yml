@@ -1,0 +1,7 @@
+shopbundle_admin:
+    resource: "@ApplicationShopBundle/Resources/config/routing/admin.yml"
+    prefix:  /admin
+
+shopbundle_category:
+    resource: shop
+    type:     category

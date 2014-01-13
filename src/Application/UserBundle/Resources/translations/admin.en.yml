@@ -1,0 +1,8 @@
+page.profile : User profile
+user:
+    id : Id
+    firstname: Firstname
+    lastname:  Lastname
+    email:  E-mail
+    password:  Password
+    repeatpassword: Repeat password

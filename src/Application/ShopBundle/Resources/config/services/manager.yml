@@ -1,0 +1,31 @@
+services:
+    shop_manager_product:
+        class:  'Application\ShopBundle\Manager\ProductManager'
+        scope:  prototype
+        parent: core_manager_abstract
+
+    shop_manager_product_property:
+        class:  'Application\ShopBundle\Manager\ProductPropertyManager'
+        scope:  prototype
+        parent: core_manager_abstract
+
+    shop_manager_brand:
+        class:  'Application\ShopBundle\Manager\BrandManager'
+        scope:  prototype
+        parent: core_manager_abstract
+
+    shop_manager_category:
+        class:  'Application\ShopBundle\Manager\CategoryManager'
+        scope:  prototype
+        parent: core_manager_abstract
+
+    shop_manager_property:
+        class:  'Application\ShopBundle\Manager\PropertyManager'
+        scope:  prototype
+        parent: core_manager_abstract
+
+    shop_manager_prototype:
+        class:  'Application\ShopBundle\Manager\PrototypeManager'
+        scope:  prototype
+        parent: core_manager_abstract
+

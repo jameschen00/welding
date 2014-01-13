@@ -1,0 +1,7 @@
+services:
+    shopbundle_roting_shoploader:
+        class: Application\ShopBundle\Routing\CatalogLoader
+        calls:
+            - [setTreeService, [@shop_service_tree]]
+        tags:
+           - { name: routing.loader }

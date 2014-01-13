@@ -1,0 +1,24 @@
+security:
+    encoders:
+        Application\UserBundle\Entity\User:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+
+    providers:
+        main:
+            entity: { class: ApplicationUserBundle:User, property: email }
+
+    firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout: true
+            security: true
+            anonymous: true
+
+    access_control:
+        - { path: ^/(admin)(?!/password), role: ROLE_ADMIN }
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

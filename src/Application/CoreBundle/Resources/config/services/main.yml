@@ -1,0 +1,8 @@
+services:
+    #pagination
+    core_paginator:
+        class: Application\CoreBundle\Library\Pagination\Paginator
+        arguments: ['@templating']
+        calls:
+            - [setTemplate, ["ApplicationCoreBundle:Pagination:paginator.html.twig"]]
+            - [setOnPage, [10]]

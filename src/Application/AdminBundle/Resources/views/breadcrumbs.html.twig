@@ -1,0 +1,20 @@
+{% spaceless %}
+    <ul class="page-breadcrumb breadcrumb" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="{{ url('adminbundle_homepage') }}">{{'admin.dashboard'|trans}}</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        {% for b in breadcrumbs %}
+            <li{% if itemClass is defined and itemClass|length %} class="{{ itemClass }}"{% endif %}{% if not(loop.first) %} itemprop="child"{% endif %}>
+                {% if b.url and not loop.last %}<a href="{{ b.url }}" itemprop="url"{% if linkRel is defined and linkRel|length %} rel="{{ linkRel }}"{% endif %}>{% endif %}
+                    <span itemprop="title">{{- b.text | trans(b.translationParameters, translation_domain, locale) -}}</span>
+                    {% if b.url and not loop.last %}</a>{% endif %}
+
+                {% if separator is not null and not loop.last %}
+                    <i class="fa fa-angle-right"></i>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endspaceless %}

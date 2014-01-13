@@ -1,0 +1,20 @@
+{% extends 'ApplicationCoreBundle::layout.html.twig' %}
+
+{% block title %}{% trans from "app" %}Profile{% endtrans %}{% endblock %}
+{% block page_header %}{% trans from "app" %}Profile{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-toolbar">
+        <div class="pull-right">
+            <button class="btn btn-success" data-loading-text="{% trans %}button.saving{% endtrans %}" onclick="return FormHelper.submit($('#edit-form'), {cmd : 'save'});"><span
+                        class="glyphicon glyphicon-saved"></span> {% trans from "app" %}Save{% endtrans %}</button>
+            <button class="btn btn-success" data-loading-text="{% trans %}button.saving{% endtrans %}" onclick="return FormHelper.submit($('#edit-form'), {cmd : 'apply'});"><span
+                        class="glyphicon glyphicon-chevron-down"></span> {% trans from "app" %}Apply{% endtrans %}
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <form id="edit-form" class="form-horizontal" method="POST">
+        {{ form_widget(form) }}
+    </form>
+{% endblock %}

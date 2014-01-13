@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>{% block title %}Test Application{% endblock %}</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600&subset=latin,cyrillic-ext" rel="stylesheet">
+
+    {% block stylesheets %}
+        {% stylesheets output='assets/css/login.css' filter='cssrewrite'
+        '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
+        '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
+        'bundles/applicationadmin/css/*'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+    {% endblock %}
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body id="signin">
+<nav class="navbar navbar-inverse" role="navigation">
+
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{path('adminbundle_homepage')}}">{% trans %}appname{% endtrans %}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="./signup.html">{% trans %}page.login.register{% endtrans %}</a>
+                </li>
+                <li class="">
+                    <a href="{{path('adminbundle_homepage')}}"><i class="icon-chevron-left"></i>&nbsp;&nbsp;{% trans %}page.login.homepage{% endtrans %}</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div> <!-- /.container -->
+</nav>
+
+{% block body %}{% endblock %}
+
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'ApplicationAdminBundle::login.html.twig' %}
+
+{% block title %}{% trans %}page.restore.page{% endtrans %}{% endblock %}
+{% block page_header %}{% trans %}page.restore.page{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="account-container stacked">
+        <div class="content clearfix">
+            <form class="form-inline" method="POST">
+                <h1>{% trans %}page.restore.page{% endtrans %}</h1>
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="alert alert-danger">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <div class="login-fields">
+                    <p>{% trans %}page.restore.instructions.restore{% endtrans %}:</p>
+                    {{ form_widget(form) }}
+                </div>
+                <!-- /login-fields -->
+                <div class="login-actions">
+                    <button type="submit" name="login" class="login-action btn btn-primary">{% trans %}
+                        page.restore.button.save{% endtrans %}</button>
+                </div>
+                <!-- .actions -->
+            </form>
+        </div>
+        <!-- /content -->
+    </div> <!-- /account-container -->
+{% endblock %}

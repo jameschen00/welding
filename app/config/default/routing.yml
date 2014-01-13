@@ -1,0 +1,35 @@
+_imagine:
+    resource: .
+    type:     imagine
+
+admin:
+    resource: "@ApplicationAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+core:
+    resource: "@ApplicationCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+shop:
+    resource: "@ApplicationShopBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@ApplicationUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+banner:
+    resource: "@ApplicationBannerBundle/Resources/config/routing.yml"
+    prefix:   /
+
+order:
+    resource: "@ApplicationOrderBundle/Resources/config/routing.yml"
+    prefix:   /
+
+message:
+    resource: "@ApplicationMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+web:
+    resource: "@ApplicationWebBundle/Resources/config/routing.yml"
+    prefix:   /

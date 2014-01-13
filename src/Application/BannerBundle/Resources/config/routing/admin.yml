@@ -1,0 +1,7 @@
+admin_banner:
+    resource: "@ApplicationBannerBundle/Controller/Admin/BannerController.php"
+    type:     annotation
+
+admin_place:
+    resource: "@ApplicationBannerBundle/Controller/Admin/PlaceController.php"
+    type:     annotation

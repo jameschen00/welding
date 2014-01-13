@@ -1,0 +1,7 @@
+admin_Gallery:
+    resource: "@ApplicationGalleryBundle/Controller/Admin/GalleryController.php"
+    type:     annotation
+
+admin_place:
+    resource: "@ApplicationGalleryBundle/Controller/Admin/PlaceController.php"
+    type:     annotation

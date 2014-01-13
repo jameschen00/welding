@@ -1,0 +1,43 @@
+liip_imagine:
+    data_root: %kernel.root_dir%/../web
+    cache_prefix:  /public/img/cache
+    filter_sets:
+        admin_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [50, 50], mode: outbound }
+
+        admin_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }
+
+        admin_full:
+            quality: 100
+            filters:
+                thumbnail: { size: [800, 800], mode: inset }
+
+        product_list_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [265, 199], mode: outbound}
+
+        product_card_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [462, 346], mode: outbound}
+
+        gallery_image_block:
+            quality: 100
+            filters:
+                thumbnail: { size: [54, 54], mode: outbound}
+
+        gallery_image_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [265, 199], mode: outbound}
+
+        gallery_image_full:
+            quality: 100
+            filters:
+                thumbnail: { size: [800, 600], mode: outbound}

@@ -1,0 +1,73 @@
+{% extends 'ApplicationWebBundle::layout.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+{% block page_header %}{{ category.name }}{% endblock %}
+
+{% block body %}
+    <!-- BEGIN CONTAINER -->
+    <div class="container min-hight">
+        <!-- BEGIN BLOG -->
+        <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
+                {% for sybcategory in categories %}
+                    {% set url = path('category_' ~ sybcategory.id) %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            {% if (sybcategory.image|length > 0) %}
+                                <img src="{{sybcategory.image.get(0)|imagine_filter('sybcategory_list_image')}}" alt="{{ sybcategory.name }}" />
+                            {% endif %}
+                            <div class="caption">
+                                <h3><a href="{{url}}">{{sybcategory.name}}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+                <!-- BEGIN RECENT NEWS -->
+                <h2>Recent News</h2>
+                <div class="recent-news margin-bottom-10">
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-3">
+                            <img src="assets/img/people/img2-large.jpg" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 recent-news-inner">
+                            <h3><a href="#">Letiusto gnissimos</a></h3>
+                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-3">
+                            <img src="assets/img/people/img1-large.jpg" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 recent-news-inner">
+                            <h3><a href="#">Deiusto anissimos</a></h3>
+                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-3">
+                            <img src="assets/img/people/img3-large.jpg" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 recent-news-inner">
+                            <h3><a href="#">Tesiusto baissimos</a></h3>
+                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END RECENT NEWS -->
+
+                <!-- BEGIN BLOG PHOTOS STREAM -->
+                {{ render(controller('ApplicationGalleryBundle:Component:index')) }}
+                <!-- END BLOG PHOTOS STREAM -->
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+        </div>
+        <!-- END BEGIN BLOG -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}

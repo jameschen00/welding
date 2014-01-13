@@ -1,0 +1,58 @@
+{% macro imagePrototype() %}
+    <div class="col-sm-6 col-md-3 product-image" data-collection-item="image" id="product_image___name__">
+        <div class="thumbnail">
+            <div class="empty-thumbnail">
+                <span class="btn-primary btn-lg file-overlay"><i class="icon-folder-open"></i> {{ 'form.choose_file'|trans }}</span>
+                <input type="file" class="form-control" required="required" name="product[image][__name__][file]" id="product_image___name___file" />
+                <input type="hidden" name="product[image][__name__][type]" id="product_image___name___type" value="image" />
+                <input type="hidden" class="form-control" name="product[image][__name__][ordering]" id="product_image___name___ordering" data-role="product-ordering" value="500"/>
+            </div>
+            <div class="caption">
+                <p>
+                    <textarea class="form-control" name="product[image][__name__][description]" id="product_image___name___description"></textarea>
+                </p>
+                <p>
+                    <a href="javascript:void(0)" class="btn btn-danger" data-collection-button="delete"><i class="icon-trash"></i>&nbsp;{{ 'product.delete_image'|trans }}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+<div class="tab-pane" id="images">
+    <fieldset>
+        <div id="product-image" class="row collection-container" data-prototype="{{ _self.imagePrototype()|e }}">
+            {% if entity is defined %}
+                {% for image in entity.image %}
+                    {% if image.webPath|length > 0 %}
+                        <div class="col-sm-6 col-md-3 product-image" data-collection-item="image">
+                            <div style="display: none">
+                            {{ form_widget(form.image[loop.index0].file) }}
+                            {{ form_widget(form.image[loop.index0].type) }}
+                            {{ form_widget(form.image[loop.index0].ordering, {"attr" : {"data-role" : "product-ordering"}}) }}
+                            </div>
+                            <div class="thumbnail">
+                                <a href="{{image.getWebPath  | imagine_filter('admin_full')}}" data-gallery="gallery">
+                                    <img class="img-rounded" src="{{image.getWebPath  | imagine_filter('admin_image')}}" alt="" />
+                                </a>
+                                <div class="caption">
+                                    <p>
+                                        {{ form_widget(form.image[loop.index0].description) }}
+                                    </p>
+                                    <p>
+                                        <a href="javascript:void(0)" class="btn btn-danger" data-collection-button="delete"><i class="icon-trash"></i>&nbsp;{{ 'product.delete_image'|trans }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="#" class="btn btn-success btn-block" data-collection-button="add" data-prototype="product-image" data-collection="product-image">
+                {{ 'page.product.add_image'|trans }}
+            </a>
+        </div>
+    </fieldset>
+</div>

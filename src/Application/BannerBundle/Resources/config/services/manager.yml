@@ -1,0 +1,10 @@
+services:
+    banner_manager_banner:
+        class:        'Application\BannerBundle\Manager\BannerManager'
+        scope:        prototype
+        parent:       core_manager_abstract
+
+    banner_manager_place:
+        class:        'Application\BannerBundle\Manager\PlaceManager'
+        scope:        prototype
+        parent:       core_manager_abstract

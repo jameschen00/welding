@@ -1,0 +1,3 @@
+Gallerybundle_admin:
+    resource: "@ApplicationGalleryBundle/Resources/config/routing/admin.yml"
+    prefix:  /admin

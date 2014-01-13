@@ -1,0 +1,5 @@
+services:
+    admin_manager_menu:
+        class:  'Application\AdminBundle\Manager\MenuManager'
+        scope:  prototype
+        parent: core_manager_abstract

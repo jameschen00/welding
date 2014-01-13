@@ -1,0 +1,18 @@
+services:
+    #abstract manager
+    core_manager_abstract:
+        abstract:  true
+        calls:
+            - [setEm, [@doctrine.orm.entity_manager]]
+
+    #standard manager
+    core_manager_standard:
+        class:     'Application\CoreBundle\Manager\StandardManager'
+        abstract:  true
+        parent:    core_manager_abstract
+
+    #factory
+    core_manager_factory:
+        class:  'Application\CoreBundle\Manager\ManagerFactory'
+        calls:
+            - [setContainer, [@service_container]]

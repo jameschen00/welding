@@ -1,0 +1,18 @@
+{% extends 'ApplicationAdminBundle::login.html.twig' %}
+
+{% block title %}{% trans %}page.restore.page{% endtrans %}{% endblock %}
+{% block page_header %}{% trans %}page.restore.page{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="account-container stacked">
+        <div class="content clearfix">
+            <form action="{{ path('restore_password') }}" class="form-inline" method="POST">
+                <h1>{% trans %}page.restore.page{% endtrans %}</h1>
+
+                <div class="alert alert-info">{% trans %}
+                    page.restore.instructions.email{% endtrans %}</div>
+            </form>
+        </div>
+        <!-- /content -->
+    </div> <!-- /account-container -->
+{% endblock %}

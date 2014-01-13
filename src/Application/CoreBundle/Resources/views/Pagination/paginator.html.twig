@@ -1,0 +1,33 @@
+{% if (pageCount > 1) %}
+    <ul class="pagination pagination-centered">
+        {% if (first.number != firstPageInRange.number) %}
+            <li class="page {% if (current == first.number) %} active {% endif %}">
+                <a href="{{ first.url }}">{{ first.number }}</a>
+            </li>
+        {% endif %}
+
+        {% if (first.number != firstPageInRange.number and first.number != firstPageInRange.number - 1) %}
+            <li class="disabled">
+                <a href="javascript:void(0)">...</a>
+            </li>
+        {% endif %}
+
+        {% for page in pagesInRange %}
+            <li class="page {% if (current == page.number) %} active {% endif %}">
+                <a href="{{ page.url }}">{{ page.number }}</a>
+            </li>
+        {% endfor %}
+
+        {% if (last.number != lastPageInRange.number and last.number != lastPageInRange.number + 1) %}
+            <li class="disabled">
+                <a href="javascript:void(0)">...</a>
+            </li>
+        {% endif %}
+
+        {% if (last.number != lastPageInRange.number) %}
+            <li class="page {% if (current == last.number) %} active {% endif %}">
+                <a href="{{ last.url }}">{{ last.number }}</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

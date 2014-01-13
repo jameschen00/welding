@@ -1,0 +1,9 @@
+<div class="tab-pane" id="values">
+    <fieldset>
+        <div class="collection-container">
+            {% for property in form.properties %}
+                {{ form_widget(property) }}
+            {% endfor %}
+        </div>
+    </fieldset>
+</div>

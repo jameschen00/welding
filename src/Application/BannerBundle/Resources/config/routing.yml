@@ -1,0 +1,3 @@
+bannerbundle_admin:
+    resource: "@ApplicationBannerBundle/Resources/config/routing/admin.yml"
+    prefix:  /admin

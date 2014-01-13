@@ -1,0 +1,26 @@
+.footer-categories {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-categories li > a:hover,
+.footer-categories li.active > a,
+.footer-categories li.active:hover > a {
+    color: #ff8503;
+    text-decoration: none;
+    background: none;
+}
+
+.footer-categories li a {
+    color: #FFF;
+}
+
+.footer-categories li a:before {
+    content: "";
+    font-family: FontAwesome !important;
+    font-size: 8px;
+    padding-right: 10px;
+    position: relative;
+    top: -1px;
+}

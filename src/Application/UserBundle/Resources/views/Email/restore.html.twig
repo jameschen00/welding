@@ -1,0 +1,4 @@
+{% block body %}
+    {% set href = url('restore_public', {'hash' : hash}) %}
+    {% trans with {'%href%' : href, '%user%': user.firstname ~ ' ' ~ user.lastname} %}page.restore.email.text{% endtrans %}
+{% endblock %}

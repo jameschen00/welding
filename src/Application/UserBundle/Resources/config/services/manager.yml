@@ -1,0 +1,10 @@
+services:
+    user_manager_user:
+        class:  'Application\UserBundle\Manager\UserManager'
+        scope:  prototype
+        parent: core_manager_abstract
+
+    user_manager_role:
+        class:  'Application\UserBundle\Manager\RoleManager'
+        scope:  prototype
+        parent: core_manager_abstract

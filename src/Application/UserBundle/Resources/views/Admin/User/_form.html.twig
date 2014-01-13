@@ -1,0 +1,9 @@
+{% include 'ApplicationUserBundle:Admin/User/Form:_tabs.html.twig' %}
+<br>
+<div class="tab-content">
+    {% include 'ApplicationUserBundle:Admin/User/Form:_main.html.twig' %}
+    {% include 'ApplicationUserBundle:Admin/User/Form:_permits.html.twig' %}
+</div>
+<hr>
+
+{{ form_widget(form._token) }}

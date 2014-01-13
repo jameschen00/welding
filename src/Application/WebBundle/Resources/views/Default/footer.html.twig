@@ -1,0 +1,68 @@
+<!-- BEGIN FOOTER -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 space-mobile">
+                <!-- BEGIN ABOUT -->
+                <h2>{{'footer.about.title'|trans}}</h2>
+                <p class="margin-bottom-30">{{'footer.about.text'|trans|raw}}</p>
+                <div class="clearfix"></div>
+                <!-- END ABOUT -->
+
+                <!-- BEGIN BLOG PHOTOS STREAM -->
+                {{ render(controller('ApplicationGalleryBundle:Component:index')) }}
+                <!-- END BLOG PHOTOS STREAM -->
+            </div>
+            <div class="col-md-4 col-sm-4 space-mobile">
+                <!-- BEGIN CONTACTS -->
+                <h2>{{'footer.contact.title'|trans}}</h2>
+                <address class="margin-bottom-40">
+                   {{'company.block'|trans|raw}}
+                </address>
+                <!-- END CONTACTS -->
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <!-- BEGIN CATALOG BLOCK -->
+                <h2>{{'footer.catalog.title'|trans}}</h2>
+                <ul class="footer-categories">
+                {%  for category in tree.data %}
+                    <li><a href="{{path('category_'~category.data.id)}}">{{category.data.name}}</a></li>
+                {% endfor %}
+                </ul>
+                <!-- END CATALOG BLOCK -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END FOOTER -->
+
+<!-- BEGIN COPYRIGHT -->
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <p>
+                    <span class="margin-right-10">2013 © {{'footer.copyright'|trans}}</span>
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="pull-right">
+                    <a href="http://touchsystems.com.ua/" target="_blank"><img src="/bundles/applicationweb/img/touchsystems.png" /></a>
+                </div>
+
+                {#<ul class="social-footer">#}
+                    {#<li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-google-plus"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-dribbble"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-skype"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-github"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-youtube"></i></a></li>#}
+                    {#<li><a href="#"><i class="fa fa-dropbox"></i></a></li>#}
+                {#</ul>#}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END COPYRIGHT -->

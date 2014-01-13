@@ -1,0 +1,41 @@
+appname : Baseadmin 3.0
+
+page:
+    abstract:
+        edit: Edit
+        add : Add
+        view: View
+
+    login:
+        page     : Вход
+        register : Регистрация
+        username : E-mail
+        password : Пароль
+        homepage : На главную
+        message  : Введите E-mail и пароль
+        remember : Запомнить меня
+        button : Войти
+        register_text : Нет аккаунта?
+        register_href : Зарегистрироваться
+        remind_text : Забыли пароль?
+        remind_href : Восстановить
+
+    menu:
+        page:  : Меню
+        title  : Заголовок
+        id     : Id
+        active : Активный
+        parent : Родитель
+        url    : Роутер
+        sorting: Порядок
+        icon   : Иконка 32х32
+
+
+
+button:
+    add: Добавить
+    apply:  Применить
+    back:  Назад
+    save:  Сохранить
+    cancel: Закрыть
+    delete: Удалить

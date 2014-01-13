@@ -1,0 +1,15 @@
+user_admin_profile:
+    pattern:  /profile
+    defaults: { _controller: ApplicationUserBundle:Admin\Profile:index }
+
+user_admin_user:
+    resource: "@ApplicationUserBundle/Controller/Admin/UserController.php"
+    type:     annotation
+    
+user_admin_role:
+    resource: "@ApplicationUserBundle/Controller/Admin/RoleController.php"
+    type:     annotation    
+
+user_admin_password:
+    resource: "@ApplicationUserBundle/Controller/Admin/PasswordController.php"
+    type:     annotation

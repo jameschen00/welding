@@ -1,0 +1,22 @@
+{% extends 'ApplicationWebBundle::layout.html.twig' %}
+
+
+{% block body %}
+    testets
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="/public/js/APE.js" ></script>
+    <script type="text/javascript">
+        $(function(){
+            var realplexor = new Dklab_Realplexor("http://push.symfony.localhost/");
+            realplexor.subscribe("alpha", function(data) { alert("alpha: " + data) });
+            realplexor.subscribe("beta", function(data) { alert("beta: " + data) });
+            realplexor.execute();
+        });
+    </script>
+{% endblock %}
+
+

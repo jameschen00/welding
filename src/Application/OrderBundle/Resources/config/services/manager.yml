@@ -1,0 +1,8 @@
+services:
+    manager.order.order:
+        class:        Application\OrderBundle\Manager\OrderManager
+        parent:       core_manager_abstract
+
+    manager.order.cart:
+        class:        Application\OrderBundle\Manager\CartManager
+        parent:       core_manager_abstract

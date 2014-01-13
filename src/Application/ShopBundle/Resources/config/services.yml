@@ -1,0 +1,4 @@
+imports:
+    - { resource: services/manager.yml }
+    - { resource: services/routing.yml }
+    - { resource: services/service.yml }

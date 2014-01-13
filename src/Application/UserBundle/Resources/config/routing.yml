@@ -1,0 +1,7 @@
+userbundle_admin:
+    resource: "@ApplicationUserBundle/Resources/config/routing/admin.yml"
+    prefix:  /admin
+
+userbundle_admin_profile:
+    pattern:  /profile
+    defaults: { _controller: ApplicationUserBundle:Profile:index }

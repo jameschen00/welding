@@ -1,0 +1,17 @@
+{% extends 'ApplicationAdminBundle::layout.html.twig' %}
+
+{% block title %}{{(configuration.pageTitle~'.'~page)|trans}}{% endblock %}
+{% block page_header %}{{(configuration.pageTitle~'.'~page)|trans}}{% endblock %}
+
+{% block page_controll %}
+    <a href="{{backUrl}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> {% trans %}button.back{% endtrans %}</a>
+    <button class="btn btn-success" data-loading-text="{% trans %}button.saving{% endtrans %}" onclick="return FormHelper.submit($('#update-form'), {cmd : 'save'});"><span class="glyphicon glyphicon-saved"></span> {% trans %}button.save{% endtrans %}</button>
+    <button class="btn btn-success" data-loading-text="{% trans %}button.saving{% endtrans %}" onclick="return FormHelper.submit($('#update-form'), {cmd : 'apply'});"><span class="glyphicon glyphicon-chevron-down"></span> {% trans %}button.apply{% endtrans %}</button>
+{% endblock %}
+
+{% block body %}
+    <form id="update-form" class="form-horizontal" action="{{saveUrl}}" {{ form_enctype(form) }} novalidate method="POST">
+        {% include 'ApplicationBannerBundle:Admin/Banner:_form.html.twig' %}
+    </form>
+{% endblock %}
+

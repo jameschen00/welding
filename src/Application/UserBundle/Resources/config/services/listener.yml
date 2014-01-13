@@ -1,0 +1,6 @@
+services:
+    user_listener_login:
+        class: Application\UserBundle\Listener\LoginListener
+        arguments: [@doctrine]
+        tags:
+          - { name: kernel.event_listener, event: security.interactive_login, method: onLogin }

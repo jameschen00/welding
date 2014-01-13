@@ -1,0 +1,135 @@
+{% extends 'ApplicationWebBundle::layout.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+{% block page_header %}{{ category.name }}{% endblock %}
+
+{% block body %}
+    <!-- BEGIN CONTAINER -->
+    <div class="container min-hight">
+        <!-- BEGIN BLOG -->
+        <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
+                {% for product in products %}
+                    {% set url = path('category_products_' ~ product.category.id, {'product':product.slug}) %}
+                    <div class="row">
+                        {% if (product.image|length > 1) %}
+                            <div class="col-md-4 col-sm-4">
+                                <!-- BEGIN CAROUSEL -->
+                                <div class="front-carousel">
+                                    <div id="myCarousel{{product.id}}" class="carousel slide">
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner">
+                                            {% for image in product.image %}
+                                                <div class="{% if loop.index0 == 0 %} active {% endif %} item">
+                                                    <img src="{{image|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <!-- Carousel nav -->
+                                        <a class="carousel-control left" href="#myCarousel{{product.id}}" data-slide="prev">
+                                            <i class="fa fa-angle-left"></i>
+                                        </a>
+                                        <a class="carousel-control right" href="#myCarousel{{product.id}}" data-slide="next">
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- END CAROUSEL -->
+                            </div>
+                        {% else %}
+                            {% if (product.image|length == 1) %}
+                                <div class="col-md-4 col-sm-4">
+                                    <img src="{{product.image.get(0)|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        <div class="col-md-8 col-sm-8">
+                            <h2><a href="{{url}}">{{product.name}}</a></h2>
+                            <ul class="blog-info">
+                                <li><i class="fa fa-tags"></i> Metronic, Keenthemes, UI Design</li>
+                            </ul>
+                            <p>{{ product.shortDescription|raw }}</p>
+                            <a class="more" href="{{url}}">{{'page.catalog.readmore'|trans}} <i class="icon-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <hr class="blog-post-sep">
+                {% endfor %}
+
+                <div class="text-center">
+                    {{paginator|raw}}
+                </div>
+            </div>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+                <!-- CATEGORIES START -->
+                <h2>Categories</h2>
+                <ul class="nav sidebar-categories margin-bottom-40">
+                    {% for subcategory in categories %}
+                    <li {% if subcategory.id == category.id  %}class="active"{% endif %}><a href="{{path('category_'~subcategory.id)}}">{{subcategory.name}} (18)</a></li>
+                    {% endfor %}
+                </ul>
+                <!-- CATEGORIES END -->
+
+                <!-- BEGIN RECENT NEWS -->
+                <h2>Recent News</h2>
+                <div class="recent-news margin-bottom-10">
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-3">
+                            <img src="assets/img/people/img2-large.jpg" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 recent-news-inner">
+                            <h3><a href="#">Letiusto gnissimos</a></h3>
+                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-3">
+                            <img src="assets/img/people/img1-large.jpg" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 recent-news-inner">
+                            <h3><a href="#">Deiusto anissimos</a></h3>
+                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-10">
+                        <div class="col-md-3">
+                            <img src="assets/img/people/img3-large.jpg" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9 recent-news-inner">
+                            <h3><a href="#">Tesiusto baissimos</a></h3>
+                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END RECENT NEWS -->
+
+                <!-- BEGIN BLOG PHOTOS STREAM -->
+                {{ render(controller('ApplicationGalleryBundle:Component:index')) }}
+                <!-- END BLOG PHOTOS STREAM -->
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+        </div>
+        <!-- END BEGIN BLOG -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/bundles/applicationweb/css/pages/portfolio.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/bundles/applicationweb/plugins/bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.initBxSlider();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,33 @@
+page.profile : Профиль пользователя
+
+page.restore:
+    page: Забыли пароль?
+    instructions:
+        begin: Введите свой e-mail адрес
+        email: На указанный Вами адрес отправлено письмо с дальнейшими инструкциями по изменению пароля
+        restore: Введите новый пароль
+    message:
+        success: Новый пароль успешно установлен
+        error: Ошибка, проверьте правльность E-mail адреса
+    email:
+        subject: Восстановление пароля
+        text: %user% Ссылка на восстановление пароля <a href="%href%">%href%</a>
+    button:
+        restore: Восстановить
+        save   : Сохранить
+
+page.user:
+    index : Список пользователей
+    update  : Редактирование
+    сreate  : Новый пользователь
+    tabs :
+        main : Профиль
+        permits : Права пользователя
+user:
+    id : Id
+    firstname: Имя
+    lastname:  Фамилия
+    active : Активный
+    email:  E-mail
+    password:  Пароль
+    repeatpassword: Повтор

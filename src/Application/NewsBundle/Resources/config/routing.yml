@@ -1,3 +1,7 @@
-shop_section:
+newsbundle_admin:
+    resource: "@ApplicationNewsBundle/Resources/config/routing/admin.yml"
+    prefix:  /admin
+
+newsbundle_section:
     resource: news
     type:     news

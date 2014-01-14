@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * News administration controller
  *
- * @Route("/News")
+ * @Route("/news/news")
  */
 class NewsController extends AbstractAdminController
 {
@@ -20,8 +20,8 @@ class NewsController extends AbstractAdminController
     protected function getConfiguration()
     {
         $configuration = new Configuration();
-        $configuration->setManager('news_News');
-        $configuration->setPageTitle('page.news');
+        $configuration->setManager('news_news');
+        $configuration->setPageTitle('page.news.news.title');
         $configuration->setTemplateUpdateAndCreatePath('ApplicationNewsBundle:Admin/News:update.html.twig');
 
         return $configuration;

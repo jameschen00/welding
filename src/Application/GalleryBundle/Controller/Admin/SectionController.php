@@ -2,18 +2,17 @@
 namespace Application\GalleryBundle\Controller\Admin;
 
 use Application\AdminBundle\Controller\Configuration;
-use Application\AdminBundle\Grid\AdminGridBuilder;
-use Application\GalleryBundle\Form\Type\PlaceType;
-use \Application\GalleryBundle\Grid\Type\PlaceType as PlaceGrid;
+use Application\GalleryBundle\Form\Type\SectionType;
+use Application\GalleryBundle\Grid\Type\SectionType as SectionGrid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Application\AdminBundle\Controller\AbstractAdminController;
 
 /**
  * Place administration controller
  *
- * @Route("/place")
+ * @Route("/gallery/section")
  */
-class PlaceController extends AbstractAdminController
+class SectionController extends AbstractAdminController
 {
     /**
      * {@inheritdoc}
@@ -21,8 +20,8 @@ class PlaceController extends AbstractAdminController
     protected function getConfiguration()
     {
         $configuration = new Configuration();
-        $configuration->setManager('gallery_place');
-        $configuration->setPageTitle('page.place');
+        $configuration->setManager('gallery_section');
+        $configuration->setPageTitle('page.gallery.section.title');
 
         return $configuration;
     }
@@ -32,7 +31,7 @@ class PlaceController extends AbstractAdminController
      */
     public function grid($manager)
     {
-        return $this->get('widget_grid_factory')->createGrid(new PlaceGrid($manager));
+        return $this->get('widget_grid_factory')->createGrid(new SectionGrid($manager));
     }
 
     /**
@@ -40,6 +39,6 @@ class PlaceController extends AbstractAdminController
      */
     public function form()
     {
-        return $this->createForm(new PlaceType());
+        return $this->createForm(new SectionType());
     }
 }

@@ -3,16 +3,16 @@ namespace Application\GalleryBundle\Controller\Admin;
 
 use Application\AdminBundle\Controller\AbstractAdminController;
 use Application\AdminBundle\Controller\Configuration;
-use Application\GalleryBundle\Form\Type\GalleryType;
-use \Application\GalleryBundle\Grid\Type\GalleryType as GalleryGrid;
+use Application\GalleryBundle\Form\Type\ImageType;
+use \Application\GalleryBundle\Grid\Type\ImageType as ImageGrid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Gallery administration controller
  *
- * @Route("/Gallery")
+ * @Route("/gallery/image")
  */
-class GalleryController extends AbstractAdminController
+class ImageController extends AbstractAdminController
 {
     /**
      * {@inheritdoc}
@@ -20,8 +20,8 @@ class GalleryController extends AbstractAdminController
     protected function getConfiguration()
     {
         $configuration = new Configuration();
-        $configuration->setManager('gallery_Gallery');
-        $configuration->setPageTitle('page.gallery');
+        $configuration->setManager('gallery_image');
+        $configuration->setPageTitle('page.gallery.image.title');
         $configuration->setTemplateUpdateAndCreatePath('ApplicationGalleryBundle:Admin/Gallery:update.html.twig');
 
         return $configuration;
@@ -32,7 +32,7 @@ class GalleryController extends AbstractAdminController
      */
     public function grid($manager)
     {
-        return $this->get('widget_grid_factory')->createGrid(new GalleryGrid($manager));
+        return $this->get('widget_grid_factory')->createGrid(new ImageGrid($manager));
     }
 
     /**
@@ -40,6 +40,6 @@ class GalleryController extends AbstractAdminController
      */
     public function form()
     {
-        return $this->createForm(new GalleryType());
+        return $this->createForm(new ImageType());
     }
 }

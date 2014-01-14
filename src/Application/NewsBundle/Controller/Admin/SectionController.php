@@ -11,9 +11,9 @@ use Application\AdminBundle\Controller\AbstractAdminController;
 /**
  * Place administration controller
  *
- * @Route("/place")
+ * @Route("/news/section")
  */
-class PlaceController extends AbstractAdminController
+class SectionController extends AbstractAdminController
 {
     /**
      * {@inheritdoc}
@@ -21,8 +21,8 @@ class PlaceController extends AbstractAdminController
     protected function getConfiguration()
     {
         $configuration = new Configuration();
-        $configuration->setManager('news_place');
-        $configuration->setPageTitle('page.place');
+        $configuration->setManager('news_section');
+        $configuration->setPageTitle('page.news.section.title');
 
         return $configuration;
     }

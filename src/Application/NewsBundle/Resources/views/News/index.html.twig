@@ -1,0 +1,54 @@
+{% extends 'ApplicationWebBundle::layout.html.twig' %}
+
+{% block title %}{{ section.name }}{% endblock %}
+{% block page_header %}{{ section.name }}{% endblock %}
+
+{% block body %}
+    <!-- BEGIN CONTAINER -->
+    <div class="container min-hight">
+        <!-- BEGIN BLOG -->
+        <div class="row">
+            <!-- BEGIN LEFT SIDEBAR -->
+            <div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
+                {% for item in news %}
+                    {% set url = path('news_item_' ~ item.section.id, {'id':item.id}) %}
+                    <div class="row">
+                        {% if (item.webPath) %}
+                            <div class="col-md-4 col-sm-4">
+                                <img src="{{item.webPath|imagine_filter('news_image_list')}}" alt="{{ item.title }}" />
+                            </div>
+                        {% endif %}
+                        <div class="col-md-8 col-sm-8">
+                            <h2><a href="{{url}}">{{item.title}}</a></h2>
+                            <ul class="blog-info">
+                                <li><i class="fa fa-calendar"></i> {{item.startDate|date("d.m.Y")}}</li>
+                            </ul>
+                            <p>{{ item.shortText|raw }}</p>
+                            <a class="more" href="{{url}}">{{'page.news.readmore'|trans}} <i class="icon-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <hr class="blog-post-sep">
+                {% endfor %}
+
+                <div class="text-center">
+                    {{paginator|raw}}
+                </div>
+            </div>
+            <!-- END LEFT SIDEBAR -->
+
+            <!-- BEGIN RIGHT SIDEBAR -->
+            <div class="col-md-3 col-sm-3 blog-sidebar">
+                <!-- BEGIN RECENT NEWS -->
+                {{ render(controller('ApplicationNewsBundle:Component:index')) }}
+                <!-- END RECENT NEWS -->
+
+                <!-- BEGIN BLOG PHOTOS STREAM -->
+                {{ render(controller('ApplicationGalleryBundle:Component:index')) }}
+                <!-- END BLOG PHOTOS STREAM -->
+            </div>
+            <!-- END RIGHT SIDEBAR -->
+        </div>
+        <!-- END BEGIN BLOG -->
+    </div>
+    <!-- END CONTAINER -->
+{% endblock %}

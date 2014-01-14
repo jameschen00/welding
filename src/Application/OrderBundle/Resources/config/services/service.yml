@@ -1,4 +1,0 @@
-services:
-    cart:
-        class:        Application\OrderBundle\Service\CartService
-        arguments:    [ @session ]

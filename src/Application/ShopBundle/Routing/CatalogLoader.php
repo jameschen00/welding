@@ -26,7 +26,7 @@ class CatalogLoader implements LoaderInterface
     private $treeService;
 
     /**
-     * @param ManagerFactory $factory
+     * @param CategoryTreeService $treeService
      */
     public function setTreeService(CategoryTreeService $treeService)
     {
@@ -75,7 +75,7 @@ class CatalogLoader implements LoaderInterface
                     '_format' => 'html|json'
                 );
                 $route = new Route($pattern, $defaults);
-                $routes->add('category_products_' . $category->getId(), $route);
+                $routes->add('category_products_' . $category->getId(), $route, $requirements);
             } else {
                 $this->buildRouter($prefix . $slug . '/', $routes, $child['child'], $level + 1);
             }

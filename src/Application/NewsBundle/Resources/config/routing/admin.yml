@@ -1,0 +1,7 @@
+admin_News:
+    resource: "@ApplicationNewsBundle/Controller/Admin/NewsController.php"
+    type:     annotation
+
+admin_place:
+    resource: "@ApplicationNewsBundle/Controller/Admin/PlaceController.php"
+    type:     annotation

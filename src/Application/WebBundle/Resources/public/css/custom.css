@@ -24,3 +24,7 @@
     position: relative;
     top: -1px;
 }
+
+.blog-sidebar h2:first-child {
+    margin-top:0 !important;
+}

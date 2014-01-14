@@ -22,12 +22,12 @@ banner:
     resource: "@ApplicationBannerBundle/Resources/config/routing.yml"
     prefix:   /
 
-order:
-    resource: "@ApplicationOrderBundle/Resources/config/routing.yml"
+news:
+    resource: "@ApplicationNewsBundle/Resources/config/routing.yml"
     prefix:   /
 
-message:
-    resource: "@ApplicationMessageBundle/Resources/config/routing.yml"
+gallery:
+    resource: "@ApplicationGalleryBundle/Resources/config/routing.yml"
     prefix:   /
 
 web:

@@ -1,2 +1,0 @@
-orderbundle_cart:
-    resource: "@ApplicationOrderBundle/Resources/config/routing/cart.yml"

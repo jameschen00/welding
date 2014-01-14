@@ -74,36 +74,7 @@
                 <!-- CATEGORIES END -->
 
                 <!-- BEGIN RECENT NEWS -->
-                <h2>Recent News</h2>
-                <div class="recent-news margin-bottom-10">
-                    <div class="row margin-bottom-10">
-                        <div class="col-md-3">
-                            <img src="assets/img/people/img2-large.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-md-9 recent-news-inner">
-                            <h3><a href="#">Letiusto gnissimos</a></h3>
-                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-                        </div>
-                    </div>
-                    <div class="row margin-bottom-10">
-                        <div class="col-md-3">
-                            <img src="assets/img/people/img1-large.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-md-9 recent-news-inner">
-                            <h3><a href="#">Deiusto anissimos</a></h3>
-                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-                        </div>
-                    </div>
-                    <div class="row margin-bottom-10">
-                        <div class="col-md-3">
-                            <img src="assets/img/people/img3-large.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-md-9 recent-news-inner">
-                            <h3><a href="#">Tesiusto baissimos</a></h3>
-                            <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-                        </div>
-                    </div>
-                </div>
+                {{ render(controller('ApplicationNewsBundle:Component:index')) }}
                 <!-- END RECENT NEWS -->
 
                 <!-- BEGIN BLOG PHOTOS STREAM -->
@@ -118,18 +89,7 @@
 {% endblock %}
 
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="/bundles/applicationweb/css/pages/portfolio.css" rel="stylesheet" type="text/css"/>
-{% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-    <script type="text/javascript" src="/bundles/applicationweb/plugins/bxslider/jquery.bxslider.min.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            App.initBxSlider();
-        });
-    </script>
 {% endblock %}

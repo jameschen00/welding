@@ -30,23 +30,18 @@ class AppKernel extends Kernel
             new Application\AdminBundle\ApplicationAdminBundle(),
             new Application\UserBundle\ApplicationUserBundle(),
             new Application\BannerBundle\ApplicationBannerBundle(),
-            new Application\OrderBundle\ApplicationOrderBundle(),
             new Application\GalleryBundle\ApplicationGalleryBundle(),
+            new Application\NewsBundle\ApplicationNewsBundle(),
             new Application\WebBundle\ApplicationWebBundle(),
-            new Application\MessageBundle\ApplicationMessageBundle(),
 
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
-
             new Widget\Bundle\WidgetBundle(),
-
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new \OldSound\RabbitMqBundle\OldSoundRabbitMqBundle()
+            new Liip\ImagineBundle\LiipImagineBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
         return $bundles;

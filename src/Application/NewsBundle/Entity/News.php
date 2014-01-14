@@ -1,5 +1,5 @@
 <?php
-namespace Application\BannerBundle\Entity;
+namespace Application\NewsBundle\Entity;
 
 use Application\CoreBundle\Library\Doctrine\ActiveEntityTrait;
 use Application\CoreBundle\Library\Doctrine\BaseEntity;
@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Banner
+ * News
  *
- * @ORM\Table(name="banner_item")
+ * @ORM\Table(name="news_item")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
-class Banner extends BaseEntity
+class News extends BaseEntity
 {
     use ModifyEntityTrait;
     use ActiveEntityTrait;
@@ -25,37 +25,34 @@ class Banner extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100, nullable=true)
+     * @ORM\Column(name="title", type="string", length=100, nullable=true)
      *
      * @Assert\NotBlank()
      * @Assert\Length(min = "2", max="100")
      */
-    private $name;
+    private $title;
 
     /**
-     * @var Place
+     * @var Section
      *
-     * @ORM\ManyToOne(targetEntity="Place", cascade={"persist"})
-     * @ORM\JoinColumn(name="place_id", referencedColumnName="id", onDelete="RESTRICT")
+     * @ORM\ManyToOne(targetEntity="Section", cascade={"persist"})
+     * @ORM\JoinColumn(name="section_id", referencedColumnName="id", onDelete="RESTRICT")
      */
-    private $place;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255, nullable=false)
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(max="255")
-     */
-    private $url;
+    private $section;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="text", nullable=true)
+     * @ORM\Column(name="short_text", type="text", nullable=true)
      */
-    private $code;
+    private $shortText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="full_text", type="text", nullable=true)
+     */
+    private $fullText;
 
     /**
      * @var string
@@ -76,57 +73,27 @@ class Banner extends BaseEntity
     private $temp;
 
     /**
-     * @var integer
+     * Set title
      *
-     * @ORM\Column(name="priority", type="integer", nullable=false)
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type(type="numeric")
-     */
-    private $priority = 500;
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Brand
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $code
+     * @param string $title
      *
      * @return $this
      */
-    public function setCode($code)
+    public function setTitle($title)
     {
-        $this->code = $code;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
+     * Get title
+     *
      * @return string
      */
-    public function getCode()
+    public function getTitle()
     {
-        return $this->code;
+        return $this->title;
     }
 
     /**
@@ -150,63 +117,23 @@ class Banner extends BaseEntity
     }
 
     /**
-     * @param \Application\BannerBundle\Entity\Place $place
+     * @param \Application\NewsBundle\Entity\Section $section
      *
      * @return $this
      */
-    public function setPlace($place)
+    public function setSection($section)
     {
-        $this->place = $place;
+        $this->section = $section;
 
         return $this;
     }
 
     /**
-     * @return \Application\BannerBundle\Entity\Place
+     * @return \Application\NewsBundle\Entity\Section
      */
-    public function getPlace()
+    public function getSection()
     {
-        return $this->place;
-    }
-
-    /**
-     * @param int $priority
-     *
-     * @return $this
-     */
-    public function setPriority($priority)
-    {
-        $this->priority = $priority;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPriority()
-    {
-        return $this->priority;
-    }
-
-    /**
-     * @param string $url
-     *
-     * @return $this
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
+        return $this->section;
     }
 
     /**
@@ -229,6 +156,46 @@ class Banner extends BaseEntity
         }
 
         return $this;
+    }
+
+    /**
+     * @param string $shortText
+     *
+     * @return $this
+     */
+    public function setShortText($shortText)
+    {
+        $this->shortText = $shortText;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortText()
+    {
+        return $this->shortText;
+    }
+
+    /**
+     * @param string $fullText
+     *
+     * @return $this
+     */
+    public function setFullText($fullText)
+    {
+        $this->fullText = $fullText;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullText()
+    {
+        return $this->fullText;
     }
 
     /**
@@ -278,7 +245,7 @@ class Banner extends BaseEntity
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'public/img/uploads/banners';
+        return 'public/img/uploads/news';
     }
 
     /**
@@ -291,9 +258,6 @@ class Banner extends BaseEntity
             // do whatever you want to generate a unique name
             $filename  = sha1(uniqid(mt_rand(), true));
             $this->img = $filename . '.' . $this->getFile()->guessExtension();
-
-            //generate code
-            $this->code = $this->genereteCode();
         }
     }
 
@@ -330,36 +294,5 @@ class Banner extends BaseEntity
         if ($file = $this->getAbsolutePath()) {
             unlink($file);
         }
-    }
-
-    /**
-     * Generate the html code of banner
-     *
-     * @return String
-     */
-    public function genereteCode()
-    {
-        $parts    = explode('.', $this->getImg());
-        $exension = strtolower(array_pop($parts));
-
-        if ($exension == 'swf') {
-            $code = '<embed src="/' . $this->getWebPath() . '?url=' . $this->getUrl() . '" quality="high" bgcolor="#FFFFFF"  wmode="transparent" width="' . $this->getPlace()->getWidth() . '" height="' . $this->getPlace()->getHeight() . '" align="" type="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" />';
-        } elseif (in_array($exension, array('jpg', 'jpeg', 'png', 'gif', 'bmp'))) {
-            $code = '<a href="' . $this->getUrl() . '">' .
-                "\n" . '<img src="/' . $this->getWebPath() . '" width="' . $this->getPlace()->getWidth() . '" height="' . $this->getPlace()->getHeight() . '" alt="' . $this->getName() . '" border="0" />' .
-                "\n" . '</a>';
-        } else {
-            $code = '<a href="' . $this->getUrl() . '"></a>';
-        }
-
-        return $code;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function __toString()
-    {
-        return $this->getCode() ? $this->getCode() : '';
     }
 }

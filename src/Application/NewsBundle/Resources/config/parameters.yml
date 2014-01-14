@@ -1,0 +1,3 @@
+parameters:
+    #count news in side block
+    news_count_block: 5

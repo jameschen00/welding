@@ -41,7 +41,7 @@ class Image extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="test", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -68,7 +68,7 @@ class Image extends BaseEntity
      *
      * @param string $name
      *
-     * @return Brand
+     * @return $this
      */
     public function setName($name)
     {

@@ -1,8 +1,4 @@
 services:
-    shop_service_filter:
-        class:  'Application\ShopBundle\Service\FilterService'
-        arguments:    ['@core_manager_factory']
-
     shop_service_tree:
         class:  'Application\ShopBundle\Service\CategoryTreeService'
         calls:

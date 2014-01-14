@@ -1,0 +1,30 @@
+parameters:
+    #news_manager_news
+    news_manager_news.class: '\Application\NewsBundle\Entity\News'
+    news_manager_news.repository: 'ApplicationNewsBundle:News'
+    news_manager_news.where:
+       'e.isActive = :active':
+            active : 1
+    news_manager_news.order:
+       startDate : desc
+
+    #news_manager_section
+    news_manager_section.class: '\Application\NewsBundle\Entity\Section'
+    news_manager_section.repository: 'ApplicationNewsBundle:Section'
+    news_manager_section.where:
+       'e.isActive = :active':
+            active : 1
+    news_manager_section.order:
+       name : asc
+
+services:
+    news_manager_news:
+        class:        'Application\NewsBundle\Manager\NewsManager'
+        scope:        prototype
+        parent:       core_manager_standard
+        arguments:    [%news_manager_news.class%, %news_manager_news.repository%, %news_manager_news.where%, %news_manager_news.order%]
+
+    news_manager_section:
+        scope:        prototype
+        parent:       core_manager_standard
+        arguments:    [%news_manager_section.class%, %news_manager_section.repository%, %news_manager_section.where%, %news_manager_section.order%]

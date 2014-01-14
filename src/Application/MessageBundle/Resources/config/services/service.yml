@@ -1,6 +1,0 @@
-services:
-    upload_picture_service:
-        class:  Application\MessageBundle\Service\UploadPictureService
-        calls:
-            - [setEm, [@doctrine.orm.entity_manager]]
-

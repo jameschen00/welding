@@ -1,0 +1,7 @@
+services:
+    shop_routing_newsloader:
+        class: Application\NewsBundle\Routing\NewsLoader
+        calls:
+            - [setManagerFactory, [@core_manager_factory]]
+        tags:
+           - { name: routing.loader }

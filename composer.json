@@ -26,35 +26,25 @@
         "symfony/monolog-bundle": "2.3.*",
         "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-
-        "leafo/lessphp": "dev-master#85bd4557920d5f4fcbf41beb621e91b842e3621b",
         "whiteoctober/breadcrumbs-bundle": "dev-master",
-
         "knplabs/knp-menu": "2.0.*@dev",
         "knplabs/knp-menu-bundle": "dev-master",
-
         "imagine/Imagine": ">=0.2.8",
         "liip/imagine-bundle": "*@dev",
-
-        "drozd/widget": "*@dev",
-
-        "oldsound/rabbitmq-bundle": "1.2.*"
+        "drozd/widget": "*@dev"
     },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
@@ -70,7 +60,7 @@
             "keep-outdated": true
         },
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "2.4-dev"
         }
     }
 }

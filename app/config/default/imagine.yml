@@ -17,6 +17,7 @@ liip_imagine:
             filters:
                 thumbnail: { size: [800, 800], mode: inset }
 
+        #web product
         product_list_image:
             quality: 100
             filters:
@@ -27,6 +28,7 @@ liip_imagine:
             filters:
                 thumbnail: { size: [462, 346], mode: outbound}
 
+        #web gallery
         gallery_image_block:
             quality: 100
             filters:
@@ -41,3 +43,19 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [800, 600], mode: outbound}
+
+        #web news
+        news_image_block:
+            quality: 100
+            filters:
+                thumbnail: { size: [54, 54], mode: outbound}
+
+        news_image_list:
+            quality: 100
+            filters:
+                thumbnail: { size: [265, 199], mode: outbound}
+
+        news_image_full:
+            quality: 100
+            filters:
+                thumbnail: { size: [855, 257], mode: outbound}

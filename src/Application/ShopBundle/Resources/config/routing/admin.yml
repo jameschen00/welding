@@ -1,19 +1,19 @@
-shopbundle_admin_brand:
+shop_admin_brand:
     resource: "@ApplicationShopBundle/Controller/Admin/BrandController.php"
     type:     annotation
 
-shopbundle_admin_category:
+shop_admin_category:
     resource: "@ApplicationShopBundle/Controller/Admin/CategoryController.php"
     type:     annotation
 
-shopbundle_admin_property:
+shop_admin_property:
     resource: "@ApplicationShopBundle/Controller/Admin/PropertyController.php"
     type:     annotation
 
-shopbundle_admin_product:
+shop_admin_product:
     resource: "@ApplicationShopBundle/Controller/Admin/ProductController.php"
     type:     annotation
 
-shopbundle_admin_prototype:
+shop_admin_prototype:
     resource: "@ApplicationShopBundle/Controller/Admin/PrototypeController.php"
     type:     annotation

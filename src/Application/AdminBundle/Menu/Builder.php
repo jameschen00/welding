@@ -51,6 +51,23 @@ class Builder extends ContainerAware
         $menu['Banner']->addChild('Banners', array('route' => 'application_banner_admin_banner_index'));
         $menu['Banner']->addChild('Places', array('route' => 'application_banner_admin_place_index'));
 
+
+        //gallery
+        $menu->addChild('Gallery')
+            ->setAttribute('dropdown', true)
+            ->setAttribute('icon', 'fa fa-camera');
+
+        $menu['Gallery']->addChild('Images', array('route' => 'application_gallery_admin_image_index'));
+        $menu['Gallery']->addChild('Sections', array('route' => 'application_gallery_admin_section_index'));
+
+        //News
+        $menu->addChild('News')
+            ->setAttribute('dropdown', true)
+            ->setAttribute('icon', 'fa fa-file-text');
+
+        $menu['News']->addChild('News', array('route' => 'application_news_admin_news_index'));
+        $menu['News']->addChild('Sections', array('route' => 'application_news_admin_section_index'));
+
         //Setings
         $menu->addChild('Settings')
             ->setAttribute('dropdown', true)

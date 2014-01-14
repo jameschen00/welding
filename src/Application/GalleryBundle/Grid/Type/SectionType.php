@@ -6,9 +6,11 @@ use Widget\Bundle\Grid\Type\AbstractSymfonyType;
 use Widget\Grid\GridBuilder;
 
 /**
- * Class PlaceType
+ * Class SectionType
+ *
+ * @package Application\GalleryBundle\Grid\Type
  */
-class PlaceType extends AbstractSymfonyType
+class SectionType extends AbstractSymfonyType
 {
     /**
      * @var AbstractManager
@@ -35,8 +37,8 @@ class PlaceType extends AbstractSymfonyType
         ));
 
         //id
-        $column = $builder->addColumn('place_id', 'text', array(
-            'title' => $this->translator->trans('place.id'),
+        $column = $builder->addColumn('id', 'text', array(
+            'title' => $this->translator->trans('gallery.section.id'),
             'sortable' => true,
             'width' => 50,
         ));
@@ -44,40 +46,24 @@ class PlaceType extends AbstractSymfonyType
 
         //name
         $column = $builder->addColumn('name', 'text', array(
-            'title' => $this->translator->trans('place.name'),
+            'title' => $this->translator->trans('gallery.section.name'),
             'sortable' => true,
         ));
         $column->setFilter($builder->createFilter('text'));
 
         //is_active
         $column = $builder->addColumn('is_active', 'boolean', array(
-            'title' => $this->translator->trans('place.active'),
+            'title' => $this->translator->trans('gallery.section.active'),
             'width' => 50,
             'sortable' => true,
         ));
         $column->setFilter($builder->createFilter('boolean'));
 
-        //width
-        $column = $builder->addColumn('width', 'text', array(
-            'title' => $this->translator->trans('place.width'),
-            'width' => 100,
-            'sortable' => true,
-        ));
-        $column->setFilter($builder->createFilter('text', array('type' => 'integer')));
-
-        //height
-        $column = $builder->addColumn('height', 'text', array(
-            'title' => $this->translator->trans('place.height'),
-            'width' => 100,
-            'sortable' => true,
-        ));
-        $column->setFilter($builder->createFilter('text', array('type' => 'integer')));
-
         //created_at
         $column = $builder->addColumn('created_at', 'date', array(
             'format' => 'd.m.Y H:i:s',
             'width'  => 110,
-            'title'  => $this->translator->trans('Gallery.created_at'),
+            'title'  => $this->translator->trans('gallery.section.created_at'),
         ));
         $column->setFilter($builder->createFilter('DateRange'));
 
@@ -85,7 +71,7 @@ class PlaceType extends AbstractSymfonyType
         $column = $builder->addColumn('updated_at', 'date', array(
             'format' => 'd.m.Y H:i:s',
             'width'  => 110,
-            'title'  => $this->translator->trans('Gallery.updated_at'),
+            'title'  => $this->translator->trans('gallery.section.updated_at'),
         ));
         $column->setFilter($builder->createFilter('DateRange'));
 

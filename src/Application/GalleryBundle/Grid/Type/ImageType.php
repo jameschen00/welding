@@ -6,9 +6,9 @@ use Widget\Bundle\Grid\Type\AbstractSymfonyType;
 use Widget\Grid\GridBuilder;
 
 /**
- * Class GalleryType
+ * Class ImageType
  */
-class GalleryType extends AbstractSymfonyType
+class ImageType extends AbstractSymfonyType
 {
     /**
      * @var AbstractManager
@@ -35,49 +35,39 @@ class GalleryType extends AbstractSymfonyType
         ));
 
         //gallery_id
-        $column = $builder->addColumn('gallery_id', 'text', array(
-            'title'    => $this->translator->trans('Gallery.id'),
+        $column = $builder->addColumn('id', 'text', array(
+            'title'    => $this->translator->trans('gallery.image.id'),
             'sortable' => true,
             'width'    => 50,
         ));
         $column->setFilter($builder->createFilter('text', array('type' => 'integer')));
 
+        //src
+        $builder->addColumn('webPath', 'image', array(
+            'title'    => $this->translator->trans('gallery.image.src'),
+            'width'    => 70,
+        ));
+
         //name
         $column = $builder->addColumn('name', 'text', array(
-            'title'    => $this->translator->trans('Gallery.name'),
+            'title'    => $this->translator->trans('gallery.image.name'),
             'sortable' => true,
         ));
         $column->setFilter($builder->createFilter('text'));
 
         //is_active
         $column = $builder->addColumn('is_active', 'boolean', array(
-            'title'    => $this->translator->trans('Gallery.active'),
+            'title'    => $this->translator->trans('gallery.image.active'),
             'width'    => 50,
             'sortable' => true,
         ));
         $column->setFilter($builder->createFilter('boolean', array('type' => 'integer')));
 
-        //start_date
-        $column = $builder->addColumn('start_date', 'date', array(
-            'format' => 'd.m.Y H:i:s',
-            'width'  => 110,
-            'title'  => $this->translator->trans('Gallery.start_date'),
-        ));
-        $column->setFilter($builder->createFilter('DateRange'));
-
-        //stop_date
-        $column = $builder->addColumn('stop_date', 'date', array(
-            'format' => 'd.m.Y H:i:s',
-            'width'  => 110,
-            'title'  => $this->translator->trans('Gallery.stop_date'),
-        ));
-        $column->setFilter($builder->createFilter('DateRange'));
-
         //created_at
         $column = $builder->addColumn('created_at', 'date', array(
             'format' => 'd.m.Y H:i:s',
             'width'  => 110,
-            'title'  => $this->translator->trans('Gallery.created_at'),
+            'title'  => $this->translator->trans('gallery.image.created_at'),
         ));
         $column->setFilter($builder->createFilter('DateRange'));
 
@@ -85,7 +75,7 @@ class GalleryType extends AbstractSymfonyType
         $column = $builder->addColumn('updated_at', 'date', array(
             'format' => 'd.m.Y H:i:s',
             'width'  => 110,
-            'title'  => $this->translator->trans('Gallery.updated_at'),
+            'title'  => $this->translator->trans('gallery.image.updated_at'),
         ));
         $column->setFilter($builder->createFilter('DateRange'));
 

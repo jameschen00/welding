@@ -34,6 +34,8 @@ class NewsFixtureLoader extends AbstractFixture
         );
         $news->setIsActive(true);
         $news->setSection($section);
+        $news->setStartDate(new \DateTime());
+        $news->setStopDate(new \DateTime('2020-01-01'));
         $this->uploadFile($news, '1.jpg');
         $manager->persist($news);
 

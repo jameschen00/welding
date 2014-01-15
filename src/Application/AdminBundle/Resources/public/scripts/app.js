@@ -1054,3 +1054,40 @@ var App = function () {
     };
 
 }();
+
+
+var FormHelper = {
+    submit : function($form, options) {
+        $form.append('<input type="hidden" name="cmd" value="'+options.cmd+'" />');
+        $.each(options.params || {}, function(key,value){
+            $form.append('<input type="hidden" name="'+key+'" value=\''+value+'\' />');
+        });
+        $form.submit();
+
+        return false;
+    }
+}
+
+;(function ( $ ) {
+    'use strict';
+
+    $(document).ready(function() {
+        $(document).on('click', 'a[data-collection-button="add"]', function(e) {
+            e.preventDefault();
+            var collectionContainer = $('#' + $(this).data('collection'));
+            var prototype = $('#' + $(this).data('prototype')).data('prototype');
+            var item = prototype.replace(/__name__/g, collectionContainer.find('>div').length);
+            collectionContainer.append(item);
+            collectionContainer.append(collectionContainer.find('.separator:eq(0)').clone());
+        });
+        $(document).on('click', '[data-collection-button="delete"]', function(e) {
+            e.preventDefault();
+            var item = $(this).closest('[data-collection-item]');
+            item.remove();
+        });
+
+        $('[data-loading-text]').click(function () {
+            $(this).button('loading')
+        });
+    });
+})( jQuery );

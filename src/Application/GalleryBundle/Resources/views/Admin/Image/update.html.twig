@@ -11,7 +11,14 @@
 
 {% block body %}
     <form id="update-form" class="form-horizontal" action="{{saveUrl}}" {{ form_enctype(form) }} novalidate method="POST">
-        {% include 'ApplicationGalleryBundle:Admin/Gallery:_form.html.twig' %}
+        {% include 'ApplicationGalleryBundle:Admin/Image:_form.html.twig' %}
     </form>
 {% endblock %}
+
+{# javascript #}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+{% endblock %}
+
 

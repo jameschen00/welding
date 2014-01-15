@@ -1,9 +1,0 @@
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#main" data-toggle="tab">{{ 'page.gallery.tabs.main'|trans }}</a></li>
-    <li><a href="#preview" data-toggle="tab">{{ 'page.gallery.tabs.preview'|trans }}</a></li>
-</ul>
-<div class="tab-content">
-    {% include 'ApplicationGalleryBundle:Admin/Gallery/Form:_main.html.twig' %}
-    {% include 'ApplicationGalleryBundle:Admin/Gallery/Form:_preview.html.twig' %}
-</div>
-{{ form_widget(form._token) }}

@@ -1,0 +1,12 @@
+{% if entity.img %}
+    <a class="fancybox-button" href="/{{entity.webPath}}"><img src="/{{entity.webPath}}" width="100px"/></a>
+{% endif %}
+
+{{ form_row(form.section) }}
+<hr/>
+{{ form_row(form.is_active) }}
+{{ form_row(form.name) }}
+{{ form_row(form.description) }}
+<hr/>
+{{ form_row(form.file) }}
+{{ form_widget(form._token) }}

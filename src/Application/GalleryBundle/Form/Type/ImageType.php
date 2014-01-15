@@ -6,9 +6,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Form for Gallerys
+ * Class ImageType
  */
-class GalleryType extends AbstractType
+class ImageType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -16,7 +16,7 @@ class GalleryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Application\GalleryBundle\Entity\Gallery',
+            'data_class' => 'Application\GalleryBundle\Entity\Image',
         ));
     }
 
@@ -26,43 +26,23 @@ class GalleryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('is_active', 'checkbox', array(
-            'label' => 'Gallery.active'
+            'label' => 'gallery.image.active'
         ));
 
         $builder->add('name', 'text', array(
-            'label' => 'Gallery.name'
+            'label' => 'gallery.image.name'
         ));
 
-        $builder->add('place', 'entity', array(
-            'label' => 'Gallery.place',
-            'class' => 'ApplicationGalleryBundle:Place'
+        $builder->add('description', 'textarea', array(
+            'label' => 'gallery.image.description'
         ));
 
-        $builder->add('url', 'url', array(
-            'label' => 'Gallery.url'
+        $builder->add('section', 'entity', array(
+            'label' => 'gallery.image.section',
+            'class' => 'ApplicationGalleryBundle:Section'
         ));
 
-        $builder->add('code', 'textarea', array(
-            'label' => 'Gallery.code'
-        ));
-
-        $builder->add('file', 'file', array('label' => 'Gallery.file'));
-
-        $builder->add('priority', 'number', array(
-            'label' => 'Gallery.priority',
-            'data'  => 500
-        ));
-
-        $builder->add('startDate', 'date', array(
-            'label' => 'Gallery.code',
-            'format' => 'dd-MM-yyyy',
-            'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')
-        ));
-        $builder->add('stopDate', 'date', array(
-            'label' => 'Gallery.code',
-            'format' => 'dd-MM-yyyy',
-            'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')
-        ));
+        $builder->add('file', 'file', array('label' => 'gallery.image.file'));
     }
 
     /**
@@ -70,6 +50,6 @@ class GalleryType extends AbstractType
      */
     public function getName()
     {
-        return 'Gallery';
+        return 'gallery_image';
     }
 }

@@ -48,7 +48,10 @@ abstract class AbstractAdminController extends Controller
      */
     public function save($manager, $form)
     {
-        return $manager->save($form->getData());
+        $entity = $form->getData();
+        $manager->save($entity);
+
+        return $entity->getId();
     }
 
     /**
@@ -174,16 +177,19 @@ abstract class AbstractAdminController extends Controller
         );
     }
 
+
     /**
      * @param integer $id
+     * @param Request $request
      *
      * @Route("/save/{id}/", requirements={"id" = "\d+"})
      *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function saveAction($id)
+    public function saveAction($id, Request $request)
     {
-        if (!$this->getRequest()->isMethod('POST')) {
+        if (!$request->isMethod('POST')) {
             throw $this->createNotFoundException('This page does not exist');
         }
 
@@ -202,7 +208,7 @@ abstract class AbstractAdminController extends Controller
             $form->setData($entity);
         }
 
-        $form->handleRequest($this->getRequest());
+        $form->handleRequest($request);
         if ($form->isValid()) {
             //save
             $id = $this->save($manager, $form);
@@ -211,7 +217,7 @@ abstract class AbstractAdminController extends Controller
             $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('Your changes were saved!'));
 
             //redirect
-            if ($this->getRequest()->get('cmd') == self::CMD_APPLY && $id) {
+            if ($request->get('cmd') == self::CMD_APPLY && $id) {
                 $url = $this->createUrl('update', array('id' => $id));
             } else {
                 $url = $this->createUrl('index');
@@ -221,7 +227,7 @@ abstract class AbstractAdminController extends Controller
 
         } else {
             //save form data in session
-            $this->get('session')->set($this->generateCacheId($id, $form), $this->get('request')->request->get($form->getName()));
+            $this->get('session')->set($this->generateCacheId($id, $form), $request->get($form->getName()));
 
             //notice
             $this->flashMassege($form);

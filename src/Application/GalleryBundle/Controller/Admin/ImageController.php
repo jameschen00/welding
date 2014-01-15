@@ -22,7 +22,7 @@ class ImageController extends AbstractAdminController
         $configuration = new Configuration();
         $configuration->setManager('gallery_image');
         $configuration->setPageTitle('page.gallery.image.title');
-        $configuration->setTemplateUpdateAndCreatePath('ApplicationGalleryBundle:Admin/Gallery:update.html.twig');
+        $configuration->setTemplateUpdateAndCreatePath('ApplicationGalleryBundle:Admin/Image:update.html.twig');
 
         return $configuration;
     }

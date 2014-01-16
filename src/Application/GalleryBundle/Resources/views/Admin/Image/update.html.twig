@@ -10,15 +10,20 @@
 {% endblock %}
 
 {% block body %}
-    <form id="update-form" class="form-horizontal" action="{{saveUrl}}" {{ form_enctype(form) }} novalidate method="POST">
+    <form id="update-form" class="form-horizontal form-bordered form-striped" action="{{saveUrl}}" {{ form_enctype(form) }} novalidate method="POST">
         {% include 'ApplicationGalleryBundle:Admin/Image:_form.html.twig' %}
     </form>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="/bundles/applicationadmin/plugins/bootstrap-fileupload/bootstrap-fileupload.css"/>
 {% endblock %}
 
 {# javascript #}
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/bundles/applicationadmin/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 {% endblock %}
 
 

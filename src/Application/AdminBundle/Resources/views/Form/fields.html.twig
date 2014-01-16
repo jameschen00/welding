@@ -105,3 +105,39 @@
         {% endif %}
     {% endspaceless %}
 {% endblock form_errors %}
+
+{% block image_widget %}
+    {% spaceless %}
+        <div class="fileupload fileupload-{{image_url ? 'exists': 'new'}}" data-provides="fileupload">
+            <input type="hidden" value="" name="">
+            {% if (image_url) %}
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-height: 150px; line-height: 2px;">
+                    <a class="fancybox-button" href="/{{image_url}}">
+                        <img src="/{{image_url}}" style="max-height: 150px;">
+                    </a>
+                </div>
+            {% else %}
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 2px;"></div>
+            {% endif %}
+            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px">
+                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+            </div>
+
+            <div>
+                <span class="btn default btn-file">
+                    <span class="fileupload-new">
+                        <i class="fa fa-paper-clip"></i> {{'form.image.select'|trans}}
+                    </span>
+                    <span class="fileupload-exists">
+                        <i class="fa fa-undo"></i> {{'form.image.change'|trans}}
+                    </span>
+                    <input type="file" class="default" {{ block('widget_attributes') }} />
+                </span>
+                <a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> {{'form.image.remove'|trans}}</a>
+                <div style="margin-top: 5px;">
+                    <span class="label label-danger">{{'form.image.note'|trans}}</span> {{'form.image.note_descr'|trans}}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock image_widget %}

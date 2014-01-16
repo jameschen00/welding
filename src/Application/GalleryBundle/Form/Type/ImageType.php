@@ -42,7 +42,7 @@ class ImageType extends AbstractType
             'class' => 'ApplicationGalleryBundle:Section'
         ));
 
-        $builder->add('file', 'file', array('label' => 'gallery.image.file'));
+        $builder->add('file', 'image', array('label' => 'gallery.image.file', 'image_path' => 'webPath'));
     }
 
     /**

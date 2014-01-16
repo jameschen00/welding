@@ -1,0 +1,5 @@
+services:
+    admin_form_type_image:
+        class: 'Application\AdminBundle\Form\Type\ImageType'
+        tags:
+            - { name: form.type, alias: image }

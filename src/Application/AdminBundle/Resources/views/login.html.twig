@@ -1,61 +1,92 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta charset="utf-8"/>
     <title>{% block title %}Test Application{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <meta name="MobileOptimized" content="320">
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600&subset=latin,cyrillic-ext" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css' />
 
     {% block stylesheets %}
         {% stylesheets output='assets/css/login.css' filter='cssrewrite'
-        '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
-        '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
-        'bundles/applicationadmin/css/*'
+        'bundles/applicationadmin/plugins/font-awesome/css/font-awesome.min.css'
+        'bundles/applicationadmin/plugins/bootstrap/css/bootstrap.min.css'
+        'bundles/applicationadmin/plugins/uniform/css/uniform.default.css'
+
+        'bundles/applicationadmin/css/style-metronic.css'
+        'bundles/applicationadmin/css/style.css'
+        'bundles/applicationadmin/css/style-responsive.css'
+        'bundles/applicationadmin/css/plugins.css'
+        'bundles/applicationadmin/css/themes/default.css'
+        'bundles/applicationadmin/css/pages/login.css'
+        'bundles/applicationadmin/css/custom.css'
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
     {% endblock %}
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
-<body id="signin">
-<nav class="navbar navbar-inverse" role="navigation">
+<!-- BEGIN BODY -->
+<body class="login">
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        <img src="/bundles/applicationadmin/img/logo-big.png" alt=""/>
+    </div>
+    <!-- END LOGO -->
 
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{path('adminbundle_homepage')}}">{% trans %}appname{% endtrans %}</a>
-        </div>
+    <!-- BEGIN LOGIN -->
+    <div class="content">
+        {% block body %}{% endblock %}
+    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="./signup.html">{% trans %}page.login.register{% endtrans %}</a>
-                </li>
-                <li class="">
-                    <a href="{{path('adminbundle_homepage')}}"><i class="icon-chevron-left"></i>&nbsp;&nbsp;{% trans %}page.login.homepage{% endtrans %}</a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div> <!-- /.container -->
-</nav>
+    <!-- BEGIN COPYRIGHT -->
+    <div class="copyright">
+        2013 &copy; Metronic. Admin Dashboard Template.
+    </div>
+    <!-- END COPYRIGHT -->
 
-{% block body %}{% endblock %}
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    {% block javascripts %}
+        <!--[if lt IE 9]>
+        <script src="/bundles/applicationadmin/plugins/respond.min.js"></script>
+        <script src="/bundles/applicationadmin/plugins/excanvas.min.js"></script>
+        <![endif]-->
+        {% javascripts output='assets/js/login.js'
+        'bundles/applicationweb/plugins/jquery-1.10.2.min.js'
+        'bundles/applicationweb/plugins/jquery-migrate-1.2.1.min.js'
+        'bundles/applicationadmin/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
+        'bundles/applicationadmin/plugins/bootstrap/js/bootstrap.min.js'
+        'bundles/applicationadmin/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
+        'bundles/applicationadmin/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
+        'bundles/applicationadmin/plugins/jquery.blockui.min.js'
+        'bundles/applicationadmin/plugins/jquery.cookie.min.js'
+        'bundles/applicationadmin/plugins/uniform/jquery.uniform.min.js'
+        'bundles/applicationadmin/scripts/app.js'
+        'bundles/applicationadmin/scripts/login.js'
 
-<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+        'bundles/applicationadmin/plugins/jquery-validation/dist/jquery.validate.min.js'
+        'bundles/applicationadmin/plugins/select2/select2.min.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
 
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                App.init();
+                Login.init();
+            });
+        </script>
+    {% endblock %}
+    <!-- END JAVASCRIPTS -->
 </body>
 </html>

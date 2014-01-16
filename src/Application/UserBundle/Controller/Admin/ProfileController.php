@@ -1,10 +1,9 @@
 <?php
 namespace Application\UserBundle\Controller\Admin;
 
-use Application\UserBundle\Form\Admin\ProfileForm;
-use Application\UserBundle\Manager\UserManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Application\UserBundle\Form\Type\ProfileType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -13,24 +12,25 @@ use Symfony\Component\HttpFoundation\Response;
 class ProfileController extends Controller
 {
     /**
-     * @Template
-     * @return Response
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $userId = $this->get('security.context')->getToken()->getUser()->getId();
 
         //get data
-        $manager = new UserManager($this->getDoctrine()->getManager());
+        $manager = $this->get('core_manager_factory')->get('user_user');
         $manager->setId($userId);
         $user = $manager->findOne();
 
         //create form
-        $form = $this->createForm(new ProfileForm(), $user);
+        $form = $this->createForm(new ProfileType(), $user);
 
         //save
-        if ($this->getRequest()->isMethod('POST')) {
-            $form->handleRequest($this->getRequest());
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
             if ($form->isValid()) {
                 $manager->save($user);
 
@@ -38,13 +38,13 @@ class ProfileController extends Controller
                 $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('Your changes were saved!'));
 
                 //redirect
-                return $this->redirect($this->generateUrl($this->getRequest()->attributes->get('_route')));
+                return $this->redirect($this->generateUrl($request->attributes->get('_route')));
             } else {
                 //notice
                 $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Error while saving data!'));
             }
         }
 
-        return array('form' => $form->createView());
+        return $this->render('ApplicationUserBundle:Admin/Profile:index.html.twig', array('form' => $form->createView()));
     }
 }

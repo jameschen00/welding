@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <form id="update-form" class="form-horizontal" action="{{saveUrl}}" {{ form_enctype(form) }} novalidate method="POST">
+    <form id="update-form" class="form-horizontal form-bordered form-row-stripped" action="{{saveUrl}}" {{ form_enctype(form) }} novalidate method="POST">
         {% include 'ApplicationShopBundle:Admin/Product:_form.html.twig' %}
     </form>
 {% endblock %}

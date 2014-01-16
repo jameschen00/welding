@@ -20,8 +20,8 @@ class RoleController extends AbstractAdminController
     protected function getConfiguration()
     {
         $configuration = new Configuration();
-        $configuration->setManager('user_role')
-                      ->setPageTitle('page.role');
+        $configuration->setManager('user_role');
+        $configuration->setPageTitle('page.role.title');
 
         return $configuration;
     }

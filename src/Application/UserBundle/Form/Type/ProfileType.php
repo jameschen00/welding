@@ -20,7 +20,7 @@ class ProfileType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Application\UserBundle\Entity\Role',
+            'data_class' => 'Application\UserBundle\Entity\User',
         ));
     }
 

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <form id="update-form" class="form-horizontal" enctype="multipart/form-data" action="{{saveUrl}}" method="POST">
+    <form id="update-form" class="form-horizontal form-bordered form-row-stripped" enctype="multipart/form-data" action="{{saveUrl}}" method="POST">
         {{form_widget(form)}}
     </form>
 {% endblock %}

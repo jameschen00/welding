@@ -1,7 +1,8 @@
 <div class="tab-pane active" id="main">
-    {{ form_row(form.firstname, {'attr': {'class': 'input-xxlarge'}}) }}
-    {{ form_row(form.lastname, {'attr': {'class': 'input-xxlarge'}}) }}
-    {{ form_row(form.email, {'attr': {'class': 'input-xxlarge'}}) }}
-    <hr />
-    {{ form_row(form.user_password, {'attr': {'class': 'input-xxlarge'}}) }}
+    <h3 class="form-section">{{'page.user.fieldset_main'|trans}}</h3>
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.email) }}
+    <h3 class="form-section">{{'page.user.fieldset_password'|trans}}</h3>
+    {{ form_row(form.user_password) }}
 </div>

@@ -55,7 +55,6 @@ class UserType extends AbstractType
 
         $builder->add('user_roles', 'entity', array(
             'label'    => 'user.roles',
-            'expanded' => 'checkboxes',
             'class'    => 'ApplicationUserBundle:Role',
             'property' => 'name',
             'multiple' => true,

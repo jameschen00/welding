@@ -3,7 +3,6 @@ namespace Application\AdminBundle\Controller;
 
 use Application\CoreBundle\Manager\AbstractManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -113,7 +112,7 @@ abstract class AbstractAdminController extends Controller
         $form = $this->form()->setData($entity);
 
         //errors
-        $cacheId = $this->generateCacheId(0, $form);
+        $cacheId = $this->get('core_form_helper')->generateCacheId(0, $form);
         if ($this->get('session')->has($cacheId)) {
             $data = $this->get('session')->get($cacheId);
             $this->get('session')->remove($cacheId);
@@ -152,7 +151,7 @@ abstract class AbstractAdminController extends Controller
         $form = $this->form();
 
         //errors
-        $cacheId = $this->generateCacheId(0, $form);
+        $cacheId = $this->get('core_form_helper')->generateCacheId(0, $form);
         if ($this->get('session')->has($cacheId)) {
             $data = $this->get('session')->get($cacheId);
             $this->get('session')->remove($cacheId);
@@ -194,6 +193,7 @@ abstract class AbstractAdminController extends Controller
         }
 
         $form = $this->form();
+        $formHelper = $this->get('core_form_helper');
 
         //get data
         $manager = $this->getManagerByName($this->getConfiguration()->getManager());
@@ -214,7 +214,7 @@ abstract class AbstractAdminController extends Controller
             $id = $this->save($manager, $form);
 
             //notice
-            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('Your changes were saved!'));
+            $formHelper->showSuccessNotice();
 
             //redirect
             if ($request->get('cmd') == self::CMD_APPLY && $id) {
@@ -227,10 +227,10 @@ abstract class AbstractAdminController extends Controller
 
         } else {
             //save form data in session
-            $this->get('session')->set($this->generateCacheId($id, $form), $request->get($form->getName()));
+            $this->get('session')->set($formHelper->generateCacheId($id, $form), $request->get($form->getName()));
 
             //notice
-            $this->flashMassege($form);
+            $formHelper->showErrorNotice($formHelper->handleErrorsAsString($form));
 
             //redirect
             if ($id) {
@@ -256,53 +256,6 @@ abstract class AbstractAdminController extends Controller
     }
 
     /**
-     * Send notice message with validation errors
-     *
-     * @param \Symfony\Component\Form\Form $form $form
-     */
-    protected function flashMassege($form)
-    {
-        $errors = $this->getAllFormErrorMessages($form);
-        foreach ($errors as $key => $error) {
-            if ($key == '_message') {
-                $message = $error;
-            } else {
-                $message = $key . ': ' . $error['_message'];
-            }
-
-            if ($message) {
-                $this->get('session')->getFlashBag()->add('notice', $message);
-            }
-        }
-//        // get a ConstraintViolationList
-//        $errors = $this->get('validator')->validate( $entity );
-//
-//        $result = '';
-//
-//        // iterate on it
-//        foreach( $errors as $error )
-//        {
-//            printAll($error->getPropertyPath());
-//            printAll($error->getMessage());
-//        }
-    }
-
-    /**
-     * Genereate cache id for session storage
-     *
-     * @param integer $id
-     * @param object  $form
-     *
-     * @return string
-     */
-    protected function generateCacheId($id, $form)
-    {
-        $cacheId = md5($id . get_class($form));
-
-        return $cacheId;
-    }
-
-    /**
      * @param string $name
      *
      * @return \Application\CoreBundle\Manager\AbstractManager
@@ -310,38 +263,6 @@ abstract class AbstractAdminController extends Controller
     private function getManagerByName($name)
     {
         return $this->get('core_manager_factory')->get($name);
-    }
-
-    /**
-     * Get error messages from form
-     *
-     * @param Form $form
-     *
-     * @return Array
-     */
-    protected function getAllFormErrorMessages(Form $form)
-    {
-        $retval = array();
-        foreach ($form->getErrors() as $error) {
-            if ($error->getMessagePluralization() !== null) {
-                $retval['_message'] = $this->get('translator')->transChoice(
-                    $error->getMessage(),
-                    $error->getMessagePluralization(),
-                    $error->getMessageParameters(),
-                    'validators'
-                );
-            } else {
-                $retval['_message'] = $this->get('translator')->trans($error->getMessage(), array(), 'validators');
-            }
-        }
-        foreach ($form->all() as $name => $child) {
-            $errors = $this->getAllFormErrorMessages($child);
-            if (!empty($errors)) {
-                $retval[$name] = $errors;
-            }
-        }
-
-        return $retval;
     }
 
     /**

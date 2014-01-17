@@ -9,8 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * Admin user profile form
  *
  * Class ProfileForm
- *
- * @package Application\UserBundle
  */
 class ProfileType extends AbstractType
 {
@@ -21,6 +19,7 @@ class ProfileType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Application\UserBundle\Entity\User',
+            'bind_errors' => true
         ));
     }
 

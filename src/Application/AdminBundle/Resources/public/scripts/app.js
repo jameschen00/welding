@@ -845,6 +845,10 @@ var App = function () {
         }
     }
 
+    var handleMultiSelect = function () {
+        $('[data-role="multiselect"]').multiSelect();
+    }
+
     //* END:CORE HANDLERS *//
 
     return {
@@ -883,6 +887,8 @@ var App = function () {
             handleAccordions(); //handles accordions 
             handleModals(); // handle modals
             handleFullScreenMode(); // handles full screen
+
+            handleMultiSelect();
         },
 
         //main function to initiate core javascript after ajax complete

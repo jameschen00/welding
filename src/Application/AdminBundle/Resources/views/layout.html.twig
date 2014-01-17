@@ -28,6 +28,7 @@
         'bundles/applicationadmin/css/custom.css'
 
         'bundles/applicationadmin/plugins/fancybox/source/jquery.fancybox.css'
+        'bundles/applicationadmin/plugins/jquery-multi-select/css/multi-select.css'
 
         '@widget_css'
         %}
@@ -70,6 +71,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="tabbable tabbable-custom tabbable-full-width">
+
+                        {% if app.session.flashbag.get('notice')|length > 0 %}
+                        <div class="note note-danger">
+                            <h4 class="block">{{'form.message.errors'|trans}}</h4>
+                            {% for flashMessage in app.session.flashbag.get('notice') %}
+                                <p>{{ flashMessage }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {% if app.session.flashbag.get('success')|length > 0 %}
+                            <div class="note note-success">
+                                {% for flashMessage in app.session.flashbag.get('success') %}
+                                <h4 class="block">{{ flashMessage }}</h4>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
                         <div class="page-toolbar">
                             <div class="pull-right">
                                 {% block page_controll %}{% endblock %}
@@ -108,6 +127,9 @@
         'bundles/applicationadmin/scripts/app.js'
 
         'bundles/applicationadmin/plugins/fancybox/source/jquery.fancybox.pack.js'
+        'bundles/applicationadmin/plugins/jquery-multi-select/js/jquery.multi-select.js'
+        'bundles/applicationadmin/plugins/jquery-multi-select/js/jquery.quicksearch.js'
+
         '@widget_js'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>

@@ -1,8 +1,12 @@
 services:
     #pagination
     core_paginator:
-        class: Application\CoreBundle\Library\Pagination\Paginator
+        class: 'Application\CoreBundle\Library\Pagination\Paginator'
         arguments: ['@templating']
         calls:
             - [setTemplate, ["ApplicationCoreBundle:Pagination:paginator.html.twig"]]
             - [setOnPage, [10]]
+
+    core_form_helper:
+        class: 'Application\CoreBundle\Form\Helper\FormHelper'
+        arguments: ['@translator', '@session']

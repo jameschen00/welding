@@ -1,10 +1,5 @@
 {% extends 'form_div_layout.html.twig' %}
 
-{% block choice_widget %}
-    11111111111111
-    {{ parent() }}
-{% endblock choice_widget %}
-
 {% block choice_widget_collapsed %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {{ parent() }}

@@ -9,21 +9,6 @@ use Application\CoreBundle\Manager\AbstractManager;
 class BannerManager extends AbstractManager
 {
     /**
-     * @var string
-     */
-    protected $repositoryName = 'ApplicationBannerBundle:Banner';
-
-    /**
-     * @var string
-     */
-    protected $class = '\Application\BannerBundle\Entity\Banner';
-
-    /**
-     * @var array
-     */
-    protected $where = array('e.isActive = :active' => array('active' => 1));
-
-    /**
      * @param int $place
      *
      * @return $this

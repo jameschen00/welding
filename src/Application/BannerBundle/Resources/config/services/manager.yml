@@ -1,10 +1,30 @@
+parameters:
+    #banner_manager_banner
+    banner_manager_banner.class: '\Application\BannerBundle\Entity\Banner'
+    banner_manager_banner.repository: 'ApplicationBannerBundle:Banner'
+    banner_manager_banner.where:
+       'e.isActive = :active':
+            active : 1
+    banner_manager_banner.order:
+       name : asc
+
+    #banner_manager_place
+    banner_manager_place.class: '\Application\BannerBundle\Entity\Place'
+    banner_manager_place.repository: 'ApplicationBannerBundle:Place'
+    banner_manager_place.where:
+       'e.isActive = :active':
+            active : 1
+    banner_manager_place.order:
+       createdAt : asc
+
 services:
     banner_manager_banner:
         class:        'Application\BannerBundle\Manager\BannerManager'
         scope:        prototype
-        parent:       core_manager_abstract
+        parent:       core_manager_standard
+        arguments:    [%banner_manager_banner.class%, %banner_manager_banner.repository%, %banner_manager_banner.where%, %banner_manager_banner.order%]
 
     banner_manager_place:
-        class:        'Application\BannerBundle\Manager\PlaceManager'
         scope:        prototype
-        parent:       core_manager_abstract
+        parent:       core_manager_standard
+        arguments:    [%banner_manager_place.class%, %banner_manager_place.repository%, %banner_manager_place.where%, %banner_manager_place.order%]

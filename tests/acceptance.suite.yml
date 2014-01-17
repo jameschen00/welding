@@ -15,4 +15,4 @@ modules:
         - WebHelper
     config:
         PhpBrowser:
-            url: 'http://symfony2/'
+            url: 'http://welding.localhost/'

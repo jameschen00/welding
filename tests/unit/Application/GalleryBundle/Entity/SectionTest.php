@@ -2,6 +2,7 @@
 namespace Unit\Application\GalleryBundle\Entity;
 
 use Application\CoreBundle\Tests\AbstractEntityTest;
+use Application\CoreBundle\Tests\ModifyEntityTraitTest;
 use Application\GalleryBundle\Entity\Section;
 
 /**
@@ -9,6 +10,8 @@ use Application\GalleryBundle\Entity\Section;
  */
 class SectionTest extends AbstractEntityTest
 {
+    use ModifyEntityTraitTest;
+
     /**
      * @return Section
      */
@@ -20,28 +23,6 @@ class SectionTest extends AbstractEntityTest
     public function testName()
     {
         $this->checkField(__FUNCTION__, 'Nature');
-    }
-
-    public function testCreatedAt()
-    {
-        $this->checkField(__FUNCTION__, new \DateTime());
-    }
-
-    public function testUpdatedAt()
-    {
-        $this->checkField(__FUNCTION__, new \DateTime());
-    }
-
-    public function testUpdatedAtValue()
-    {
-        $this->entity->setUpdatedAtValue();
-        $this->assertInstanceOf('\DateTime', $this->entity->getUpdatedAt());
-    }
-
-    public function testCreatedAtValue()
-    {
-        $this->entity->setCreatedAtValue();
-        $this->assertInstanceOf('\DateTime', $this->entity->getCreatedAt());
     }
 
     public function testToString()

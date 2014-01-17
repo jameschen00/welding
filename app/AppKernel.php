@@ -36,7 +36,10 @@ class AppKernel extends Kernel
 
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
             new Widget\Bundle\WidgetBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle()
+            new Liip\ImagineBundle\LiipImagineBundle(),
+
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -32,7 +32,9 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "imagine/Imagine": ">=0.2.8",
         "liip/imagine-bundle": "*@dev",
-        "drozd/widget": "*@dev"
+        "drozd/widget": "*@dev",
+        "vich/uploader-bundle": "*",
+        "knplabs/knp-gaufrette-bundle" : "*"
     },
     "scripts": {
         "post-install-cmd": [

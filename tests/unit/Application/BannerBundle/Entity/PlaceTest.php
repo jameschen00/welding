@@ -3,12 +3,15 @@ namespace Unit\Application\BannerBundle\Entity;
 
 use Application\BannerBundle\Entity\Place;
 use Application\CoreBundle\Tests\AbstractEntityTest;
+use Application\CoreBundle\Tests\ModifyEntityTraitTest;
 
 /**
  * Class PlaceTest
  */
 class PlaceTest extends AbstractEntityTest
 {
+    use ModifyEntityTraitTest;
+
     /**
      * @return Place
      */
@@ -52,31 +55,8 @@ class PlaceTest extends AbstractEntityTest
         $this->checkField(__FUNCTION__, '</li></ul>');
     }
 
-    public function testCreatedAt()
-    {
-        $this->checkField(__FUNCTION__, new \DateTime());
-    }
-
-    public function testUpdatedAt()
-    {
-        $this->checkField(__FUNCTION__, new \DateTime());
-    }
-
-    public function testUpdatedAtValue()
-    {
-        $this->entity->setUpdatedAtValue();
-        $this->assertInstanceOf('\DateTime', $this->entity->getUpdatedAt());
-    }
-
-    public function testCreatedAtValue()
-    {
-        $this->entity->setCreatedAtValue();
-        $this->assertInstanceOf('\DateTime', $this->entity->getCreatedAt());
-    }
-
     public function testToString()
     {
         $this->assertEquals($this->entity->__toString(), $this->entity->getName());
     }
-
 }

@@ -8,6 +8,7 @@ use Application\CoreBundle\Library\Doctrine\PeriodEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Banner
@@ -15,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="banner_item")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Banner extends BaseEntity
 {
@@ -65,15 +67,16 @@ class Banner extends BaseEntity
     private $img;
 
     /**
-     * @Assert\File(maxSize="6000000")
-     * @var string
+     * @var UploadedFile
+     *
+     * @Assert\File(
+     *     maxSize="2M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     *
+     * @Vich\UploadableField(mapping="banner_file", fileNameProperty="img")
      */
     private $file;
-
-    /**
-     * @var string
-     */
-    private $temp;
 
     /**
      * @var integer
@@ -219,140 +222,19 @@ class Banner extends BaseEntity
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
-        // check if we have an old image img
-        if (isset($this->img)) {
-            // store the old name to delete after the update
-            $this->temp = $this->img;
-            $this->img  = null;
-        } else {
-            $this->img = 'initial';
-        }
+
+        //update date
+        $this->setUpdatedAtValue();
 
         return $this;
     }
 
     /**
-     * Get file.
-     *
      * @return UploadedFile
      */
     public function getFile()
     {
         return $this->file;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getAbsolutePath()
-    {
-        return null === $this->img
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->img;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getWebPath()
-    {
-        return null === $this->img
-            ? null
-            : $this->getUploadDir() . '/' . $this->img;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getUploadRootDir()
-    {
-        // the absolute directory img where uploaded
-        // documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'public/img/uploads/banners';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-        if (null !== $this->getFile()) {
-            // do whatever you want to generate a unique name
-            $filename  = sha1(uniqid(mt_rand(), true));
-            $this->img = $filename . '.' . $this->getFile()->guessExtension();
-
-            //generate code
-            $this->code = $this->genereteCode();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        // if there is an error when moving the file, an exception will
-        // be automatically thrown by move(). This will properly prevent
-        // the entity from being persisted to the database on error
-        $this->getFile()->move($this->getUploadRootDir(), $this->img);
-
-        // check if we have an old image
-        if (isset($this->temp)) {
-            // delete the old image
-            unlink($this->getUploadRootDir() . '/' . $this->temp);
-            // clear the temp image img
-            $this->temp = null;
-        }
-        $this->file = null;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if ($file = $this->getAbsolutePath()) {
-            unlink($file);
-        }
-    }
-
-    /**
-     * Generate the html code of banner
-     *
-     * @return String
-     */
-    public function genereteCode()
-    {
-        $parts    = explode('.', $this->getImg());
-        $exension = strtolower(array_pop($parts));
-
-        if ($exension == 'swf') {
-            $code = '<embed src="/' . $this->getWebPath() . '?url=' . $this->getUrl() . '" quality="high" bgcolor="#FFFFFF"  wmode="transparent" width="' . $this->getPlace()->getWidth() . '" height="' . $this->getPlace()->getHeight() . '" align="" type="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" />';
-        } elseif (in_array($exension, array('jpg', 'jpeg', 'png', 'gif', 'bmp'))) {
-            $code = '<a href="' . $this->getUrl() . '">' .
-                "\n" . '<img src="/' . $this->getWebPath() . '" width="' . $this->getPlace()->getWidth() . '" height="' . $this->getPlace()->getHeight() . '" alt="' . $this->getName() . '" border="0" />' .
-                "\n" . '</a>';
-        } else {
-            $code = '<a href="' . $this->getUrl() . '"></a>';
-        }
-
-        return $code;
     }
 
     /**

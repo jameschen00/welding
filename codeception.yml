@@ -17,6 +17,10 @@ coverage:
         - app/*
         - vendor/*
         - tests/*
+        - src/*/*Bundle/DataFixtures/*
+        - src/*/*Bundle/Resources/*
+        - src/*/*Bundle/Tests/*
+
 modules:
     config:
         Db:

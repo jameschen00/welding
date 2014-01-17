@@ -1,0 +1,7 @@
+services:
+    banner_listener_generator:
+        class: 'Application\BannerBundle\EventListener\GeneratorListener'
+        calls:
+            - [setGeneratorFactory, [@banner_generator_factory]]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }

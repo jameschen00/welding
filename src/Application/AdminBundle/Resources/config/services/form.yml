@@ -3,3 +3,5 @@ services:
         class: 'Application\AdminBundle\Form\Type\ImageType'
         tags:
             - { name: form.type, alias: image }
+        calls:
+            - [setUploaderHelper, ['@vich_uploader.templating.helper.uploader_helper']]

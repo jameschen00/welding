@@ -4,8 +4,7 @@ namespace Application\AdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
  * Image type for form
@@ -13,13 +12,16 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class ImageType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @var UploaderHelper
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    private $uploaderHelper;
+
+    /**
+     * @param UploaderHelper $imageHelper
+     */
+    public function setUploaderHelper(UploaderHelper $imageHelper)
     {
-        $resolver->setDefaults(array(
-            'image_path' => 'src'
-        ));
+        $this->uploaderHelper = $imageHelper;
     }
 
     /**
@@ -28,28 +30,22 @@ class ImageType extends AbstractType
      * @param FormView      $view
      * @param FormInterface $form
      * @param array         $options
+     *
+     * @return array
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (array_key_exists('image_path', $options)) {
-            $parentData = $form->getParent()->getData();
+        $parentData = $form->getParent()->getData();
 
-            if (null !== $parentData) {
-                $accessor = PropertyAccess::createPropertyAccessor();
-                $imageUrl = $accessor->getValue($parentData, $options['image_path']);
-                $size     = null;
-                if ($imageUrl) {
-                    $size = getimagesize($imageUrl)[3];
-                }
-            } else {
-                $imageUrl = null;
-                $size     = null;
-            }
-
-            // set an "image_url" variable that will be available when rendering this field
-            $view->vars['image_url'] = $imageUrl;
-            $view->vars['size']      = $size;
+        if (null !== $parentData) {
+            $imageUrl = $this->uploaderHelper->asset($parentData, $form->getName());
+        } else {
+            $imageUrl = null;
         }
+        // set an "image_url" variable that will be available when rendering this field
+        $view->vars['image_url'] = $imageUrl;
+
+        return $options;
     }
 
     /**

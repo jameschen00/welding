@@ -1,0 +1,18 @@
+services:
+    banner_generator_factory:
+        class:        'Application\BannerBundle\Generator\GeneratorFactory'
+        calls:
+            - [setContainer, [@service_container]]
+
+    banner_generator_html:
+        class:        'Application\BannerBundle\Generator\HtmlGenerator'
+        calls:
+            - [setUploaderHelper, ['@vich_uploader.templating.helper.uploader_helper']]
+
+    banner_generator_swf:
+        class:        'Application\BannerBundle\Generator\SwfGenerator'
+        calls:
+            - [setUploaderHelper, ['@vich_uploader.templating.helper.uploader_helper']]
+
+    banner_generator_text:
+        class:        'Application\BannerBundle\Generator\TextGenerator'

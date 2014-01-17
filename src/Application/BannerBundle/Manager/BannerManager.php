@@ -1,12 +1,12 @@
 <?php
 namespace Application\BannerBundle\Manager;
 
-use Application\CoreBundle\Manager\AbstractManager;
+use Application\CoreBundle\Manager\StandardManager;
 
 /**
  * Class BrandManager
  */
-class BannerManager extends AbstractManager
+class BannerManager extends StandardManager
 {
     /**
      * @param int $place

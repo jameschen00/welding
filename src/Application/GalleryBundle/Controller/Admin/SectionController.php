@@ -29,7 +29,7 @@ class SectionController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function grid($manager)
+    protected function grid($manager)
     {
         return $this->get('widget_grid_factory')->createGrid(new SectionGrid($manager));
     }
@@ -37,7 +37,7 @@ class SectionController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function form()
+    protected function form()
     {
         return $this->createForm(new SectionType());
     }

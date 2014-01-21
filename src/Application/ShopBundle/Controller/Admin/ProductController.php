@@ -30,7 +30,7 @@ class ProductController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function grid($manager, $config = array())
+    protected function grid($manager, $config = array())
     {
         return $this->get('widget_grid_factory')->createGrid(new ProductGrid($manager));
     }
@@ -38,7 +38,7 @@ class ProductController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function form()
+    protected function form()
     {
         return $this->createForm(new ProductType());
     }

@@ -32,12 +32,12 @@ abstract class AbstractAdminController extends Controller
      *
      * @return \Widget\Grid\Grid
      */
-    abstract public function grid($manager);
+    abstract protected function grid($manager);
 
     /**
      * @return \Symfony\Component\Form\Form
      */
-    abstract public function form();
+    abstract protected function form();
 
     /**
      * @param AbstractManager              $manager
@@ -45,7 +45,7 @@ abstract class AbstractAdminController extends Controller
      *
      * @return integer
      */
-    public function save($manager, $form)
+    protected function save($manager, $form)
     {
         $entity = $form->getData();
         $manager->save($entity);

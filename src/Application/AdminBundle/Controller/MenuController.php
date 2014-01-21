@@ -30,7 +30,7 @@ class MenuController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function grid($manager)
+    protected function grid($manager)
     {
         $builder = new AdminGridBuilder('tree', array(
             'idField' => 'menu_id',
@@ -61,7 +61,7 @@ class MenuController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function form()
+    protected function form()
     {
         $form = $this->createFormBuilder($entity, $options)
             ->add('is_active', 'checkbox', array(

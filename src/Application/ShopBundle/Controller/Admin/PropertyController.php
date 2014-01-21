@@ -30,7 +30,7 @@ class PropertyController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function grid($manager)
+    protected function grid($manager)
     {
         return $this->get('widget_grid_factory')->createGrid(new PropertyGrid($manager));
     }
@@ -38,7 +38,7 @@ class PropertyController extends AbstractAdminController
     /**
      * {@inheritdoc}
      */
-    public function form()
+    protected function form()
     {
         return $this->createForm(new PropertyType());
     }

@@ -183,7 +183,7 @@ abstract class AbstractManager
     {
         empty($order) && $order = $this->order;
         foreach ((array) $order as $name => $dir) {
-            $this->getQuery()->addOrderBy('e.' . $this->normalize($name), $dir);
+            $this->getQuery()->addOrderBy('e.' . $name, $dir);
         }
 
         return $this;
@@ -227,7 +227,7 @@ abstract class AbstractManager
     public function count($field = null)
     {
         $query = clone $this->getQuery();
-        $query = $query->select($field ? 'count(e.' . $this->normalize($field) . ')' : 'count(e)')->getQuery();
+        $query = $query->select($field ? 'count(e.' . $field . ')' : 'count(e)')->getQuery();
         /* @var $query Query */
         $count = $query->getSingleScalarResult();
 
@@ -248,9 +248,9 @@ abstract class AbstractManager
 
         /* @var $query Query */
         if (strpos($field, 'e.') === false) {
-            $query = $query->select('DISTINCT e.' . $this->normalize($field))->getQuery();
+            $query = $query->select('DISTINCT e.' . $field)->getQuery();
         } else {
-            $query = $query->select($this->normalize($field))->getQuery();
+            $query = $query->select($field)->getQuery();
         }
 
         $queryResult = $query->getScalarResult();
@@ -341,18 +341,6 @@ abstract class AbstractManager
         }
 
         return $this;
-    }
-
-    /**
-     * Normalize field name to doctrine name - entity_id => entityId
-     *
-     * @param String $field
-     *
-     * @return String
-     */
-    protected function normalize($field)
-    {
-        return preg_replace("#_([a-z])#e", "ucfirst('\\1')", $field);
     }
 
     /**

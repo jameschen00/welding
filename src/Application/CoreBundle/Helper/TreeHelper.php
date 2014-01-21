@@ -14,12 +14,14 @@ class TreeHelper
 
     /**
      * Идентификатор данных
+     *
      * @var Integer
      */
     protected $idField = 'id';
 
     /**
      * Идентификатор "ссылка на родилеть"
+     *
      * @var Integer
      */
     protected $pidField = 'pid';
@@ -72,9 +74,22 @@ class TreeHelper
      */
     public function getValue($row, $key)
     {
-        $mehtod = 'get' . preg_replace("#_([\w])#e", "ucfirst('\\1')", ucfirst($key));
+        $mehtod = 'get' . $this->normalizeKey($key);
 
         return call_user_func(array($row, $mehtod));
+    }
+
+    /**
+     * @param string $key name param
+     *
+     * @return string
+     */
+    private function normalizeKey($key)
+    {
+        $option = str_replace('_', ' ', strtolower($key));
+        $option = str_replace(' ', '', ucwords($option));
+
+        return $option;
     }
 
     /**
@@ -148,7 +163,7 @@ class TreeHelper
     public function tree($parentId = self::PARENTID_DEFAULT, $rebuild = false)
     {
         if ($rebuild || empty($this->tree[$parentId])) {
-            $this->tree[$parentId] = new \stdClass();
+            $this->tree[$parentId]        = new \stdClass();
             $this->tree[$parentId]->count = 0;
 
             $this->tree[$parentId]->data = array();
@@ -178,14 +193,14 @@ class TreeHelper
             unset($data[$k]);
             $rec = & $tree[];
             $rec = array(
-                'data' => $row,
-                'active' => in_array($this->getIdValue($row), $this->active),
+                'data'        => $row,
+                'active'      => in_array($this->getIdValue($row), $this->active),
                 'count_child' => 0,
-                'path' => array($this->getIdValue($row)),
-                'child' => array()
+                'path'        => array($this->getIdValue($row)),
+                'child'       => array()
             );
             if ($this->counter) {
-                $value = $this->getValue($row, $this->counter);
+                $value          = $this->getValue($row, $this->counter);
                 $rec['counter'] = !empty($value) ? $value : 0;
             }
             $count = $this->buildTree($data, $rec['child'], $this->getIdValue($row));
@@ -252,8 +267,8 @@ class TreeHelper
             }
             unset($data[$k]);
             $out[] = $this->getIdValue($row);
-            $arr = $this->buildChild($data, $this->getIdValue($row));
-            $out = array_merge($out, $arr);
+            $arr   = $this->buildChild($data, $this->getIdValue($row));
+            $out   = array_merge($out, $arr);
         }
 
         return $out;
@@ -303,8 +318,8 @@ class TreeHelper
             }
             unset($data[$k]);
             $out[] = $row;
-            $arr = $recurs ? $this->buildChildData($data, $this->getIdValue($row), $recurs) : array();
-            $out = array_merge($out, $arr);
+            $arr   = $recurs ? $this->buildChildData($data, $this->getIdValue($row), $recurs) : array();
+            $out   = array_merge($out, $arr);
         }
 
         return $out;
@@ -315,7 +330,7 @@ class TreeHelper
      */
     public function getData()
     {
-       return $this->data;
+        return $this->data;
     }
 
     /**
@@ -363,9 +378,9 @@ class TreeHelper
         foreach ($tree as $item) {
             $dataId = $this->getValue($item['data'], $this->idField);
 
-            $localResult = $result;
+            $localResult                 = $result;
             $localResult['way'][$dataId] = $item['data'];
-            $localResult['last_id'] = $dataId;
+            $localResult['last_id']      = $dataId;
             if ($dataId == $id) {
                 $localResult['finished'] = true;
 

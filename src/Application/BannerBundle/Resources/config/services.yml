@@ -2,6 +2,4 @@ imports:
     - { resource: services/manager.yml }
     - { resource: services/twig.yml }
     - { resource: services/generator.yml }
-    - { resource: services/services.yml }
-
-
+    - { resource: services/listener.yml }

@@ -3,7 +3,8 @@
     <h2>{{'page.gallery.block_title'}}</h2>
     <ul class="list-unstyled">
         {% for image in images %}
-        <li><a href="{{path('web_gallery', {id : image.id})}}"><img src="{{image.webPath|imagine_filter('gallery_image_block')}}" alt="{{image.name}}"></a></li>
+        {% set src = vich_uploader_asset(image, 'file') %}
+        <li><a href="{{path('web_gallery', {id : image.id})}}"><img src="{{src|imagine_filter('gallery_image_block')}}" alt="{{image.name}}"></a></li>
         {% endfor %}
     </ul>
 </div>

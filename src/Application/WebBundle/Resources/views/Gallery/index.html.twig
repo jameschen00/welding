@@ -16,7 +16,7 @@
                 {% for image in images %}
                 <div class="col-md-3 col-sm-4 gallery-item mix category_{{image.section.id}} mix_all">
                     <a data-id="{{image.id}}" data-rel="fancybox-button" title="{{image.name}}" href="{{image.webPath|imagine_filter('gallery_image_full')}}" class="fancybox-button">
-                        <img alt="{{image.name}}" src="{{image.webPath|imagine_filter('gallery_image_preview')}}" class="img-responsive">
+                        <img alt="{{image.name}}" src="{{vich_uploader_asset(image, 'file')|imagine_filter('gallery_image_preview')}}" class="img-responsive">
                         <div class="zoomix"><i class="fa fa-search"></i></div>
                     </a>
                 </div>

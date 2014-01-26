@@ -44,6 +44,11 @@ liip_imagine:
             filters:
                 thumbnail: { size: [800, 600], mode: outbound}
 
+        gallery_image_main:
+            quality: 100
+            filters:
+                thumbnail: { size: [1920, 1000], mode: outbound}
+
         #web news
         news_image_block:
             quality: 100

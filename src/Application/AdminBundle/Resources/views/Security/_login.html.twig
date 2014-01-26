@@ -1,44 +1,11 @@
-{#<div class="account-container stacked">#}
-    {#<div class="content clearfix">#}
-        {#<form action="{{ path('_security_check') }}" method="POST">#}
-            {#<h1>{% trans %}page.login.page{% endtrans %}</h1>#}
-            {#{% if error %}#}
-                {#<div class="alert alert-danger alert-dismissable">{{ error.message }}</div>#}
-            {#{% endif %}#}
-            {#<div class="login-fields">#}
-                {#<p>{% trans %}page.login.message{% endtrans %}:</p>#}
-
-                {#<div class="field">#}
-                    {#<label for="username">{% trans %}page.login.username{% endtrans %}:</label>#}
-                    {#<input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{% trans %}page.login.username{% endtrans %}" class="form-control input-lg username-field" />#}
-                {#</div> <!-- /field -->#}
-
-                {#<div class="field">#}
-                    {#<label for="password">{% trans %}page.login.password{% endtrans %}:</label>#}
-                    {#<input type="password" id="password" name="_password" value="" placeholder="{% trans %}page.login.password{% endtrans %}" class="form-control input-lg password-field"/>#}
-                {#</div> <!-- /password -->#}
-            {#</div> <!-- /login-fields -->#}
-
-            {#<div class="login-actions">#}
-				{#<span class="login-checkbox">#}
-					{#<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />#}
-					{#<label class="choice" for="Field">{% trans %}page.login.remember{% endtrans %}</label>#}
-				{#</span>#}
-                {#<button type="submit" name="login" class="login-action btn btn-primary">{% trans %}page.login.button{% endtrans %}</button>#}
-            {#</div> <!-- .actions -->#}
-        {#</form>#}
-    {#</div> <!-- /content -->#}
-{#</div> <!-- /account-container -->#}
-
-
 <form class="login-form" action="{{ path('_security_check') }}" method="post">
     <h3 class="form-title">{% trans %}page.login.page{% endtrans %}</h3>
-    <div class="alert alert-danger display-hide">
+    {% if error %}
+    <div class="alert alert-danger">
         <button class="close" data-close="alert"></button>
-			<span>
-				 Enter any username and password.
-			</span>
+        <span>{{ error.message }}</span>
     </div>
+    {% endif %}
     <div class="form-group">
         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
         <label class="control-label visible-ie8 visible-ie9">Username</label>

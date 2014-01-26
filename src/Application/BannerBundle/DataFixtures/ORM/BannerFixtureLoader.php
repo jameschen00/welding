@@ -38,6 +38,7 @@ class BannerFixtureLoader extends AbstractFixture
         $uploadedFile = new UploadedFile($path . '_fixture2.jpg', 'fixture.jpg', null, null, null, true);
 
         $banner = new Banner();
+        $place->setName('Google');
         $banner->setUrl('http://google.com');
         $banner->setStartDate(new \DateTime());
         $banner->setStopDate(new \DateTime('2020-12-12'));
@@ -51,6 +52,7 @@ class BannerFixtureLoader extends AbstractFixture
         $uploadedFile = new UploadedFile($path . '_fixture1.png', 'fixture.png', null, null, null, true);
 
         $banner = new Banner();
+        $place->setName('Google images');
         $banner->setUrl('http://images.google.com');
         $banner->setStartDate(new \DateTime());
         $banner->setStopDate(new \DateTime('2020-12-12'));

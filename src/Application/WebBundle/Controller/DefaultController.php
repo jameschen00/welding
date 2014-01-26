@@ -14,7 +14,22 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('ApplicationWebBundle:Default:index.html.twig');
+        //get list images
+        $managerImage = $this->get('core_manager_factory')->get('gallery_image');
+        $images = $managerImage->where()->order()->findAll();
+
+        //get list of products
+        $manager = $this->get('core_manager_factory')->get('shop_product');
+        $manager->where();
+        $manager->order();
+        $manager->limit(20);
+        $products = $manager->findAll();
+
+        //render
+        return $this->render('ApplicationWebBundle:Default:index.html.twig', array(
+            'images'   => $images,
+            'products' => $products,
+        ));
     }
 
     /**

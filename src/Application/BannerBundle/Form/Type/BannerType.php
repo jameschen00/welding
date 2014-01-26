@@ -54,12 +54,12 @@ class BannerType extends AbstractType
         ));
 
         $builder->add('startDate', 'date', array(
-            'label' => 'banner.code',
+            'label' => 'banner.startDate',
             'format' => 'dd-MM-yyyy',
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')
         ));
         $builder->add('stopDate', 'date', array(
-            'label' => 'banner.code',
+            'label' => 'banner.stopDate',
             'format' => 'dd-MM-yyyy',
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')
         ));

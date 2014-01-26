@@ -28,11 +28,10 @@ class GeneratorListener
      */
     public function postPersist(LifecycleEventArgs $args)
     {
-        $entity        = $args->getEntity();
+        $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
 
-        if ($entity instanceof Banner) {
-
+        if ($entity instanceof Banner && $entity->getFile() !== null) {
             $code = $this->generatorFactory->create($entity)->generate();
 
             $entity->setCode($code);

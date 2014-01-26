@@ -1,39 +1,19 @@
 <?php
 namespace Application\GalleryBundle\Grid\Type;
 
-use Application\CoreBundle\Manager\AbstractManager;
-use Widget\Bundle\Grid\Type\AbstractSymfonyType;
+use Application\AdminBundle\Grid\Type\AbstractAdminType;
 use Widget\Grid\GridBuilder;
 
 /**
  * Class ImageType
  */
-class ImageType extends AbstractSymfonyType
+class ImageType extends AbstractAdminType
 {
-    /**
-     * @var AbstractManager
-     */
-    private $manager;
-
-    /**
-     * @param AbstractManager $manager
-     */
-    public function __construct(AbstractManager $manager)
-    {
-        $this->manager = $manager;
-    }
-
     /**
      * {@inheritdoc}
      */
-    public function buildGrid(GridBuilder $builder, $options = array())
+    protected function buildColumns(GridBuilder $builder)
     {
-        //storage
-        $builder->setStorage('doctrine', array(
-            'repository' => $this->manager->getRepository(),
-            'idField'    => $this->manager->getIdField()
-        ));
-
         //gallery_id
         $column = $builder->addColumn('id', 'text', array(
             'title'    => $this->translator->trans('gallery.image.id'),
@@ -44,8 +24,8 @@ class ImageType extends AbstractSymfonyType
 
         //src
         $builder->addColumn('webPath', 'image', array(
-            'title'    => $this->translator->trans('gallery.image.src'),
-            'width'    => 70,
+            'title' => $this->translator->trans('gallery.image.src'),
+            'width' => 70,
         ));
 
         //name
@@ -62,29 +42,5 @@ class ImageType extends AbstractSymfonyType
             'sortable' => true,
         ));
         $column->setFilter($builder->createFilter('boolean', array('type' => 'integer')));
-
-        //created_at
-        $column = $builder->addColumn('created_at', 'date', array(
-            'format' => 'd.m.Y H:i:s',
-            'width'  => 110,
-            'title'  => $this->translator->trans('gallery.image.created_at'),
-        ));
-        $column->setFilter($builder->createFilter('DateRange'));
-
-        //updated_at
-        $column = $builder->addColumn('updated_at', 'date', array(
-            'format' => 'd.m.Y H:i:s',
-            'width'  => 110,
-            'title'  => $this->translator->trans('gallery.image.updated_at'),
-        ));
-        $column->setFilter($builder->createFilter('DateRange'));
-
-        //add grid actions
-        $builder->addAction('update', array('icon' => 'glyphicon glyphicon-pencil'));
-        $builder->addAction('delete', array('icon' => 'glyphicon glyphicon-trash'));
-
-        //toolbar
-        $builder->setTopToolbar('');
-        $builder->addExtension('pagination');
     }
 }

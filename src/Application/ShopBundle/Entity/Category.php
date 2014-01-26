@@ -8,8 +8,10 @@ use Application\CoreBundle\Library\Doctrine\ModifyEntityTrait;
 use Application\CoreBundle\Library\Doctrine\OrderingEntityTrait;
 use Application\CoreBundle\Library\Doctrine\SlugEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Category
@@ -17,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="shop_category")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Category extends BaseEntity
 {
@@ -72,6 +75,18 @@ class Category extends BaseEntity
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent",  cascade={"persist"})
      */
     private $categories;
+
+    /**
+     * @var UploadedFile
+     *
+     * @Assert\File(
+     *     maxSize="2M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     *
+     * @Vich\UploadableField(mapping="shop_category_image", fileNameProperty="image")
+     */
+    private $file;
 
     /**
      * constructor
@@ -224,11 +239,35 @@ class Category extends BaseEntity
     }
 
     /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     *
+     * @return $this
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+
+        //update date
+        $this->setUpdatedAtValue();
+
+        return $this;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
         return $this->getName();
     }
-
 }

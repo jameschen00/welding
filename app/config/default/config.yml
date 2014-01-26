@@ -2,7 +2,6 @@ imports:
     - { resource: ../parameters.yml }
     - { resource: security.yml }
     - { resource: imagine.yml }
-    - { resource: uploader.yml }
 
 framework:
     #esi:             ~

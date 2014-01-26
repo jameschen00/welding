@@ -89,13 +89,13 @@ class Product extends BaseEntity
     private $brand;
 
     /**
-     * @var float
+     * @var int
      *
-     * @ORM\Column(name="price", type="float", nullable=false)
+     * @ORM\Column(name="ordering", type="integer")
      *
-     * @Assert\Type(type="float")
+     * @Assert\Type(type="integer")
      */
-    private $price = 0.00;
+    private $ordering = 0;
 
     /**
      * @var string
@@ -140,7 +140,7 @@ class Product extends BaseEntity
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        $this->image      = new ArrayCollection();
+        $this->image = new ArrayCollection();
         $this->properties = new ArrayCollection();
     }
 
@@ -313,25 +313,23 @@ class Product extends BaseEntity
     }
 
     /**
-     * @param float $price
+     * @param int $ordering
      *
      * @return $this
      */
-    public function setPrice($price)
+    public function setOrdering($ordering)
     {
-        $this->price = $price;
+        $this->ordering = $ordering;
 
         return $this;
     }
 
     /**
-     * Get price
-     *
-     * @return float
+     * @return int
      */
-    public function getPrice()
+    public function getOrdering()
     {
-        return $this->price;
+        return $this->ordering;
     }
 
 

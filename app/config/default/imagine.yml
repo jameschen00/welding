@@ -1,3 +1,24 @@
+vich_uploader:
+    db_driver:  orm
+    storage:    vich_uploader.storage.file_system
+    gaufrette:  false # set to true to enable gaufrette support
+    mappings:
+        gallery_image:
+            uri_prefix: /public/img/uploads/gallery/image
+            upload_destination: %kernel.root_dir%/../web/public/img/uploads/gallery/image
+        banner_file:
+            uri_prefix: /public/img/uploads/banner
+            upload_destination: %kernel.root_dir%/../web/public/img/uploads/banner
+
+        shop_product_image:
+            uri_prefix: /public/img/uploads/products
+            upload_destination: %kernel.root_dir%/../web/public/img/uploads/products
+
+        shop_category_image:
+            uri_prefix: /public/img/uploads/category
+            upload_destination: %kernel.root_dir%/../web/public/img/uploads/category
+
+
 liip_imagine:
     data_root: %kernel.root_dir%/../web
     cache_prefix:  /public/img/cache
@@ -27,6 +48,11 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [462, 346], mode: outbound}
+
+        category_list_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [265, 199], mode: outbound}
 
         #web gallery
         gallery_image_block:

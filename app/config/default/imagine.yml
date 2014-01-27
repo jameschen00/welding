@@ -43,6 +43,12 @@ liip_imagine:
                 thumbnail: { size: [800, 800], mode: inset }
 
         #web product
+        product_main_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound}
+                background: { color: '#00FFFF' }
+
         product_list_image:
             quality: 100
             filters:

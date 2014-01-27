@@ -161,13 +161,11 @@ var App = function () {
         if ( sy >= changeHeaderOn ) {
                 headerwrap.addClass('front-header-shrink');
                 header.addClass('navbar-inner-shrink');
-                $('#logoimg').attr('width', '120px');
-                $('#logoimg').attr('height', '18px');
+                $('#logoimg').attr('height', '45px');
             } else {
                 headerwrap.removeClass('front-header-shrink');
                 header.removeClass('navbar-inner-shrink');
-                $('#logoimg').attr('width', '142px');
-                $('#logoimg').attr('height', '21px');
+                $('#logoimg').attr('height', '45px');
             }
             didScroll = false;
         }

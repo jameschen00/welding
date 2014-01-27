@@ -1,0 +1,22 @@
+<div class="row recent-work margin-bottom-40">
+    <div class="col-md-3">
+        <h2><a href="portfolio.html">{{'page.main.products.title'|trans}}</a></h2>
+        <p>{{'page.main.products.text'|trans}}</p>
+    </div>
+    <div class="col-md-9">
+        <ul class="bxslider">
+            {% for product in products %}
+                {% set url = path('category_products_' ~ product.category.id, {'product':product.slug}) %}
+                {% set src = vich_uploader_asset(product.image.get(0), 'file') %}
+                <li>
+                    <em>
+                        <a href="{{url}}"><img src="{{src|imagine_filter('product_main_image')}}" alt="{{product.name}}" /></a>
+                    </em>
+                    <a class="bxslider-block" href="{{url}}">
+                        <strong>{{product.name}}</strong>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

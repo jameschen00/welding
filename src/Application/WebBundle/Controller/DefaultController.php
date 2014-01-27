@@ -18,18 +18,36 @@ class DefaultController extends Controller
         $managerImage = $this->get('core_manager_factory')->get('gallery_image');
         $images = $managerImage->where()->order()->findAll();
 
+        //render
+        return $this->render('ApplicationWebBundle:Default:index.html.twig', array(
+            'images' => $images,
+        ));
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function productsAction()
+    {
         //get list of products
         $manager = $this->get('core_manager_factory')->get('shop_product');
         $manager->where();
         $manager->order();
-        $manager->limit(20);
+        $manager->limit(20, 10);
         $products = $manager->findAll();
 
         //render
-        return $this->render('ApplicationWebBundle:Default:index.html.twig', array(
-            'images'   => $images,
-            'products' => $products,
+        return $this->render('ApplicationWebBundle:Default:products.html.twig', array(
+            'products' => $products
         ));
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function clientsAction()
+    {
+        return $this->render('ApplicationWebBundle:Default:clients.html.twig');
     }
 
     /**

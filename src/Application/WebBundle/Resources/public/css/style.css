@@ -502,7 +502,7 @@ Header and header elements.
 	margin-left: 0;
 }
 
-.navbar-brand{
+.navbar-brand {
 	-moz-transition:padding 0.3s ease-in-out;
     -webkit-transition:padding 0.3s ease-in-out;
     -o-transition:padding 0.3s ease-in-out;

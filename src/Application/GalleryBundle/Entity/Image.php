@@ -50,9 +50,9 @@ class Image extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="img", type="string", nullable=true)
+     * @ORM\Column(name="image", type="string", nullable=true)
      */
-    private $img;
+    private $image;
 
     /**
      * @var UploadedFile
@@ -62,7 +62,7 @@ class Image extends BaseEntity
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
      * )
      *
-     * @Vich\UploadableField(mapping="gallery_image", fileNameProperty="img")
+     * @Vich\UploadableField(mapping="gallery_image", fileNameProperty="image")
      */
     private $file;
 
@@ -91,13 +91,13 @@ class Image extends BaseEntity
     }
 
     /**
-     * @param string $img
+     * @param string $image
      *
      * @return $this
      */
-    public function setImg($img)
+    public function setImage($image)
     {
-        $this->img = $img;
+        $this->image = $image;
 
         return $this;
     }
@@ -105,9 +105,9 @@ class Image extends BaseEntity
     /**
      * @return string
      */
-    public function getImg()
+    public function getImage()
     {
-        return $this->img;
+        return $this->image;
     }
 
     /**

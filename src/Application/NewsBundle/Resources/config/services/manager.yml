@@ -3,7 +3,7 @@ parameters:
     news_manager_news.class: '\Application\NewsBundle\Entity\News'
     news_manager_news.repository: 'ApplicationNewsBundle:News'
     news_manager_news.where:
-       'e.isActive = :active':
+       'e.active = :active':
             active : 1
     news_manager_news.order:
        startDate : desc
@@ -12,7 +12,7 @@ parameters:
     news_manager_section.class: '\Application\NewsBundle\Entity\Section'
     news_manager_section.repository: 'ApplicationNewsBundle:Section'
     news_manager_section.where:
-       'e.isActive = :active':
+       'e.active = :active':
             active : 1
     news_manager_section.order:
        name : asc

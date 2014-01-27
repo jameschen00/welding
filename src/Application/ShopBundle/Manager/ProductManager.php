@@ -21,7 +21,7 @@ class ProductManager extends AbstractManager
     /**
      * @var array
      */
-    protected $where = array('e.isActive = :active' => array('active' => 1));
+    protected $where = array('e.active = :active' => array('active' => 1));
 
     /**
      * @param int|array $category

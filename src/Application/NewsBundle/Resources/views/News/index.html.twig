@@ -23,7 +23,9 @@
                             <ul class="blog-info">
                                 <li><i class="fa fa-calendar"></i> {{item.startDate|date("d.m.Y")}}</li>
                             </ul>
+                            {% autoescape %}
                             <p>{{ item.shortText|raw }}</p>
+                            {% endautoescape %}
                             <a class="more" href="{{url}}">{{'page.news.readmore'|trans}} <i class="icon-angle-right"></i></a>
                         </div>
                     </div>
@@ -31,7 +33,9 @@
                 {% endfor %}
 
                 <div class="text-center">
+                    {% autoescape %}
                     {{paginator|raw}}
+                    {% endautoescape %}
                 </div>
             </div>
             <!-- END LEFT SIDEBAR -->

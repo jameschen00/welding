@@ -3,14 +3,17 @@
     <div class="recent-news margin-bottom-10">
         {% for item in news %}
         <div class="row margin-bottom-10">
-            {% if item.webPath %}
-            <div class="col-md-3">
-                <img src="{{item.webPath|imagine_filter('news_image_block')}}" alt="{{item.title}}" class="img-responsive">
-            </div>
+            {% if item.image %}
+                {% set src = vich_uploader_asset(item, 'file') %}
+                <div class="col-md-3">
+                    <img src="{{src|imagine_filter('news_image_block')}}" alt="{{item.title}}" class="img-responsive">
+                </div>
             {% endif %}
             <div class="col-md-9 recent-news-inner">
                 <h3><a href="#">{{item.title}}</a></h3>
-                <p>{{item.shortText}}</p>
+                {% autoescape %}
+                <p>{{item.shortText|raw}}</p>
+                {% endautoescape %}
             </div>
         </div>
         {% endfor %}

@@ -39,7 +39,9 @@
             <!-- BEGIN PORTFOLIO DESCRIPTION -->
             <div class="col-md-7">
                 <h2>{{ product.name }}</h2>
+                {% autoescape %}
                 <p>{{ product.shortDescription|raw }}</p>
+                {% endautoescape %}
                 <br>
                 <a href="#" class="btn theme-btn"> Узнать больше</a>
             </div>

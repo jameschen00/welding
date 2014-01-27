@@ -8,5 +8,7 @@
 {% endblock %}
 
 {% block body %}
+    {% autoescape %}
     {{grid.render()|raw}}
+    {% endautoescape %}
 {% endblock %}

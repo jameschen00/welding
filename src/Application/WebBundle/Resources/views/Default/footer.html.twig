@@ -5,7 +5,7 @@
             <div class="col-md-4 col-sm-4 space-mobile">
                 <!-- BEGIN ABOUT -->
                 <h2>{{'footer.about.title'|trans}}</h2>
-                <p class="margin-bottom-30">{{'footer.about.text'|trans|raw}}</p>
+                <p class="margin-bottom-30">{% autoescape %}{{'footer.about.text'|trans|raw}}{% endautoescape %}</p>
                 <div class="clearfix"></div>
                 <!-- END ABOUT -->
 
@@ -17,7 +17,7 @@
                 <!-- BEGIN CONTACTS -->
                 <h2>{{'footer.contact.title'|trans}}</h2>
                 <address class="margin-bottom-40">
-                   {{'company.block'|trans|raw}}
+                    {% autoescape %}{{'company.block'|trans|raw}}{% endautoescape %}
                 </address>
                 <!-- END CONTACTS -->
             </div>

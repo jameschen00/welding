@@ -21,7 +21,9 @@
                 <ul class="blog-info">
                     <li><i class="fa fa-calendar"></i> {{item.startDate|date("d.m.Y")}}</li>
                 </ul>
+                {% autoescape %}
                 <p>{{item.fullText|raw}}</p>
+                {% endautoescape %}
             </div>
             <!-- END LEFT SIDEBAR -->
 

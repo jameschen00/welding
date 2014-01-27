@@ -1,5 +1,7 @@
 <div class="tab-pane" id="preview">
+    {% autoescape %}
     {% if entity is defined %}
         {{ entity.code|raw }}
     {% endif %}
+    {% endautoescape %}
 </div>

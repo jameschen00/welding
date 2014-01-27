@@ -3,7 +3,7 @@ parameters:
     gallery_manager_image.class: '\Application\GalleryBundle\Entity\Image'
     gallery_manager_image.repository: 'ApplicationGalleryBundle:Image'
     gallery_manager_image.where:
-       'e.isActive = :active':
+       'e.active = :active':
             active : 1
     gallery_manager_image.order:
        name : asc
@@ -12,7 +12,7 @@ parameters:
     gallery_manager_section.class: '\Application\GalleryBundle\Entity\Section'
     gallery_manager_section.repository: 'ApplicationGalleryBundle:Section'
     gallery_manager_section.where:
-       'e.isActive = :active':
+       'e.active = :active':
             active : 1
     gallery_manager_section.order:
        createdAt : asc

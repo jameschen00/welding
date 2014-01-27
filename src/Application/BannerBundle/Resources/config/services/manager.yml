@@ -3,7 +3,7 @@ parameters:
     banner_manager_banner.class: '\Application\BannerBundle\Entity\Banner'
     banner_manager_banner.repository: 'ApplicationBannerBundle:Banner'
     banner_manager_banner.where:
-       'e.isActive = :active':
+       'e.active = :active':
             active : 1
     banner_manager_banner.order:
        name : asc
@@ -12,7 +12,7 @@ parameters:
     banner_manager_place.class: '\Application\BannerBundle\Entity\Place'
     banner_manager_place.repository: 'ApplicationBannerBundle:Place'
     banner_manager_place.where:
-       'e.isActive = :active':
+       'e.active = :active':
             active : 1
     banner_manager_place.order:
        createdAt : asc

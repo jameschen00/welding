@@ -45,7 +45,7 @@ class GeneratorFactory implements ContainerAwareInterface
      */
     public function create(Banner $banner)
     {
-        $type = $this->getGeneratorType($this->getExtension($banner->getImg()));
+        $type = $this->getGeneratorType($this->getExtension($banner->getImage()));
         $id   = 'banner_generator_' . $type;
 
         return $this->container->get($id)->setBanner($banner);

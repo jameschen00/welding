@@ -13,18 +13,24 @@ class SectionTest extends AbstractEntityTest
     use ModifyEntityTraitTest;
 
     /**
-     * @return Section
+     * @test
      */
     protected function createEntity()
     {
         return new Section();
     }
 
+    /**
+     * @test
+     */
     public function testName()
     {
         $this->checkField(__FUNCTION__, 'Nature');
     }
 
+    /**
+     * @test
+     */
     public function testToString()
     {
         $this->assertEquals($this->entity->__toString(), $this->entity->getName());

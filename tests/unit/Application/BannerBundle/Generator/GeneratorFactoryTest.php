@@ -11,7 +11,7 @@ use Application\BannerBundle\Generator\HtmlGenerator;
 class GeneratorFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test create
+     * @test
      */
     public function testCreate()
     {

@@ -41,7 +41,7 @@ class HtmlGeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test generate method
+     * @test
      */
     public function testGenerate()
     {

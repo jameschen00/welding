@@ -21,26 +21,41 @@ class ImageTest extends AbstractEntityTest
         return new Image();
     }
 
+    /**
+     * @test
+     */
     public function testName()
     {
         $this->checkField(__FUNCTION__, 'Nature');
     }
 
+    /**
+     * @test
+     */
     public function testDescription()
     {
         $this->checkField(__FUNCTION__, 'Some description');
     }
 
+    /**
+     * @test
+     */
     public function testSection()
     {
         $this->checkField(__FUNCTION__, new Section());
     }
 
+    /**
+     * @test
+     */
     public function testImg()
     {
         $this->checkField(__FUNCTION__, 'image.png');
     }
 
+    /**
+     * @test
+     */
     public function testToString()
     {
         $this->assertEquals($this->entity->__toString(), $this->entity->getName());

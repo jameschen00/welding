@@ -64,7 +64,7 @@ class MenuController extends AbstractAdminController
     protected function form()
     {
         $form = $this->createFormBuilder($entity, $options)
-            ->add('is_active', 'checkbox', array(
+            ->add('active', 'checkbox', array(
                 'label' => 'page.menu.active',
             ))
 

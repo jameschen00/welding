@@ -43,9 +43,7 @@ class NewsFixtureLoader extends AbstractFixture
     }
 
     /**
-     * Upload file
-     *
-     * @param Image  $news
+     * @param News   $news
      * @param string $fixture
      */
     private function uploadFile(News $news, $fixture)

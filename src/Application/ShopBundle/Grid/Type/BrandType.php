@@ -48,9 +48,9 @@ class BrandType extends AbstractSymfonyType
         ));
         $column->setFilter($builder->createFilter('text'));
 
-        //is_active
-        $column = $builder->addColumn('is_active', 'boolean', array(
-            'title'    => $this->translator->trans('brand.is_active'),
+        //active
+        $column = $builder->addColumn('active', 'boolean', array(
+            'title'    => $this->translator->trans('brand.active'),
             'sortable' => true,
             'width'    => 50
         ));

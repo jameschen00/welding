@@ -25,42 +25,37 @@ class NewsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('is_active', 'checkbox', array(
-            'label' => 'News.active'
+        $builder->add('active', 'checkbox', array(
+            'label' => 'news.item.active'
         ));
 
-        $builder->add('name', 'text', array(
-            'label' => 'News.name'
+        $builder->add('title', 'text', array(
+            'label' => 'news.item.title'
         ));
 
-        $builder->add('place', 'entity', array(
-            'label' => 'News.place',
-            'class' => 'ApplicationNewsBundle:Place'
+        $builder->add('section', 'entity', array(
+            'label' => 'news.item.section',
+            'class' => 'ApplicationNewsBundle:Section'
         ));
 
-        $builder->add('url', 'url', array(
-            'label' => 'News.url'
+        $builder->add('short_text', 'textarea', array(
+            'label' => 'news.item.short_text'
         ));
 
-        $builder->add('code', 'textarea', array(
-            'label' => 'News.code'
+        $builder->add('full_text', 'textarea', array(
+            'label' => 'news.item.full_text'
         ));
 
-        $builder->add('file', 'file', array('label' => 'News.file'));
-
-        $builder->add('priority', 'number', array(
-            'label' => 'News.priority',
-            'data'  => 500
-        ));
+        $builder->add('file', 'image', array('label' => 'news.item.file'));
 
         $builder->add('startDate', 'date', array(
-            'label' => 'News.code',
-            'format' => 'dd-MM-yyyy',
+            'label'       => 'news.item.startDate',
+            'format'      => 'dd-MM-yyyy',
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')
         ));
         $builder->add('stopDate', 'date', array(
-            'label' => 'News.code',
-            'format' => 'dd-MM-yyyy',
+            'label'       => 'news.item.stopDate',
+            'format'      => 'dd-MM-yyyy',
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')
         ));
     }
@@ -70,6 +65,6 @@ class NewsType extends AbstractType
      */
     public function getName()
     {
-        return 'News';
+        return 'news';
     }
 }

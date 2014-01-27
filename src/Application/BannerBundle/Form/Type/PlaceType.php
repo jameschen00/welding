@@ -25,7 +25,7 @@ class PlaceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('is_active', 'checkbox', array('label' => 'place.active'));
+        $builder->add('active', 'checkbox', array('label' => 'place.active'));
         $builder->add('name', 'text', array('label' => 'place.name'));
         $builder->add('width', 'text', array('label' => 'place.width'));
         $builder->add('height', 'text', array('label' => 'place.height'));

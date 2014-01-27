@@ -15,7 +15,7 @@ class BrandType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('is_active', 'checkbox', array('label' => 'brand.active'));
+        $builder->add('active', 'checkbox', array('label' => 'brand.active'));
         $builder->add('name', 'text', array('label' => 'brand.name'));
         $builder->add('description', 'text', array('label' => 'brand.description'));
         $builder->add('slug', 'text', array('label' => 'brand.slug'));

@@ -1,37 +1,39 @@
 <?php
-namespace Application\BannerBundle\Grid\Type;
+namespace Application\NewsBundle\Grid\Type;
 
 use Application\AdminBundle\Grid\Type\AbstractAdminType;
+use Application\CoreBundle\Manager\AbstractManager;
+use Widget\Bundle\Grid\Type\AbstractSymfonyType;
 use Widget\Grid\GridBuilder;
 
 /**
- * Class BannerType
+ * Class NewsType
  */
-class BannerType extends AbstractAdminType
+class NewsType extends AbstractAdminType
 {
     /**
      * {@inheritdoc}
      */
     protected function buildColumns(GridBuilder $builder)
     {
-        //banner_id
+        //news_id
         $column = $builder->addColumn('id', 'text', array(
-            'title'    => $this->translator->trans('banner.id'),
+            'title'    => $this->translator->trans('news.item.id'),
             'sortable' => true,
             'width'    => 50,
         ));
         $column->setFilter($builder->createFilter('text', array('type' => 'integer')));
 
         //name
-        $column = $builder->addColumn('name', 'text', array(
-            'title'    => $this->translator->trans('banner.name'),
+        $column = $builder->addColumn('title', 'text', array(
+            'title'    => $this->translator->trans('news.item.title'),
             'sortable' => true,
         ));
         $column->setFilter($builder->createFilter('text'));
 
         //active
         $column = $builder->addColumn('active', 'boolean', array(
-            'title'    => $this->translator->trans('banner.active'),
+            'title'    => $this->translator->trans('news.item.active'),
             'width'    => 50,
             'sortable' => true,
         ));
@@ -41,8 +43,7 @@ class BannerType extends AbstractAdminType
         $column = $builder->addColumn('start_date', 'date', array(
             'format' => 'd.m.Y H:i:s',
             'width'  => 110,
-            'sortable' => true,
-            'title'  => $this->translator->trans('banner.start_date'),
+            'title'  => $this->translator->trans('news.item.start_date'),
         ));
         $column->setFilter($builder->createFilter('DateRange'));
 
@@ -50,8 +51,7 @@ class BannerType extends AbstractAdminType
         $column = $builder->addColumn('stop_date', 'date', array(
             'format' => 'd.m.Y H:i:s',
             'width'  => 110,
-            'sortable' => true,
-            'title'  => $this->translator->trans('banner.stop_date'),
+            'title'  => $this->translator->trans('news.item.stop_date'),
         ));
         $column->setFilter($builder->createFilter('DateRange'));
     }

@@ -48,7 +48,7 @@ class PropertyType extends AbstractSymfonyType
         $column->setFilter($builder->createFilter('text'));
 
         //active
-        $column = $builder->addColumn('is_active', 'boolean', array(
+        $column = $builder->addColumn('active', 'boolean', array(
             'title' => $this->translator->trans('property.active'),
             'width' => 50,
         ));

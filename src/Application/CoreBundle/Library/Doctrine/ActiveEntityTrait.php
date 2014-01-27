@@ -4,30 +4,30 @@ namespace Application\CoreBundle\Library\Doctrine;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Extend entity to use is_active field
+ * Extend entity to use active field
  */
 trait ActiveEntityTrait
 {
     /**
      * @ORM\Column(type="boolean", nullable=false, name="is_active")
      *
-     * @var string isActive
+     * @var boolean isActive
      */
-    private $isActive = false;
+    private $active = false;
 
     /**
-     * @param string $isActive
+     * @param boolean $active
      */
-    public function setIsActive($isActive)
+    public function setActive($active)
     {
-        $this->isActive = $isActive;
+        $this->active = $active;
     }
 
     /**
      * @return string
      */
-    public function hasIsActive()
+    public function isActive()
     {
-        return $this->isActive;
+        return $this->active;
     }
 }

@@ -25,7 +25,7 @@ class BannerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('is_active', 'checkbox', array(
+        $builder->add('active', 'checkbox', array(
             'label' => 'banner.active'
         ));
 

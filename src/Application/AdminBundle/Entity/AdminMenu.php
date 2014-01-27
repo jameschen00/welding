@@ -80,7 +80,7 @@ class AdminMenu extends BaseEntity
 //    /**
 //     * @var boolean
 //     *
-//     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+//     * @ORM\Column(name="active", type="boolean", nullable=false)
 //     */
 //    private $isActive;
 //

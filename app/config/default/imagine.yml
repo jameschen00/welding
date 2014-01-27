@@ -16,7 +16,11 @@ vich_uploader:
 
         shop_category_image:
             uri_prefix: /public/img/uploads/category
-            upload_destination: %kernel.root_dir%/../web/public/img/uploads/category
+            upload_destination: %kernel.root_dir%/../web/public/img/uploads/categories
+
+        news_item:
+            uri_prefix: /public/img/uploads/news
+            upload_destination: %kernel.root_dir%/../web/public/img/uploads/news
 
 
 liip_imagine:

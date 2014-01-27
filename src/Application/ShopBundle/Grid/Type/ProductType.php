@@ -54,9 +54,9 @@ class ProductType extends AbstractSymfonyType
         ));
         $column->setFilter($builder->createFilter('text'));
 
-        //is_active
-        $column = $builder->addColumn('is_active', 'boolean', array(
-            'title'    => $this->translator->trans('product.is_active'),
+        //active
+        $column = $builder->addColumn('active', 'boolean', array(
+            'title'    => $this->translator->trans('product.active'),
             'sortable' => true,
             'width'    => 50
         ));

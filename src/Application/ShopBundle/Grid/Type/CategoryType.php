@@ -62,7 +62,7 @@ class CategoryType extends AbstractSymfonyType
         ));
 
         //active
-        $builder->addColumn('is_active', 'boolean', array(
+        $builder->addColumn('active', 'boolean', array(
             'title' => $this->translator->trans('category.active'),
             'width' => 50,
         ));

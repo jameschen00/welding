@@ -8,6 +8,7 @@ use Application\CoreBundle\Library\Doctrine\PeriodEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * News
@@ -15,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="news_item")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class News extends BaseEntity
 {
@@ -62,15 +64,16 @@ class News extends BaseEntity
     private $img;
 
     /**
-     * @Assert\File(maxSize="6000000")
-     * @var string
+     * @var UploadedFile
+     *
+     * @Assert\File(
+     *     maxSize="2M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     *
+     * @Vich\UploadableField(mapping="news_item", fileNameProperty="img")
      */
     private $file;
-
-    /**
-     * @var string
-     */
-    private $temp;
 
     /**
      * Set title
@@ -137,28 +140,6 @@ class News extends BaseEntity
     }
 
     /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     *
-     * @return $this
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-        // check if we have an old image img
-        if (isset($this->img)) {
-            // store the old name to delete after the update
-            $this->temp = $this->img;
-            $this->img  = null;
-        } else {
-            $this->img = 'initial';
-        }
-
-        return $this;
-    }
-
-    /**
      * @param string $shortText
      *
      * @return $this
@@ -199,8 +180,21 @@ class News extends BaseEntity
     }
 
     /**
-     * Get file.
+     * @param UploadedFile $file
      *
+     * @return $this
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+
+        //update date
+        $this->setUpdatedAtValue();
+
+        return $this;
+    }
+
+    /**
      * @return UploadedFile
      */
     public function getFile()
@@ -209,90 +203,10 @@ class News extends BaseEntity
     }
 
     /**
-     * @return null|string
-     */
-    public function getAbsolutePath()
-    {
-        return null === $this->img
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->img;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getWebPath()
-    {
-        return null === $this->img
-            ? null
-            : $this->getUploadDir() . '/' . $this->img;
-    }
-
-    /**
      * @return string
      */
-    protected function getUploadRootDir()
+    public function __toString()
     {
-        // the absolute directory img where uploaded
-        // documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'public/img/uploads/news';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-        if (null !== $this->getFile()) {
-            // do whatever you want to generate a unique name
-            $filename  = sha1(uniqid(mt_rand(), true));
-            $this->img = $filename . '.' . $this->getFile()->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        // if there is an error when moving the file, an exception will
-        // be automatically thrown by move(). This will properly prevent
-        // the entity from being persisted to the database on error
-        $this->getFile()->move($this->getUploadRootDir(), $this->img);
-
-        // check if we have an old image
-        if (isset($this->temp)) {
-            // delete the old image
-            unlink($this->getUploadRootDir() . '/' . $this->temp);
-            // clear the temp image img
-            $this->temp = null;
-        }
-        $this->file = null;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if ($file = $this->getAbsolutePath()) {
-            unlink($file);
-        }
+        return $this->getTitle();
     }
 }

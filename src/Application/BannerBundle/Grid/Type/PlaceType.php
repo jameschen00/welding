@@ -29,8 +29,8 @@ class PlaceType extends AbstractAdminType
         ));
         $column->setFilter($builder->createFilter('text'));
 
-        //is_active
-        $column = $builder->addColumn('is_active', 'boolean', array(
+        //active
+        $column = $builder->addColumn('active', 'boolean', array(
             'title'    => $this->translator->trans('place.active'),
             'width'    => 50,
             'sortable' => true,

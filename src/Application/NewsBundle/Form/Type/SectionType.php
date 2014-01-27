@@ -1,12 +1,12 @@
 <?php
-namespace Application\GalleryBundle\Form\Type;
+namespace Application\NewsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class SectionType
+ * Form for section
  */
 class SectionType extends AbstractType
 {
@@ -16,7 +16,7 @@ class SectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Application\GalleryBundle\Entity\Section',
+            'data_class' => 'Application\NewsBundle\Entity\Section',
         ));
     }
 
@@ -25,8 +25,9 @@ class SectionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('active', 'checkbox', array('label' => 'banner.section.active'));
-        $builder->add('name', 'text', array('label' => 'banner.section.name'));
+        $builder->add('active', 'checkbox', array('label' => 'news.section.active'));
+        $builder->add('name', 'text', array('label' => 'news.section.name'));
+        $builder->add('slug', 'text', array('label' => 'news.section.slug'));
     }
 
     /**

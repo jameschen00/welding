@@ -19,7 +19,7 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('is_active', 'checkbox', array(
+            ->add('active', 'checkbox', array(
                 'label'    => 'product.active',
                 'required' => false
             ))

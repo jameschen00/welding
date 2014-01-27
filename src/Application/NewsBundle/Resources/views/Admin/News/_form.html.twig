@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#main" data-toggle="tab">{{ 'page.news.tabs.main'|trans }}</a></li>
-    <li><a href="#preview" data-toggle="tab">{{ 'page.news.tabs.preview'|trans }}</a></li>
+    <li><a href="#text" data-toggle="tab">{{ 'page.news.tabs.text'|trans }}</a></li>
 </ul>
 <div class="tab-content">
     {% include 'ApplicationNewsBundle:Admin/News/Form:_main.html.twig' %}
-    {% include 'ApplicationNewsBundle:Admin/News/Form:_preview.html.twig' %}
+    {% include 'ApplicationNewsBundle:Admin/News/Form:_text.html.twig' %}
 </div>
 {{ form_widget(form._token) }}

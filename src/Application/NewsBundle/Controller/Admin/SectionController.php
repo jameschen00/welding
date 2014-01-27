@@ -3,8 +3,8 @@ namespace Application\NewsBundle\Controller\Admin;
 
 use Application\AdminBundle\Controller\Configuration;
 use Application\AdminBundle\Grid\AdminGridBuilder;
-use Application\NewsBundle\Form\Type\PlaceType;
-use \Application\NewsBundle\Grid\Type\PlaceType as PlaceGrid;
+use Application\NewsBundle\Form\Type\SectionType;
+use \Application\NewsBundle\Grid\Type\SectionType as SectionGrid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Application\AdminBundle\Controller\AbstractAdminController;
 
@@ -32,7 +32,7 @@ class SectionController extends AbstractAdminController
      */
     protected function grid($manager)
     {
-        return $this->get('widget_grid_factory')->createGrid(new PlaceGrid($manager));
+        return $this->get('widget_grid_factory')->createGrid(new SectionGrid($manager));
     }
 
     /**
@@ -40,6 +40,6 @@ class SectionController extends AbstractAdminController
      */
     protected function form()
     {
-        return $this->createForm(new PlaceType());
+        return $this->createForm(new SectionType());
     }
 }

@@ -17,7 +17,7 @@ class PropertyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('is_active', 'checkbox', array(
+            ->add('active', 'checkbox', array(
                 'label' => 'property.active',
             ))
 

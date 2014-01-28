@@ -28,7 +28,9 @@ class PlaceType extends AbstractType
         $builder->add('active', 'checkbox', array('label' => 'place.active'));
         $builder->add('name', 'text', array('label' => 'place.name'));
         $builder->add('width', 'text', array('label' => 'place.width'));
+        $builder->add('widthPercent', 'checkbox', array('label' => 'place.widthPercent'));
         $builder->add('height', 'text', array('label' => 'place.height'));
+        $builder->add('heightPercent', 'checkbox', array('label' => 'place.heightPercent'));
         $builder->add('count', 'text', array('label' => 'place.count'));
         $builder->add('bseparator', 'text', array('label' => 'place.bseparator'));
         $builder->add('scontainer', 'text', array('label' => 'place.scontainer'));

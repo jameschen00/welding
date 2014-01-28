@@ -49,7 +49,7 @@ class BannerTest extends AbstractEntityTest
     /**
      * @test
      */
-    public function testImg()
+    public function testImage()
     {
         $this->checkField(__FUNCTION__, 'google.png');
     }

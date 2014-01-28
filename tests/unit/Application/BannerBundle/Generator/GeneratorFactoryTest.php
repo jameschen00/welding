@@ -16,7 +16,7 @@ class GeneratorFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $banner = new Banner();
-        $banner->setImg('google.png');
+        $banner->setImage('google.png');
 
         //mock container
         $cotainer = $this->getMockBuilder('\Symfony\Component\DependencyInjection\Container')

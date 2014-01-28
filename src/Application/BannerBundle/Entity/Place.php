@@ -39,6 +39,13 @@ class Place extends BaseEntity
     private $width;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_width_percent", type="boolean")
+     */
+    private $widthPercent = false;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="height", type="integer", nullable=false)
@@ -46,6 +53,13 @@ class Place extends BaseEntity
      * @Assert\Type(type="numeric")
      */
     private $height;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_height_percent", type="boolean")
+     */
+    private $heightPercent = false;
 
     /**
      * @var integer
@@ -58,21 +72,21 @@ class Place extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="bseparator", type="string", length=100, nullable=true)
+     * @ORM\Column(name="bseparator", type="string", length=255, nullable=true)
      */
     private $bseparator;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="scontainer", type="string", length=100, nullable=true)
+     * @ORM\Column(name="scontainer", type="string", length=255, nullable=true)
      */
     private $scontainer;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="econtainer", type="string", length=100, nullable=true)
+     * @ORM\Column(name="econtainer", type="string", length=255, nullable=true)
      */
     private $econtainer;
 
@@ -218,6 +232,44 @@ class Place extends BaseEntity
     public function getScontainer()
     {
         return $this->scontainer;
+    }
+
+    /**
+     * @param boolean $heightPercent
+     *
+     * @return $this
+     */
+    public function setHeightPercent($heightPercent)
+    {
+        $this->heightPercent = $heightPercent;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isHeightPercent()
+    {
+        return $this->heightPercent;
+    }
+
+    /**
+     * @param boolean $widthPercent
+     *
+     * @return $this
+     */
+    public function setWidthPercent($widthPercent)
+    {
+        $this->widthPercent = $widthPercent;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isWidthPercent()
+    {
+        return $this->widthPercent;
     }
 
     /**

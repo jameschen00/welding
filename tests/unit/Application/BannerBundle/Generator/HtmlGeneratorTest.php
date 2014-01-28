@@ -27,7 +27,7 @@ class HtmlGeneratorTest extends \PHPUnit_Framework_TestCase
         $place->setHeight(300);
 
         $this->banner = new Banner();
-        $this->banner->setImg('google.png');
+        $this->banner->setImage('google.png');
         $this->banner->setUrl('http://google.com');
         $this->banner->setPlace($place);
     }
@@ -62,9 +62,13 @@ class HtmlGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $code = $generator->generate();
 
+        $place = $this->banner->getPlace();
+        $widthDimensions = $place->isWidthPercent() ? '%' : 'px';
+        $heightDimensions = $place->isHeightPercent() ? '%' : 'px';
+
         //asserts
         $this->assertTrue(strpos($code, '<img src="' . $image . '"') !== false);
-        $this->assertTrue(strpos($code, 'height="' . $this->banner->getPlace()->getHeight() . '"') !== false);
-        $this->assertTrue(strpos($code, 'width="' . $this->banner->getPlace()->getWidth() . '"') !== false);
+        $this->assertTrue(strpos($code, 'height="' . $place->getHeight() . $heightDimensions . '"') !== false);
+        $this->assertTrue(strpos($code, 'width="' . $place->getWidth() . $widthDimensions . '"') !== false);
     }
 }

@@ -48,7 +48,7 @@ class ImageTest extends AbstractEntityTest
     /**
      * @test
      */
-    public function testImg()
+    public function testImage()
     {
         $this->checkField(__FUNCTION__, 'image.png');
     }

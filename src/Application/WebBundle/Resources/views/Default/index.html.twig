@@ -8,6 +8,7 @@
     <div class="bgSfuma_in" style="overflow: hidden; height:400px; position:relative;">
         <!-- start SHOWREEL -->
         <div class="fadeShowreel bg_scuro shadow">
+            {{place(1)}}
             {% for image in images %}
                 {% set src = vich_uploader_asset(image, 'file') %}
                 <div style="z-index: {{loop.index+1}}; opacity: {{loop.index==0?'1':'0'}};" class="item">

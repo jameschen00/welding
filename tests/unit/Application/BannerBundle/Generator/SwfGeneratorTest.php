@@ -27,7 +27,7 @@ class SwfGeneratorTest extends \PHPUnit_Framework_TestCase
         $place->setHeight(300);
 
         $this->banner = new Banner();
-        $this->banner->setImg('google.swf');
+        $this->banner->setImage('google.swf');
         $this->banner->setUrl('http://google.com');
         $this->banner->setPlace($place);
     }

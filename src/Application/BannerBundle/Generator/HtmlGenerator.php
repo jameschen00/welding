@@ -27,8 +27,12 @@ class HtmlGenerator extends AbstractGenerator
     public function generate()
     {
         $image = $this->uploaderHelper->asset($this->banner, 'file');
-        $code  = '<a href="' . $this->banner->getUrl() . '">' .
-            "\n" . '<image src="' . $image . '" width="' . $this->banner->getPlace()->getWidth() . '" height="' . $this->banner->getPlace()->getHeight() . '" alt="' . $this->banner->getName() . '" border="0" />' .
+        $place = $this->banner->getPlace();
+        $widthDimensions = $place->isWidthPercent() ? '%' : 'px';
+        $heightDimensions = $place->isHeightPercent() ? '%' : 'px';
+
+        $code = '<a href="' . $this->banner->getUrl() . '">' .
+            "\n" . '<img src="' . $image . '" width="' . $place->getWidth() . $widthDimensions . '" height="' . $place->getHeight() . $heightDimensions . '" alt="' . $this->banner->getName() . '" border="0" />' .
             "\n" . '</a>';
 
         return $code;

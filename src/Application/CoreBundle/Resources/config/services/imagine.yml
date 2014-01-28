@@ -1,0 +1,6 @@
+services:
+    core_imagine_filter_loader_resize:
+        class: 'Application\CoreBundle\Imagine\Filter\Loader\ResizeLoader'
+        arguments: ['@liip_imagine']
+        tags:
+            -  { name: liip_imagine.filter.loader, loader: my_resize }

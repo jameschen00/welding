@@ -1,5 +1,6 @@
 imports:
     - { resource: services/main.yml }
     - { resource: services/manager.yml }
+    - { resource: services/imagine.yml }
 
 

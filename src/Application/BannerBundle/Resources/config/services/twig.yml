@@ -1,6 +1,6 @@
 services:
     banner_twig_extention:
-        class: Application\BannerBundle\Twig\BannerExtension
+        class: 'Application\BannerBundle\Twig\BannerExtension'
         calls:
             - [setManagerFactory, [@core_manager_factory]]
         tags:

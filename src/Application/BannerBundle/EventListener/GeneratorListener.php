@@ -26,7 +26,7 @@ class GeneratorListener
     /**
      * @param LifecycleEventArgs $args
      */
-    public function postPersist(LifecycleEventArgs $args)
+    public function postUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();

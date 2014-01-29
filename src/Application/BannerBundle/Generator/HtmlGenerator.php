@@ -28,11 +28,15 @@ class HtmlGenerator extends AbstractGenerator
     {
         $image = $this->uploaderHelper->asset($this->banner, 'file');
         $place = $this->banner->getPlace();
-        $widthDimensions = $place->isWidthPercent() ? '%' : 'px';
-        $heightDimensions = $place->isHeightPercent() ? '%' : 'px';
+
+        $width = $place->getWidth();
+        $width && $width = 'width="' . ($width . ($place->isWidthPercent() ? '%' : 'px')) . '"';
+
+        $height = $place->getHeight();
+        $height && $height = 'height="' . ($height . ($place->isHeightPercent() ? '%' : 'px')) . '"';
 
         $code = '<a href="' . $this->banner->getUrl() . '">' .
-            "\n" . '<img src="' . $image . '" width="' . $place->getWidth() . $widthDimensions . '" height="' . $place->getHeight() . $heightDimensions . '" alt="' . $this->banner->getName() . '" border="0" />' .
+            "\n" . '<img src="' . $image . '" ' . ($width?$width:'') . ' ' . ($height?$height:'') . ' alt="' . $this->banner->getName() . '" border="0" />' .
             "\n" . '</a>';
 
         return $code;

@@ -208,7 +208,7 @@ abstract class AbstractAdminController extends Controller
             $form->setData($entity);
         }
 
-        $form->handleRequest($request);
+        $form->submit($request);
         if ($form->isValid()) {
             //save
             $id = $this->save($manager, $form);

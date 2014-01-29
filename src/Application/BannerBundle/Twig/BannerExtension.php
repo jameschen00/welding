@@ -26,7 +26,7 @@ class BannerExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('banner', array($this, 'getHtml'), array(
+            new \Twig_SimpleFilter('banner_place', array($this, 'getHtml'), array(
                 'is_safe' => array('html')
             ))
         );
@@ -54,15 +54,17 @@ class BannerExtension extends \Twig_Extension
         //get place
         $place = $banners[0]->getPlace();
         /* @var $place \Application\BannerBundle\Entity\Place */
+
         //range banners
         $banners = $this->rangeBannersByPriority($banners, $place);
+
         //render html
         $html = array();
         foreach ($banners as $banner) {
-            $html[] = $place->getScontainer() . $banner->getCode() . $place->getEcontainer();
+            $html[] = $banner->getCode();
         }
 
-        return join($place->getBseparator(), $html);
+        return $place->getScontainer() . join($place->getBseparator(), $html) . $place->getEcontainer();
     }
 
     /**
@@ -131,6 +133,6 @@ class BannerExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'banner';
+        return 'banner_place';
     }
 }

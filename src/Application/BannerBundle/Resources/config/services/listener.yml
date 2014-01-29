@@ -4,4 +4,4 @@ services:
         calls:
             - [setGeneratorFactory, [@banner_generator_factory]]
         tags:
-            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }

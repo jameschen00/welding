@@ -8,6 +8,7 @@ vich_uploader:
             upload_destination: %kernel.root_dir%/../web/public/img/uploads/gallery/image
         banner_file:
             uri_prefix: /public/img/uploads/banner
+            namer: vich_uploader.namer_uniqid
             upload_destination: %kernel.root_dir%/../web/public/img/uploads/banner
 
         shop_product_image:

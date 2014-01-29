@@ -44,10 +44,14 @@ trait ModifyEntityTrait
 
     /**
      * @param \DateTime $createdAt
+     *
+     * @return $this
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
@@ -60,10 +64,14 @@ trait ModifyEntityTrait
 
     /**
      * @param \DateTime $updatedAt
+     *
+     * @return $this
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     /**

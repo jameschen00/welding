@@ -27,7 +27,14 @@ class SwfGenerator extends AbstractGenerator
     public function generate()
     {
         $flash = $this->uploaderHelper->asset($this->banner, 'file');
+        $place = $this->banner->getPlace();
 
-        return '<embed src="' . $flash . '?url=' . $this->banner->getUrl() . '" quality="high" bgcolor="#FFFFFF"  wmode="transparent" width="' . $this->banner->getPlace()->getWidth() . '" height="' . $this->banner->getPlace()->getHeight() . '" align="" type="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" />';
+        $width = $place->getWidth();
+        $width && $width = 'width="' . ($width . ($place->isWidthPercent() ? '%' : 'px')) . '"';
+
+        $height = $place->getHeight();
+        $height && $height = 'height="' . ($height . ($place->isHeightPercent() ? '%' : 'px')) . '"';
+
+        return '<embed src="' . $flash . '?url=' . $this->banner->getUrl() . '" quality="high" bgcolor="#FFFFFF"  wmode="transparent" ' . ($width ? $width : '') . ' ' . ($height ? $height : '') . ' align="" type="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" />';
     }
 }

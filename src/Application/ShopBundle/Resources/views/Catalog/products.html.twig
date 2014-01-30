@@ -13,38 +13,11 @@
                 {% for product in products %}
                     {% set url = path('category_products_' ~ product.category.id, {'product':product.slug}) %}
                     <div class="row">
-                        {% if (product.image|length > 1) %}
+                        {% if (product.image|length > 0 ) %}
+                            {% set src = vich_uploader_asset(product.image.get(0), 'file') %}
                             <div class="col-md-4 col-sm-4">
-                                <!-- BEGIN CAROUSEL -->
-                                <div class="front-carousel">
-                                    <div id="myCarousel{{product.id}}" class="carousel slide">
-                                        <!-- Carousel items -->
-                                        <div class="carousel-inner">
-                                            {% for image in product.image %}
-                                                {% set src = vich_uploader_asset(image, 'file') %}
-                                                <div class="{% if loop.index0 == 0 %} active {% endif %} item">
-                                                    <img src="{{src|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                        <!-- Carousel nav -->
-                                        <a class="carousel-control left" href="#myCarousel{{product.id}}" data-slide="prev">
-                                            <i class="fa fa-angle-left"></i>
-                                        </a>
-                                        <a class="carousel-control right" href="#myCarousel{{product.id}}" data-slide="next">
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- END CAROUSEL -->
+                                <img src="{{src|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
                             </div>
-                        {% else %}
-                            {% if (product.image|length == 1) %}
-                                {% set src = vich_uploader_asset(product.image.get(0), 'file') %}
-                                <div class="col-md-4 col-sm-4">
-                                    <img src="{{src|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
-                                </div>
-                            {% endif %}
                         {% endif %}
                         <div class="col-md-8 col-sm-8">
                             <h2><a href="{{url}}">{{product.name}}</a></h2>
@@ -92,10 +65,4 @@
         <!-- END BEGIN BLOG -->
     </div>
     <!-- END CONTAINER -->
-{% endblock %}
-
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 {% endblock %}

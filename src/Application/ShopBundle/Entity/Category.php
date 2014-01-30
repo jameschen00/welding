@@ -77,6 +77,11 @@ class Category extends BaseEntity
     private $categories;
 
     /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     */
+    private $products;
+
+    /**
      * @var UploadedFile
      *
      * @Assert\File(
@@ -94,6 +99,15 @@ class Category extends BaseEntity
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->products = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 
     /**

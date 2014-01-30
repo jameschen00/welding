@@ -61,8 +61,8 @@ class Resize implements FilterInterface
 
         $k < 1 && $k = 1;
 
-        $dWidth = intval(ceil($size->getWidth() / $k));
-        $dHeight = intval(ceil($size->getHeight() / $k));
+        $dWidth = intval(floor($size->getWidth() / $k));
+        $dHeight = intval(floor($size->getHeight() / $k));
 
         $offsetX = intval(($this->width - $dWidth) / 2);
         $offsetY = intval(($this->height - $dHeight) / 2);

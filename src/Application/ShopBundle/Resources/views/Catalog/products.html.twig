@@ -21,8 +21,9 @@
                                         <!-- Carousel items -->
                                         <div class="carousel-inner">
                                             {% for image in product.image %}
+                                                {% set src = vich_uploader_asset(image, 'file') %}
                                                 <div class="{% if loop.index0 == 0 %} active {% endif %} item">
-                                                    <img src="{{image|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
+                                                    <img src="{{src|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
                                                 </div>
                                             {% endfor %}
                                         </div>
@@ -39,19 +40,18 @@
                             </div>
                         {% else %}
                             {% if (product.image|length == 1) %}
+                                {% set src = vich_uploader_asset(product.image.get(0), 'file') %}
                                 <div class="col-md-4 col-sm-4">
-                                    <img src="{{product.image.get(0)|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
+                                    <img src="{{src|imagine_filter('product_list_image')}}" alt="{{ product.name }}" />
                                 </div>
                             {% endif %}
                         {% endif %}
                         <div class="col-md-8 col-sm-8">
                             <h2><a href="{{url}}">{{product.name}}</a></h2>
                             <ul class="blog-info">
-                                <li><i class="fa fa-tags"></i> Metronic, Keenthemes, UI Design</li>
+                                <li><i class="fa fa-tags"></i> {{product.brand.name}}</li>
                             </ul>
-                            {% autoescape %}
-                            <p>{{ product.shortDescription|raw }}</p>
-                            {% endautoescape %}
+                            <p>{{ product.shortDescription }}</p>
                             <a class="more" href="{{url}}">{{'page.catalog.readmore'|trans}} <i class="icon-angle-right"></i></a>
                         </div>
                     </div>
@@ -84,6 +84,8 @@
                 <!-- BEGIN BLOG PHOTOS STREAM -->
                 {{ render(controller('ApplicationGalleryBundle:Component:index')) }}
                 <!-- END BLOG PHOTOS STREAM -->
+
+                {{2|banner_place}}
             </div>
             <!-- END RIGHT SIDEBAR -->
         </div>

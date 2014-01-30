@@ -6,32 +6,12 @@
 {% block body %}
     <div class="container min-hight portfolio-page margin-bottom-30">
         <!-- BEGIN PORTFOLIO ITEM -->
-        <div class="row">
+        <div class="row margin-bottom-20">
             <!-- BEGIN CAROUSEL -->
             {% if (product.image|length > 1) %}
-            <div class="col-md-5 front-carousel">
-                <div id="myCarousel" class="carousel slide">
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-                        {% for image in product.image %}
-                            <div class="{% if loop.index0 == 0 %} active {% endif %} item">
-                                <img src="{{image|imagine_filter('product_card_image')}}" alt="{{ image.description }}" />
-                                {% if image.description %}
-                                <div class="carousel-caption">
-                                    <p>{{ image.description }}</p>
-                                </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <!-- Carousel nav -->
-                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
+            <div class="col-md-5">
+                {% set src = vich_uploader_asset(product.image.get(0), 'file') %}
+                <img src="{{src|imagine_filter('product_card_image')}}" alt="{{ product.image.get(0).description }}" />
             </div>
             {% endif %}
             <!-- END CAROUSEL -->
@@ -39,345 +19,66 @@
             <!-- BEGIN PORTFOLIO DESCRIPTION -->
             <div class="col-md-7">
                 <h2>{{ product.name }}</h2>
-                {% autoescape %}
-                <p>{{ product.shortDescription|raw }}</p>
-                {% endautoescape %}
-                <br>
-                <a href="#" class="btn theme-btn"> Узнать больше</a>
+                <ul class="blog-info">
+                    <li><i class="fa fa-tags"></i> {{product.brand.name}}</li>
+                </ul>
+                <p>{{ product.shortDescription }}</p>
+                <br/>
+                <a href="#" class="btn theme-btn"> {{'product.page.buy'|trans}}</a>
             </div>
             <!-- END PORTFOLIO DESCRIPTION -->
         </div>
         <!-- END PORTFOLIO ITEM -->
-
-        <!-- BEGIN BLOCKQUOTE BLOCK -->
-        <div class="row quote-v1">
-            <div class="col-md-7 quote-v1-inner">
-                <span>Lorem ipsum dolor sit amet, consectetuer adipiscing tempor</span>
-            </div>
-            <div class="col-md-5 quote-v1-inner text-right">
-                <a class="btn-transparent" href="#"><i class="fa fa-rocket margin-right-10"></i>Adipiscing</a>
-                <a class="btn-transparent" href="#"><i class="fa fa-gift margin-right-10"></i>Get it FREE</a>
-            </div>
-        </div>
-        <!-- END BLOCKQUOTE BLOCK -->
-
         <div class="clearfix"></div>
 
-        <!-- BEGIN RECENT WORKS -->
-        <div class="row recent-work margin-bottom-40">
-            <div class="col-md-3">
-                <h2><a href="portfolio.html">Recent Works</a></h2>
-                <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde voluptatem. Sed unde omnis iste natus error sit voluptatem.</p>
-            </div>
-            <div class="col-md-9">
-                <ul class="bxslider">
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img1.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img1.jpg" class="fancybox-button" title="Project Name #1" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img2.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img2.jpg" class="fancybox-button" title="Project Name #2" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img3.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img3.jpg" class="fancybox-button" title="Project Name #3" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img4.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img4.jpg" class="fancybox-button" title="Project Name #4" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img5.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img5.jpg" class="fancybox-button" title="Project Name #5" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img6.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img6.jpg" class="fancybox-button" title="Project Name #6" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img3.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img3.jpg" class="fancybox-button" title="Project Name #3" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                    <li>
-                        <em>
-                            <img src="/bundles/applicationweb/img/works/img4.jpg" alt="" />
-                            <a href="portfolio_item.html"><i class="fa fa-link icon-hover icon-hover-1"></i></a>
-                            <a href="/bundles/applicationweb/img/works/img4.jpg" class="fancybox-button" title="Project Name #4" data-rel="fancybox-button"><i class="fa fa-search icon-hover icon-hover-2"></i></a>
-                        </em>
-                        <a class="bxslider-block" href="#">
-                            <strong>Amazing Project</strong>
-                            <b>Agenda corp.</b>
-                        </a>
-                    </li>
-                </ul>
+        <div class="tab-style-1 margin-bottom-20">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#description" data-toggle="tab">{{'product.page.tabs.description'}}</a></li>
+                <li class=""><a href="#image" data-toggle="tab">{{'product.page.tabs.image'}}</a></li>
+                <li class=""><a href="#video" data-toggle="tab">{{'product.page.tabs.video'}}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane row fade active in" id="description">
+                    <div class="typography">
+                    {% autoescape %}
+                        {{ product.fullDescription|raw }}
+                    {% endautoescape %}
+                    </div>
+                </div>
+                <div class="tab-pane row fade" id="image">
+                    <div class="container min-hight portfolio-page margin-bottom-40">
+                        <div class="filter-v1">
+                            <div class="row mix-grid thumbnails">
+                                {% for image in product.image %}
+                                    <div class="col-md-3 col-sm-4 gallery-item ">
+                                        <a data-id="{{image.id}}" data-rel="fancybox-button" title="{{image.description}}" href="{{vich_uploader_asset(image, 'file')|imagine_filter('gallery_image_full')}}" class="fancybox-button">
+                                            <img alt="{{image.description}}" src="{{vich_uploader_asset(image, 'file')|imagine_filter('gallery_image_preview')}}" class="img-responsive">
+                                            <div class="zoomix"><i class="fa fa-search"></i></div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane row fade" id="video">
+                </div>
             </div>
         </div>
         <!-- END RECENT WORKS -->
     </div>
     <!-- END CONTAINER -->
 </div>
+{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
 
-{#<div id="products_card">#}
-    {#<h1 class="label">#}
-        {#<div class="label_corners top-corn"></div>#}
-        {#{{ product.name }} <div class="label_corners right-corn"></div>#}
-    {#</h1>#}
-    {#<div class="products_window" >#}
-        {#<div class="left-colmn">#}
-            {#<div class="main_picture" id="main_picture">#}
-                {#<ul>#}
-                    {#{% for image in product.image %}#}
-                    {#<li id="m{{ loop.index }}">#}
-                        {#<a rel="gallery1" class="lightbox" href="{{image | imagine_filter('product_image_full')}}">#}
-                            {#<img src="{{image | imagine_filter('product_image')}}" title="{{ product.name }}" alt="{{ product.name }}" border="0" />#}
-                        {#</a>#}
-                    {#</li>#}
-                    {#{% endfor %}#}
-                {#</ul>#}
-            {#</div>#}
-            {#<div class="slider">#}
-                {#<div id="photo-slider" class="pics">#}
-                    {#<ul>#}
-                        {#{% for image in product.image %}#}
-                        {#<li>#}
-                            {#<a rel="gallery2" onmouseover="if (!$('#main_picture > ul > li#mi').is(':visible')) {$('#main_picture > ul > li').fadeOut('slow');$('#main_picture > ul > li#mi').fadeIn('slow');}" class="lightbox1" href="{{image | imagine_filter('product_image_full')}}">#}
-                                {#<img src="{{image | imagine_filter('product_thumb')}}" alt="{{ product.name }}" border="0" title="{{ product.name }}" />#}
-                            {#</a>#}
-                        {#</li>#}
-                        {#{% endfor %}#}
-                    {#</ul>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-        {#<div class="right-colmn">#}
-            {#<div class="products-features">#}
-                {#<div class="codeItem">Код товара:<strong>&nbsp; {{ product.id }}</strong></div>#}
-                {#<ul class="description">#}
-                    {#{{ product.shortDescription|raw }}#}
-                {#</ul>#}
-            {#</div>#}
+    <link href="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+    <link href="/bundles/applicationweb/css/pages/gallery.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
 
-            {#<div class="products-purchase">#}
-                {#<div class="price_big green">#}
-                    {#{{ product.price }}<span>&nbsp;грн.</span>#}
-                {#</div>#}
-                {#<div class="buy">#}
-                    {#<a class="btn main green" onclick="order.cart.show(78546); return false;" href="javascript:void();">Купить</a>#}
-                {#</div>#}
-                {#<ul class="distrib-info">#}
-                    {#<strong>Доставка, оплата, гарантия</strong>#}
-                    {#<ul>#}
-                        {#<li><span class="green">Бесплатно</span> по Киеву</li>#}
-                        {#<li>По Украине курьерской службой: <span class="green">Бесплатно</span></li>#}
-                        {#<li><span class="title">Гарантия 12 месяцев</span></li>#}
-                    {#</ul>#}
-                {#</ul>#}
-            {#</div>#}
-            {#<div class="clr"></div>#}
-
-
-            {#<ul class="products_tab-links">#}
-                {#<li><a href="#description" class="dashed">Описание</a></li>#}
-                {#<li><a href="#characteristics" class="dashed">Характеристики</a></li>#}
-            {#</ul>#}
-        {#</div>#}
-        {#<div class="clr"></div>#}
-    {#</div>#}
-    {#<ul class="listing main_text">#}
-        {#<li id="description" class="products_tab">#}
-            {#<div class="left-colmn">#}
-                {#<h2>Описание</h2>#}
-            {#</div>#}
-            {#<div class="right-colmn">#}
-                {#{{ product.fullDescription|raw }}#}
-            {#</div>#}
-            {#<div class="clr"></div>#}
-        {#</li>#}
-        {#<li class="products_tab" id="characteristics">#}
-            {#<div class="left-colmn">#}
-                {#<h2>Характеристики</h2>#}
-            {#</div>#}
-            {#<div class="right-colmn">#}
-                {#<table class="simply">#}
-                    {#<tr>#}
-                        {#<td>Класс</td>#}
-                        {#<td>#}
-                            {#2 SIM карты (Duos), Сенсорный                        </td>#}
-                    {#</tr>#}
-                    {#<tr class="last">#}
-                        {#<td colspan="2">&nbsp;</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Экран</td>#}
-                        {#<td>#}
-                            {#5&quot; HD Ready (1280х720)                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Особенности экрана</td>#}
-                        {#<td>#}
-                            {#IPS-матрица                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Стандарт связи</td>#}
-                        {#<td>#}
-                            {#900, 1900, 1800, 2100                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Операционная система</td>#}
-                        {#<td>#}
-                            {#Android                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Модель процессора</td>#}
-                        {#<td>#}
-                            {#MTK 6589                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Частота процессора</td>#}
-                        {#<td>#}
-                            {#1,2 ГГц                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Память оперативная</td>#}
-                        {#<td>#}
-                            {#1 Гб                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Память постоянная</td>#}
-                        {#<td>#}
-                            {#4 Гб                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Тип карт памяти</td>#}
-                        {#<td>#}
-                            {#microSD до 32 Гб                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Коммуникации</td>#}
-                        {#<td>#}
-                            {#Wi-Fi, Bluetooth, USB, 3G, 3,5-мм аудио                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Камера</td>#}
-                        {#<td>#}
-                            {#8 МП                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>GPS-модуль</td>#}
-                        {#<td>#}
-                            {#GPS, A-GPS                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Дополнительные функции</td>#}
-                        {#<td>#}
-                            {#Громкая связь, Офисные приложения, Радиоприемник, Приложение для доступа к интернет-сервисам, MP3-плеер, Датчик положения в пространстве                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Батарея</td>#}
-                        {#<td>#}
-                            {#литиево-полимерная, 4000 мА/ч                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Время работы телефона (ориентировочное)</td>#}
-                        {#<td>#}
-                            {#25 ч разговоров в сети 3G, 43 ч разговоров в сети 2G, 35 дней в режиме ожидания                        </td>#}
-                    {#</tr>#}
-                    {#<tr class="last">#}
-                        {#<td colspan="2">&nbsp;</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Форм-фактор телефона</td>#}
-                        {#<td>#}
-                            {#Моноблок                         </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Размеры</td>#}
-                        {#<td>#}
-                            {#143x73x9,95 мм                        </td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Вес</td>#}
-                        {#<td>#}
-                            {#176 г                        </td>#}
-                    {#</tr>#}
-                    {#<tr class="last">#}
-                        {#<td colspan="2">&nbsp;</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Комплектация</td>#}
-                        {#<td>#}
-                            {#Смартфон<br />#}
-                            {#Аккумулятор<br />#}
-                            {#Зарядное устройство<br />#}
-                            {#Проводная гарнитура<br />#}
-                            {#Инструкция<br/>*Комплектация может отличаться от указанной на сайте                        </td>#}
-                    {#</tr>#}
-                    {#<tr class="last">#}
-                        {#<td colspan="2">&nbsp;</td>#}
-                    {#</tr>#}
-                    {#<tr>#}
-                        {#<td>Гарантия</td>#}
-                        {#<td>#}
-                            {#12 месяцев                        </td>#}
-                    {#</tr>#}
-                {#</table>#}
-            {#</div>#}
-        {#</li>#}
-    {#</ul>#}
-    {#<div class="clr"></div>#}
-    {#<div class="right-colmn">Логотип Centrino, Core Inside, Intel, логотип Intel, Intel Core, Intel Inside, логотип Intel Inside, Intel Viiv, Intel vPro, Itanium, Itanium Inside, Pentium, Pentium Inside, Viiv Inside, vPro Inside, Xeon и Xeon Inside являются товарными знаками, либо зарегистрированными товарными знаками, права на которые принадлежат корпорации Intel на территории США и других стран.</div>#}
-    {#<div class="clr"></div>                </div>#}
-    {#</div>#}
-{#</div>#}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/bundles/applicationweb/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 {% endblock %}

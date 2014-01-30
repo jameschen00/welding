@@ -28,7 +28,7 @@ class Product extends BaseEntity
     /**
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Category", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products", cascade={"persist"})
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="RESTRICT")
      */
     private $category;

@@ -19,12 +19,14 @@
             <!-- BEGIN PORTFOLIO DESCRIPTION -->
             <div class="col-md-7">
                 <h2>{{ product.name }}</h2>
+                {% if product.brand %}
                 <ul class="blog-info">
                     <li><i class="fa fa-tags"></i> {{product.brand.name}}</li>
                 </ul>
+                {% endif %}
                 <p>{{ product.shortDescription }}</p>
                 <br/>
-                <a href="#" class="btn theme-btn"> {{'product.page.buy'|trans}}</a>
+                <a  data-toggle="modal" href="#basic" class="btn theme-btn"> {{'product.page.buy'|trans}}</a>
             </div>
             <!-- END PORTFOLIO DESCRIPTION -->
         </div>
@@ -69,6 +71,47 @@
     </div>
     <!-- END CONTAINER -->
 </div>
+
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">{{'product.buy.form.title'|trans}}</h4>
+            </div>
+            <form action="#" class="horizontal-form" role="form">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label">{{'product.buy.form.name'|trans}} <span class="color-red">*</span></label>
+                    <div class="col-lg-12">
+                        <input type="text" required="required" name="name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >{{'product.buy.form.phone'|trans}} <span class="color-red">*</span></label>
+                    <div class="col-lg-12">
+                        <input type="text" required="required" class="form-control" name="phone" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{'product.buy.form.message'|trans}}</label>
+                    <div class="col-lg-12">
+                        <textarea class="form-control" name="message" rows="8"></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn default" data-dismiss="modal">{{'product.buy.form.close'|trans}}</button>
+                <button type="submit" class="btn btn-default theme-btn">{{'product.buy.form.submit'|trans}}</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 {% endblock %}
 
 {% block stylesheets %}

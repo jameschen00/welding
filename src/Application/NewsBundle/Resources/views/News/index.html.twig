@@ -12,10 +12,11 @@
             <div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
                 {% for item in news %}
                     {% set url = path('news_item_' ~ item.section.id, {'id':item.id}) %}
+                    {% set src = vich_uploader_asset(item, 'file') %}
                     <div class="row">
-                        {% if (item.webPath) %}
+                        {% if (src) %}
                             <div class="col-md-4 col-sm-4">
-                                <img src="{{item.webPath|imagine_filter('news_image_list')}}" alt="{{ item.title }}" />
+                                <img src="{{src|imagine_filter('news_image_list')}}" alt="{{ item.title }}" />
                             </div>
                         {% endif %}
                         <div class="col-md-8 col-sm-8">
@@ -23,9 +24,7 @@
                             <ul class="blog-info">
                                 <li><i class="fa fa-calendar"></i> {{item.startDate|date("d.m.Y")}}</li>
                             </ul>
-                            {% autoescape %}
-                            <p>{{ item.shortText|raw }}</p>
-                            {% endautoescape %}
+                            <p>{{ item.shortText }}</p>
                             <a class="more" href="{{url}}">{{'page.news.readmore'|trans}} <i class="icon-angle-right"></i></a>
                         </div>
                     </div>

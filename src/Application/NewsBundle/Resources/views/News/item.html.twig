@@ -9,10 +9,11 @@
         <!-- BEGIN BLOG -->
         <div class="row">
             <div class="col-md-9 blog-item margin-bottom-40">
-                {% if (item.webPath) %}
+                {% set src = vich_uploader_asset(item, 'file') %}
+                {% if (src) %}
                     <div class="blog-item-img">
                         <div class="active item">
-                            <img src="{{item.webPath|imagine_filter('news_image_full')}}" alt="{{ item.title }}">
+                            <img src="{{src|imagine_filter('news_image_full')}}" alt="{{ item.title }}">
                         </div>
                     </div>
                 {% endif %}

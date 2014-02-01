@@ -1,6 +1,6 @@
 {% if images|length > 0 %}
 <div class="blog-photo-stream margin-bottom-20">
-    <h2>{{'page.gallery.block_title'}}</h2>
+    <h2>{{'page.gallery.block_title'|trans}}</h2>
     <ul class="list-unstyled">
         {% for image in images %}
         {% set src = vich_uploader_asset(image, 'file') %}

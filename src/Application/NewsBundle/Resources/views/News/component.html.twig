@@ -1,5 +1,5 @@
 {% if news|length > 0 %}
-    <h2>Recent News</h2>
+    <h2>{{'page.news.block_title'|trans}}</h2>
     <div class="recent-news margin-bottom-10">
         {% for item in news %}
         <div class="row margin-bottom-10">
@@ -10,10 +10,8 @@
                 </div>
             {% endif %}
             <div class="col-md-9 recent-news-inner">
-                <h3><a href="#">{{item.title}}</a></h3>
-                {% autoescape %}
-                <p>{{item.shortText|raw}}</p>
-                {% endautoescape %}
+                <h3><a href="{{path('news_section_'~item.section.id)}}">{{item.title}}</a></h3>
+                <p>{{item.shortText}}</p>
             </div>
         </div>
         {% endfor %}

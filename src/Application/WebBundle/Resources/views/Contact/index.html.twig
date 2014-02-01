@@ -1,7 +1,7 @@
 {% extends 'ApplicationWebBundle::layout.html.twig' %}
 
-{% block title %}page.contacts.title{% endblock %}
-{% block page_header %}page.contacts.page_header{% endblock %}
+{% block title %}{{'page.contact.title'|trans}}{% endblock %}
+{% block page_header %}{{'page.contact.page_header'|trans}}{% endblock %}
 
 {% block body %}
     <!-- BEGIN GOOGLE MAP -->
@@ -44,7 +44,7 @@
             </div>
 
             <div class="col-md-3 col-sm-3">
-                <h2>{{'page.contacts.title_block'|trans}}</h2>
+                <h2>{{'page.contact.title_block'|trans}}</h2>
                 <address>
                     {% autoescape %}
                     {{'company.block'|trans|raw}}
@@ -56,13 +56,8 @@
                 </address>
                 <div class="clearfix margin-bottom-30"></div>
 
-                <h2>{{'page.contacts.title_about'|trans}}</h2>
-                <p>Sediam nonummy nibh euismod tation ullamcorper suscipit</p>
-                <ul class="list-unstyled">
-                    <li><i class="fa fa-check"></i> Officia deserunt molliti</li>
-                    <li><i class="fa fa-check"></i> Consectetur adipiscing </li>
-                    <li><i class="fa fa-check"></i> Deserunt fpicia</li>
-                </ul>
+                <h2>{{'page.contact.title_about'|trans}}</h2>
+                <p>{{'page.contact.about_text'|trans}}</p>
             </div>
         </div>
     </div>

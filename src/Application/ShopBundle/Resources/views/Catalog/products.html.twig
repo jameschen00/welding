@@ -21,9 +21,11 @@
                         {% endif %}
                         <div class="col-md-8 col-sm-8">
                             <h2><a href="{{url}}">{{product.name}}</a></h2>
+                            {% if product.brand %}
                             <ul class="blog-info">
                                 <li><i class="fa fa-tags"></i> {{product.brand.name}}</li>
                             </ul>
+                            {% endif %}
                             <p>{{ product.shortDescription }}</p>
                             <a class="more" href="{{url}}">{{'page.catalog.readmore'|trans}} <i class="icon-angle-right"></i></a>
                         </div>

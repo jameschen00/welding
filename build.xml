@@ -28,7 +28,7 @@
 
     <!--   General deploy   -->
     <target name="deploy:basic"
-            depends="deploy:basic:tar, deploy:basic:check, deploy:basic:scp, deploy:basic:run, deploy:basic:project"
+            depends="deploy:basic:tar, deploy:basic:check, deploy:basic:scp"
             description="General deployment. Deploy config should be set before use"/>
 
     <!--  Run composer  -->
@@ -71,7 +71,7 @@
 
     <!--   General build   -->
     <target name="deploy:basic:run"
-            depends="deploy:basic:extract, deploy:basic:rsynk"
+            depends="deploy:basic:extract, deploy:basic:rsynk, deploy:basic:cleangarbage, deploy:basic:project"
             description="General building"/>
 
     <!--   Extract archive   -->

@@ -49,13 +49,7 @@
     <!-- Unit tests -->
     <target name="analyzer:phpunit" description="Executes unit tests.">
         <echo msg="Running unit tests ..."/>
-        <exec executable="php" logoutput="true" checkreturn="true">
-            <arg line="codecept.phar"/>
-            <arg line="run"/>
-            <arg line="--coverage"/>
-            <arg line="--xml"/>
-            <arg line="--html"/>
-        </exec>
+        <exec passthru="true" command="phpunit --log-junit ${dir.reports}/phpunit.xml --coverage-clover ${dir.reports.coverage}/clover.xml --coverage-html ${dir.reports.coverage}/ -c ${dir.unittest}/phpunit.xml"/>
     </target>
 
     <!-- Code style target -->

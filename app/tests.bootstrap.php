@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // app/tests.bootstrap.php
 if (isset($_ENV['BOOTSTRAP_CLEAR_CACHE_ENV'])) {

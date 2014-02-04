@@ -1,2 +1,3 @@
 app/logs
 app/config/parameters.yml
+web/public/img/uploads

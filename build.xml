@@ -28,7 +28,7 @@
 
     <!--   General deploy   -->
     <target name="deploy:basic"
-            depends="deploy:basic:tar, deploy:basic:check, deploy:basic:scp"
+            depends="deploy:basic:tar, deploy:basic:check, deploy:basic:scp, deploy:basic:run, deploy:basic:project"
             description="General deployment. Deploy config should be set before use"/>
 
     <!--  Run composer  -->

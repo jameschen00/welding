@@ -17,7 +17,7 @@
             depends="build:clean, build:basic:composer, analyzer:run, build:basic:project, deploy:stage"
             description="Run all test and build on STAGE server"/>
     <target name="build:release"
-            depends="build:clean, build:basic:composer, build:basic:project, deploy:release"
+            depends="build:clean, build:basic:composer, analyzer:run, build:basic:project, deploy:release"
             description="Build everything on RELEASE server"/>
 
     <!--   Cleanup before build   -->
@@ -71,7 +71,7 @@
 
     <!--   General build   -->
     <target name="deploy:basic:run"
-            depends="deploy:basic:extract, deploy:basic:rsynk, deploy:basic:cleangarbage, deploy:basic:project"
+            depends="deploy:basic:extract, deploy:basic:rsynk"
             description="General building"/>
 
     <!--   Extract archive   -->

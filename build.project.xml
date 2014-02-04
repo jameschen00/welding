@@ -1,17 +1,17 @@
 <project name="project" default="build:basic:project">
     <!--  Deploy accesses  -->
     <!--  Testing  -->
-    <property name="deploy.testing.host" value="194.194.194.194"/>
-    <property name="deploy.testing.user" value="username"/>
+    <property name="deploy.testing.host" value=""/>
+    <property name="deploy.testing.user" value=""/>
     <property name="deploy.testing.port" value="22"/>
     <property name="deploy.testing.pubkeyfile" value="/var/lib/jenkins/.ssh/id_rsa.pub" />
     <property name="deploy.testing.privkeyfile" value="/var/lib/jenkins/.ssh/id_rsa" />
-    <property name="deploy.testing.tmppath" value="/tmp/project"/>
-    <property name="deploy.testing.path" value="/var/www/project"/>
+    <property name="deploy.testing.tmppath" value=""/>
+    <property name="deploy.testing.path" value=""/>
 
     <!--  Stage  -->
-    <property name="deploy.stage.host" value="metrix.srv.pp.ciklum.com"/>
-    <property name="deploy.stage.user" value="pometrix"/>
+    <property name="deploy.stage.host" value=""/>
+    <property name="deploy.stage.user" value=""/>
     <property name="deploy.stage.port" value="22"/>
     <property name="deploy.stage.pubkeyfile" value="/var/lib/jenkins/.ssh/id_rsa.pub" />
     <property name="deploy.stage.privkeyfile" value="/var/lib/jenkins/.ssh/id_rsa" />
@@ -19,13 +19,13 @@
     <property name="deploy.stage.path" value="/var/www/demo.metrix.pp.ciklum.com"/>
 
     <!--  Release  -->
-    <property name="deploy.release.host" value="194.194.194.196"/>
-    <property name="deploy.release.user" value="username"/>
+    <property name="deploy.release.host" value="212.113.32.48"/>
+    <property name="deploy.release.user" value="igdr"/>
     <property name="deploy.release.port" value="22"/>
     <property name="deploy.release.pubkeyfile" value="/var/lib/jenkins/.ssh/id_rsa.pub" />
     <property name="deploy.release.privkeyfile" value="/var/lib/jenkins/.ssh/id_rsa" />
-    <property name="deploy.release.tmppath" value="/tmp/project"/>
-    <property name="deploy.release.path" value="/var/www/project"/>
+    <property name="deploy.release.tmppath" value="/tmp/svarka.com.ua"/>
+    <property name="deploy.release.path" value="/var/www/svarka.com.ua"/>
 
     <!-- Directories -->
     <property name="dir.src" value="${project.basedir}/src"/>

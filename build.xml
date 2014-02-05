@@ -71,7 +71,7 @@
 
     <!--   General build   -->
     <target name="deploy:basic:run"
-            depends="deploy:basic:extract, deploy:basic:rsynk, deploy:basic:cleangarbage, deploy:basic:project"
+            depends="deploy:basic:extract, deploy:basic:rsynk"
             description="General building"/>
 
     <!--   Extract archive   -->

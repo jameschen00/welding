@@ -45,7 +45,7 @@
                 chown www-data:www-data -R ${deploy.path}/app/cache ${deploy.path}/app/logs;
                 echo 'Cache and logs dir created';
 
-                sudo -u www-data rm -Rf ${deploy.path}/app/cache/*;
+                sudo -u www-data -H php ${deploy.path}/app/console cache:clear --env=prod;
                 echo 'Cache cleared';
 
                 sudo -u www-data -H php ${deploy.path}/app/console doctrine:schema:update --force --env=prod;

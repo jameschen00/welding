@@ -9,26 +9,13 @@
     <import file="build.project.xml"/>
     <import file="build.analyzer.xml"/>
 
-    <!--   Main targets  -->
-    <target name="build:testing"
-            depends="build:clean, build:basic:composer, analyzer:run, build:basic:project, deploy:testing"
-            description="Run all test and build everything on TEST server"/>
-    <target name="build:stage"
-            depends="build:clean, build:basic:composer, analyzer:run, build:basic:project, deploy:stage"
-            description="Run all test and build on STAGE server"/>
     <target name="build:release"
-            depends="build:clean, build:basic:composer, build:basic:project, deploy:release"
+            depends="build:basic:composer, build:basic:project, deploy:release"
             description="Build everything on RELEASE server"/>
-
-    <!--   Cleanup before build   -->
-    <target name="build:clean" description="Clean up build directories.">
-        <echo msg="Cleaning build directories ..."/>
-        <delete file="${deploy.file}" verbose="true"/>
-    </target>
 
     <!--   General deploy   -->
     <target name="deploy:basic"
-            depends="deploy:basic:tar, deploy:basic:check, deploy:basic:scp, deploy:basic:run, deploy:basic:project"
+            depends="deploy:basic:run, deploy:basic:project"
             description="General deployment. Deploy config should be set before use"/>
 
     <!--  Run composer  -->
@@ -46,55 +33,15 @@
         <exec command="php ${project.basedir}/composer.phar update" passthru="true" checkreturn="true"/>
     </target>
 
-    <!--   Gzip project   -->
-    <target name="deploy:basic:tar" description="Builds tar">
-        <tar destfile="${project.basedir}/${deploy.file}" compression="gzip">
-            <fileset refid="deploy"/>
-        </tar>
-    </target>
-
-    <!--   Creating distination directory   -->
-    <target name="deploy:basic:check" description="Checking destination existance ...">
-        <echo msg="Creating distination directory..."/>
-        <ssh username="${deploy.user}" pubkeyfile="${deploy.pubkeyfile}" privkeyfile="${deploy.privkeyfile}"
-             host="${deploy.host}" port="${deploy.port}" command="mkdir -p ${deploy.tmppath};"/>
-    </target>
-
-    <!--   Copy project archive to distination directory   -->
-    <target name="deploy:basic:scp" description="Scp tar to destination ...">
-        <echo msg="Scp tar to destination ..."/>
-        <exec executable="scp">
-            <arg value="${project.basedir}/${deploy.file}"/>
-            <arg value="${deploy.user}@${deploy.host}:${deploy.tmppath}/${deploy.file}"/>
-        </exec>
-    </target>
-
     <!--   General build   -->
     <target name="deploy:basic:run"
-            depends=""
+            depends="deploy:basic:rsynk, deploy:basic:project"
             description="General building"/>
-
-    <!--   Extract archive   -->
-    <target name="deploy:basic:extract" description="Extract archive ...">
-        <echo msg="Extracting archive..."/>
-        <ssh username="${deploy.user}" pubkeyfile="${deploy.pubkeyfile}" privkeyfile="${deploy.privkeyfile}"
-             host="${deploy.host}" port="${deploy.port}"
-             command=" cd ${deploy.tmppath}; tar -xvf ${deploy.file}; rm ${deploy.file}; "/>
-    </target>
 
     <!--   Run rsynk   -->
     <target name="deploy:basic:rsynk" description="Executing rsynk...">
         <echo msg="Executing rsynk ..."/>
-        <ssh username="${deploy.user}" pubkeyfile="${deploy.pubkeyfile}" privkeyfile="${deploy.privkeyfile}"
-             host="${deploy.host}" port="${deploy.port}"
-             command="rsync -r -v --exclude-from=${deploy.tmppath}/${deploy.excludefile} --delete ${deploy.tmppath}/ ${deploy.path}/;"/>
-    </target>
-
-    <!--   Clean garbage   -->
-    <target name="deploy:basic:cleangarbage" description="Clean garbage...">
-        <echo msg="Cleaning garbage..."/>
-        <ssh username="${deploy.user}" pubkeyfile="${deploy.pubkeyfile}" privkeyfile="${deploy.privkeyfile}"
-             host="${deploy.host}" port="${deploy.port}" command="rm -rf ${deploy.tmppath};"/>
+        <exec command="rsync -r -v --exclude-from=${deploy.basedir}/${deploy.excludefile} --delete ${deploy.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
     </target>
 
     <!--   Testing deployment   -->

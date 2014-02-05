@@ -9,7 +9,7 @@
     <import file="build.analyzer.xml"/>
 
     <target name="build:release"
-            depends="build:basic:composer, build:basic:project, deploy:release"
+            depends="build:basic:composer, analyzer:run, build:basic:project, deploy:release"
             description="Build everything on RELEASE server"/>
 
     <!--   General deploy   -->

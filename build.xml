@@ -40,7 +40,7 @@
     <!--   Run rsynk   -->
     <target name="deploy:basic:rsynk" description="Executing rsynk...">
         <echo msg="Executing rsynk ..."/>
-        <exec command="rsync -r -v --exclude-from=${deploy.basedir}/${deploy.excludefile} --delete ${deploy.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
+        <exec command="rsync -r -v --exclude-from=${project.basedir}/${deploy.excludefile} --delete ${project.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
     </target>
 
     <!--   Release deployment   -->
@@ -49,7 +49,6 @@
             <property name="deploy.path" value="${deploy.release.path}"/>
             <property name="project.basedir" value="${project.basedir}"/>
             <property name="deploy.excludefile" value="${deploy.excludefile}"/>
-            <property name="deploy.file" value="${deploy.file}"/>
         </phingcall>
     </target>
 </project>

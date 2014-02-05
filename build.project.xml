@@ -70,16 +70,7 @@
              host="${deploy.host}"
              port="${deploy.port}"
              command="
-                mkdir ${deploy.path}/app/cache;
-                chmod -Rf 777 ${deploy.path}/app/cache ${deploy.path}/app/logs;
-                chown :www-data -R ${deploy.path}/app/cache ${deploy.path}/app/logs;
-                echo 'Cache and logs dir created';
 
-                sudo -u www-data rm -Rf ${deploy.path}/app/cache/*;
-                echo 'Cache cleared';
-
-                sudo -u www-data -H php ${deploy.path}/app/console doctrine:schema:update --force --env=prod;
-                echo 'Doctrine schema updated';
              "
 		/>
     </target>

@@ -42,7 +42,7 @@
         <exec passthru="true" checkreturn="true" command="
                 mkdir ${deploy.path}/app/cache;
                 chmod -Rf 777 ${deploy.path}/app/cache ${deploy.path}/app/logs;
-                chown :www-data -R ${deploy.path}/app/cache ${deploy.path}/app/logs;
+                chown www-data:www-data -R ${deploy.path}/app/cache ${deploy.path}/app/logs;
                 echo 'Cache and logs dir created';
 
                 sudo -u www-data rm -Rf ${deploy.path}/app/cache/*;

@@ -36,7 +36,6 @@
     <target name="deploy:basic:run"
             depends="deploy:basic:rsynk, deploy:basic:project"
             description="General building"/>
-
     <!--   Run rsynk   -->
     <target name="deploy:basic:rsynk" description="Executing rsynk...">
         <echo msg="Executing rsynk ..."/>

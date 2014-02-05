@@ -1,30 +1,5 @@
 <project name="project" default="build:basic:project">
-    <!--  Deploy accesses  -->
-    <!--  Testing  -->
-    <property name="deploy.testing.host" value=""/>
-    <property name="deploy.testing.user" value=""/>
-    <property name="deploy.testing.port" value="22"/>
-    <property name="deploy.testing.pubkeyfile" value="/var/lib/jenkins/.ssh/id_rsa.pub" />
-    <property name="deploy.testing.privkeyfile" value="/var/lib/jenkins/.ssh/id_rsa" />
-    <property name="deploy.testing.tmppath" value=""/>
-    <property name="deploy.testing.path" value=""/>
-
-    <!--  Stage  -->
-    <property name="deploy.stage.host" value=""/>
-    <property name="deploy.stage.user" value=""/>
-    <property name="deploy.stage.port" value="22"/>
-    <property name="deploy.stage.pubkeyfile" value="/var/lib/jenkins/.ssh/id_rsa.pub" />
-    <property name="deploy.stage.privkeyfile" value="/var/lib/jenkins/.ssh/id_rsa" />
-    <property name="deploy.stage.tmppath" value="/tmp/po-metrix"/>
-    <property name="deploy.stage.path" value="/var/www/demo.metrix.pp.ciklum.com"/>
-
     <!--  Release  -->
-    <property name="deploy.release.host" value="212.113.32.48"/>
-    <property name="deploy.release.user" value="igdr"/>
-    <property name="deploy.release.port" value="22"/>
-    <property name="deploy.release.pubkeyfile" value="/var/lib/jenkins/.ssh/id_rsa.pub" />
-    <property name="deploy.release.privkeyfile" value="/var/lib/jenkins/.ssh/id_rsa" />
-    <property name="deploy.release.tmppath" value="/tmp/svarka.com.ua"/>
     <property name="deploy.release.path" value="/var/www/svarka.com.ua"/>
 
     <!-- Directories -->
@@ -64,12 +39,7 @@
     <!--  Finnaly target after build  -->
     <target name="deploy:basic:project" description="Finally target after build...">
         <echo msg="Cleaning project cache ..."/>
-        <ssh username="${deploy.user}"
-             pubkeyfile="${deploy.pubkeyfile}"
-             privkeyfile="${deploy.privkeyfile}"
-             host="${deploy.host}"
-             port="${deploy.port}"
-             command="
+        <exec passthru="true" checkreturn="true" command="
                 mkdir ${deploy.path}/app/cache;
                 chmod -Rf 777 ${deploy.path}/app/cache ${deploy.path}/app/logs;
                 chown :www-data -R ${deploy.path}/app/cache ${deploy.path}/app/logs;
@@ -80,7 +50,6 @@
 
                 sudo -u www-data -H php ${deploy.path}/app/console doctrine:schema:update --force --env=prod;
                 echo 'Doctrine schema updated';
-             "
-                />
+        " />
     </target>
 </project>

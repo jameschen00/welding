@@ -3,7 +3,6 @@
     <!--   Properties   -->
     <property name="projectName" value="${project.name}"/>
     <property name="deploy.excludefile" value="rsync.exclude"/>
-    <property name="deploy.file" value="deploy.tar"/>
 
     <!--   Project configuration   -->
     <import file="build.project.xml"/>
@@ -44,47 +43,9 @@
         <exec command="rsync -r -v --exclude-from=${deploy.basedir}/${deploy.excludefile} --delete ${deploy.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
     </target>
 
-    <!--   Testing deployment   -->
-    <target name="deploy:testing" description="Testing deployment">
-        <phingcall target="deploy:basic">
-            <property name="deploy.user" value="${deploy.testing.user}"/>
-            <property name="deploy.pubkeyfile" value="${deploy.testing.pubkeyfile}"/>
-            <property name="deploy.privkeyfile" value="${deploy.testing.privkeyfile}"/>
-            <property name="deploy.host" value="${deploy.testing.host}"/>
-            <property name="deploy.port" value="${deploy.testing.port}"/>
-            <property name="deploy.tmppath" value="${deploy.testing.tmppath}"/>
-            <property name="deploy.path" value="${deploy.testing.path}"/>
-            <property name="project.basedir" value="${project.basedir}"/>
-            <property name="deploy.excludefile" value="${deploy.excludefile}"/>
-            <property name="deploy.file" value="${deploy.file}"/>
-        </phingcall>
-    </target>
-
-    <!--   Stage deployment   -->
-    <target name="deploy:stage" description="Stage deployment">
-        <phingcall target="deploy:basic">
-            <property name="deploy.user" value="${deploy.stage.user}"/>
-            <property name="deploy.pubkeyfile" value="${deploy.stage.pubkeyfile}"/>
-            <property name="deploy.privkeyfile" value="${deploy.stage.privkeyfile}"/>
-            <property name="deploy.host" value="${deploy.stage.host}"/>
-            <property name="deploy.port" value="${deploy.stage.port}"/>
-            <property name="deploy.tmppath" value="${deploy.stage.tmppath}"/>
-            <property name="deploy.path" value="${deploy.stage.path}"/>
-            <property name="project.basedir" value="${project.basedir}"/>
-            <property name="deploy.excludefile" value="${deploy.excludefile}"/>
-            <property name="deploy.file" value="${deploy.file}"/>
-        </phingcall>
-    </target>
-
     <!--   Release deployment   -->
     <target name="deploy:release" description="Release deployment">
         <phingcall target="deploy:basic">
-            <property name="deploy.user" value="${deploy.release.user}"/>
-            <property name="deploy.pubkeyfile" value="${deploy.release.pubkeyfile}"/>
-            <property name="deploy.privkeyfile" value="${deploy.release.privkeyfile}"/>
-            <property name="deploy.host" value="${deploy.release.host}"/>
-            <property name="deploy.port" value="${deploy.release.port}"/>
-            <property name="deploy.tmppath" value="${deploy.release.tmppath}"/>
             <property name="deploy.path" value="${deploy.release.path}"/>
             <property name="project.basedir" value="${project.basedir}"/>
             <property name="deploy.excludefile" value="${deploy.excludefile}"/>

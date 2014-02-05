@@ -56,8 +56,6 @@
     <!--  First target before deploy  -->
     <target name="build:basic:project" description="First target before build...">
         <echo msg="Some works before archive project..."/>
-        <exec passthru="true" checkreturn="true" command="php ${project.basedir}/app/console assets:install"/>
-        <exec passthru="true" checkreturn="true" command="php ${project.basedir}/app/console assetic:dump --env=prod"/>
         <delete dir="${project.basedir}/app/cache" verbose="true"/>
     </target>
 

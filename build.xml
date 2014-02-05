@@ -71,7 +71,7 @@
 
     <!--   General build   -->
     <target name="deploy:basic:run"
-            depends="deploy:basic:extract"
+            depends=""
             description="General building"/>
 
     <!--   Extract archive   -->

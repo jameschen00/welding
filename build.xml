@@ -9,7 +9,7 @@
     <import file="build.analyzer.xml"/>
 
     <target name="build:release"
-            depends="build:basic:project, deploy:release"
+            depends="build:basic:composer, analyzer:run, build:basic:project, deploy:release"
             description="Build everything on RELEASE server"/>
 
     <!--   General deploy   -->
@@ -39,7 +39,8 @@
     <!--   Run rsynk   -->
     <target name="deploy:basic:rsynk" description="Executing rsynk...">
         <echo msg="Executing rsynk ..."/>
-        <exec command="rsync -r -v -g www-data --exclude-from=${project.basedir}/${deploy.excludefile} --delete ${project.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
+        <exec command="chown -R jenkins:www-data ${project.basedir}/" passthru="true" checkreturn="true"/>
+        <exec command="rsync -r -v --exclude-from=${project.basedir}/${deploy.excludefile} --delete ${project.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
     </target>
 
     <!--   Release deployment   -->

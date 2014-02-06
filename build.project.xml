@@ -1,6 +1,6 @@
 <project name="project" default="build:basic:project">
     <!--  Release  -->
-    <property name="deploy.release.path" value="/tmp/svarka.com.ua"/>
+    <property name="deploy.release.path" value="/var/www/svarka.com.ua"/>
 
     <!-- Directories -->
     <property name="dir.src" value="${project.basedir}/src"/>

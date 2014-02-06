@@ -3,18 +3,26 @@
     <!--   Properties   -->
     <property name="projectName" value="${project.name}"/>
     <property name="deploy.excludefile" value="rsync.exclude"/>
+    <property name="deploy.file" value="deploy.tar"/>
 
     <!--   Project configuration   -->
     <import file="build.project.xml"/>
     <import file="build.analyzer.xml"/>
 
+    <!--   Main targets  -->
     <target name="build:release"
-            depends="build:basic:composer, analyzer:run, build:basic:project, deploy:release"
+            depends="build:clean, build:basic:composer, build:basic:project, deploy:release"
             description="Build everything on RELEASE server"/>
+
+    <!--   Cleanup before build   -->
+    <target name="build:clean" description="Clean up build directories.">
+        <echo msg="Cleaning build directories ..."/>
+        <delete file="${deploy.file}" verbose="true"/>
+    </target>
 
     <!--   General deploy   -->
     <target name="deploy:basic"
-            depends="deploy:basic:run, deploy:basic:project"
+            depends="deploy:basic:tar, deploy:basic:check, deploy:basic:scp, deploy:basic:run, deploy:basic:project"
             description="General deployment. Deploy config should be set before use"/>
 
     <!--  Run composer  -->
@@ -32,23 +40,56 @@
         <exec command="php ${project.basedir}/composer.phar update" passthru="true" checkreturn="true"/>
     </target>
 
+    <!--   Gzip project   -->
+    <target name="deploy:basic:tar" description="Builds tar">
+        <tar destfile="${project.basedir}/${deploy.file}" compression="gzip">
+            <fileset refid="deploy"/>
+        </tar>
+    </target>
+
+    <!--   Creating distination directory   -->
+    <target name="deploy:basic:check" description="Checking destination existance ...">
+        <echo msg="Creating distination directory..."/>
+        <exec passthru="true" checkreturn="true" command="mkdir -p ${deploy.tmppath};"/>
+    </target>
+
+    <!--   Copy project archive to distination directory   -->
+    <target name="deploy:basic:scp" description="Scp tar to destination ...">
+        <echo msg="Scp tar to destination ..."/>
+        <exec passthru="true" checkreturn="true" command="cp ${project.basedir}/${deploy.file} ${deploy.tmppath}/${deploy.file}"/>
+    </target>
+
     <!--   General build   -->
     <target name="deploy:basic:run"
-            depends="deploy:basic:rsynk, deploy:basic:project"
+            depends="deploy:basic:extract, deploy:basic:rsynk, deploy:basic:cleangarbage, deploy:basic:project"
             description="General building"/>
+
+    <!--   Extract archive   -->
+    <target name="deploy:basic:extract" description="Extract archive ...">
+        <echo msg="Extracting archive..."/>
+        <exec passthru="true" checkreturn="true" command="cd ${deploy.tmppath}; tar -xvf ${deploy.file}; rm ${deploy.file}; "/>
+    </target>
+
     <!--   Run rsynk   -->
     <target name="deploy:basic:rsynk" description="Executing rsynk...">
         <echo msg="Executing rsynk ..."/>
-        <exec command="chown -R jenkins:www-data ${project.basedir}/" passthru="true" checkreturn="true"/>
-        <exec command="rsync -r -v --exclude-from=${project.basedir}/${deploy.excludefile} --delete ${project.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
+        <exec passthru="true" checkreturn="true" command="rsync -r -v --exclude-from=${deploy.tmppath}/${deploy.excludefile} --delete ${deploy.tmppath}/ ${deploy.path}/;"/>
+    </target>
+
+    <!--   Clean garbage   -->
+    <target name="deploy:basic:cleangarbage" description="Clean garbage...">
+        <echo msg="Cleaning garbage..."/>
+        <exec passthru="true" checkreturn="true" command="rm -rf ${deploy.tmppath};"/>
     </target>
 
     <!--   Release deployment   -->
     <target name="deploy:release" description="Release deployment">
         <phingcall target="deploy:basic">
+            <property name="deploy.tmppath" value="${deploy.release.tmppath}"/>
             <property name="deploy.path" value="${deploy.release.path}"/>
             <property name="project.basedir" value="${project.basedir}"/>
             <property name="deploy.excludefile" value="${deploy.excludefile}"/>
+            <property name="deploy.file" value="${deploy.file}"/>
         </phingcall>
     </target>
 </project>

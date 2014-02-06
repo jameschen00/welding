@@ -11,7 +11,7 @@
 
     <!--   Main targets  -->
     <target name="build:release"
-            depends="build:clean, build:basic:composer, build:basic:project, deploy:release"
+            depends="build:clean, build:basic:project, deploy:release"
             description="Build everything on RELEASE server"/>
 
     <!--   Cleanup before build   -->
@@ -42,6 +42,7 @@
 
     <!--   Gzip project   -->
     <target name="deploy:basic:tar" description="Builds tar">
+        <exec command="chown :www-data -R ${project.basedir}" passthru="true" checkreturn="true"/>
         <tar destfile="${project.basedir}/${deploy.file}" compression="gzip">
             <fileset refid="deploy"/>
         </tar>

@@ -39,7 +39,7 @@
     <!--   Run rsynk   -->
     <target name="deploy:basic:rsynk" description="Executing rsynk...">
         <echo msg="Executing rsynk ..."/>
-        <exec command="rsync -rog -v --exclude-from=${project.basedir}/${deploy.excludefile} --delete ${project.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
+        <exec command="rsync -rAc -v --exclude-from=${project.basedir}/${deploy.excludefile} --delete ${project.basedir}/ ${deploy.path}/;" passthru="true" checkreturn="true"/>
     </target>
 
     <!--   Release deployment   -->

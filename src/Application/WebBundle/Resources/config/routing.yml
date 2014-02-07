@@ -17,3 +17,15 @@ web_service:
 web_partners:
     pattern:  /partners
     defaults: { _controller: ApplicationWebBundle:Partner:index }
+
+web_partners_ritmo:
+    pattern:  /partners/ritmo
+    defaults: { _controller: ApplicationWebBundle:Partner:ritmo }
+
+web_partners_mempex:
+    pattern:  /partners/mempex
+    defaults: { _controller: ApplicationWebBundle:Partner:mempex }
+
+web_partners_center_plastics:
+    pattern:  /partners/center-plastics
+    defaults: { _controller: ApplicationWebBundle:Partner:centerplastics }

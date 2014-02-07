@@ -44,10 +44,10 @@
             <!-- BEGIN RIGHT SIDEBAR -->
             <div class="col-md-3 col-sm-3 blog-sidebar">
                 <!-- CATEGORIES START -->
-                <h2>Categories</h2>
+                <h2>{{'page.catalog.categories'|trans}}</h2>
                 <ul class="nav sidebar-categories margin-bottom-40">
                     {% for subcategory in categories %}
-                    <li {% if subcategory.id == category.id  %}class="active"{% endif %}><a href="{{path('category_'~subcategory.id)}}">{{subcategory.name}} (18)</a></li>
+                    <li {% if subcategory.id == category.id  %}class="active"{% endif %}><a href="{{path('category_'~subcategory.id)}}">{{subcategory.name}}</a></li>
                     {% endfor %}
                 </ul>
                 <!-- CATEGORIES END -->

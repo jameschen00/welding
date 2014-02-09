@@ -12,4 +12,3 @@ parameters:
     mailer_password: null
     locale: ru
     secret: 44284dd067e8c3c91b26331a293392c6
-    assets_folder: assets
